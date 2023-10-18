@@ -14,7 +14,7 @@ class PetSerializer(serializers.ModelSerializer):
             "age",
             "breed",
             "size",
-            "colour",
+            "color",
             "story"
         )
 
@@ -45,6 +45,6 @@ class PetDetailSerializer(serializers.ModelSerializer):
             "age",
             "breed",
             "size",
-            "colour",
+            "color",
             "story"
         )
