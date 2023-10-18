@@ -1,7 +1,11 @@
 from django import urls
+from rest_framework import routers
 
-urlpatterns = [
+from .views import PetViewSet
 
-]
+router = routers.DefaultRouter()
+router.register("", PetViewSet)
+
+urlpatterns = router.urls
 
 app_name = "pets"
