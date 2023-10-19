@@ -15,7 +15,8 @@ class PetSerializer(serializers.ModelSerializer):
             "breed",
             "size",
             "color",
-            "story"
+            "story",
+            "image"
         )
 
 
@@ -29,6 +30,7 @@ class PetListSerializer(PetSerializer):
             "gender",
             "age",
             "breed",
+            "image"
         )
 
 
@@ -46,5 +48,6 @@ class PetDetailSerializer(serializers.ModelSerializer):
             "breed",
             "size",
             "color",
-            "story"
+            "story",
+            "image"
         )
