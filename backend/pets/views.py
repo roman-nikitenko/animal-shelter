@@ -4,11 +4,13 @@ from drf_spectacular.utils import extend_schema, OpenApiParameter
 
 from .models import Pet
 from .serializers import PetSerializer, PetListSerializer, PetDetailSerializer
+from .permissions import IsAdminOrReadOnly
 
 
 class PetViewSet(viewsets.ModelViewSet):
     queryset = Pet.objects.select_related("animal_type")
     serializer_class = PetSerializer
+    permission_classes = (IsAdminOrReadOnly,)
 
     def get_serializer_class(self):
         if self.action == "list":
