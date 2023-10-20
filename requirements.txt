@@ -12,6 +12,7 @@ jsonschema-specifications
 phonenumbers
 Pillow
 psycopg2
+gunicorn
 PyJWT==2.8.0
 python-decouple==3.8
 python-dotenv
