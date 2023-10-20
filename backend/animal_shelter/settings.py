@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 
 import dj_database_url
-from decouple import config
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "pets",
+    "appointment",
 ]
 
 MIDDLEWARE = [
