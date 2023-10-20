@@ -1,6 +1,7 @@
 import os
 import uuid
 
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
 
@@ -34,7 +35,13 @@ class Pet(models.Model):
     name = models.CharField(max_length=63)
     animal_type = models.ForeignKey(PetType, on_delete=models.CASCADE)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
-    age = models.IntegerField()
+    age = models.DecimalField(
+        max_digits=3,
+        decimal_places=1,
+        validators=[
+            MinValueValidator(limit_value=0),
+            MaxValueValidator(limit_value=17)
+        ])
     breed = models.CharField(max_length=63, default="mongrel")
     size = models.CharField(max_length=6, choices=SIZE_CHOICES)
     color = models.CharField(max_length=63, blank=True, null=True)
