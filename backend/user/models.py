@@ -1,7 +1,10 @@
+import re
+
 from django.contrib.auth.models import (
     AbstractUser,
     BaseUserManager,
 )
+from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.utils.translation import gettext as _
 
@@ -45,6 +48,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
+    phone_number = PhoneNumberField(blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
