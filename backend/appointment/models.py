@@ -4,6 +4,7 @@ from django.db import models
 from rest_framework.generics import get_object_or_404
 
 from pets.models import Pet
+from user.models import User
 
 
 class Appointment(models.Model):
@@ -14,6 +15,10 @@ class Appointment(models.Model):
     @property
     def pet(self) -> Pet:
         return get_object_or_404(Pet, pk=self.pet_id)
+
+    @property
+    def user(self) -> User:
+        return get_object_or_404(User, pk=self.user_id)
 
     @staticmethod
     def validate_time(time, error_to_raise):
