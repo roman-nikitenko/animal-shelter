@@ -21,3 +21,4 @@ referencing
 sqlparse
 typing_extensions
 uritemplate
+whitenoise==6.4.0
