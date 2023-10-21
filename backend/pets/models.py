@@ -48,3 +48,6 @@ class Pet(models.Model):
     story = models.TextField(blank=True, null=True)
     image = models.ImageField(null=True, upload_to=pet_image_file_path)
     is_adopted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name} {self.animal_type}"
