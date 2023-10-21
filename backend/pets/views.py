@@ -47,6 +47,8 @@ class PetViewSet(viewsets.ModelViewSet):
         return self.serializer_class
 
     def get_queryset(self):
+        self.queryset = self.queryset.filter(is_adopted=False)
+
         animal_type = self.request.query_params.get("animal_type")
         color = self.request.query_params.get("color")
         gender = self.request.query_params.get("gender")
