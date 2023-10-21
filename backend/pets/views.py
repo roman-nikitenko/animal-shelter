@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework.decorators import api_view, permission_classes
@@ -99,3 +99,21 @@ class PetViewSet(viewsets.ModelViewSet):
     )
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+
+@api_view(["POST"])
+@permission_classes([IsAdminOrReadOnly])
+def adopted(request, pk):
+
+    """This is supposed to be a button, that changes
+    the specific animal's status to adopted"""
+
+    pet = get_object_or_404(Pet, pk=pk)
+
+    if not pet.is_adopted:
+        pet.is_adopted = True
+        pet.save()
+        return Response(
+            {"message": f"{pet.name} is successfully adopted!"},
+            status=status.HTTP_200_OK
+        )
