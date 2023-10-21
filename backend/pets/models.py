@@ -47,3 +47,4 @@ class Pet(models.Model):
     color = models.CharField(max_length=63, blank=True, null=True)
     story = models.TextField(blank=True, null=True)
     image = models.ImageField(null=True, upload_to=pet_image_file_path)
+    is_adopted = models.BooleanField(default=False)
