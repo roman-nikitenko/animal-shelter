@@ -1,10 +1,37 @@
 from rest_framework import viewsets
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
 
 from .models import Pet
 from .serializers import PetSerializer, PetListSerializer, PetDetailSerializer
 from .permissions import IsAdminOrReadOnly
+
+
+@api_view(["GET"])
+def statistic(request):
+
+    """It shows the number of pets that are currently in the shelter,
+    the number of pets that have been adopted and the list of the last three
+    adopted pets"""
+
+    num_pets_homeless = Pet.objects.filter(is_adopted=False).count()
+    num_pets_adopted = Pet.objects.filter(is_adopted=True).count()
+
+    list_of_3_last_adopted_pets = Pet.objects.select_related(
+        "animal_type"
+    ).filter(is_adopted=True).order_by("-id")[:3]
+    serializer = PetListSerializer(list_of_3_last_adopted_pets, many=True)
+
+    context = {
+        "num_pets_homeless": num_pets_homeless,
+        "num_pets_adopted": num_pets_adopted,
+        "list_of_3_last_adopted_pets": serializer.data
+    }
+
+    return Response(context, status=status.HTTP_200_OK)
 
 
 class PetViewSet(viewsets.ModelViewSet):
