@@ -1,10 +1,19 @@
 import React from 'react';
 import './App.css';
-import { HomePage } from './components/HomePage';
+import { Header } from './components/Header';
 
 function App() {
+  (() => {
+    console.log('webpack works')
+  })();
+
   return (
-    <HomePage />
+    <>
+      <Header />
+      <main></main>
+      <footer></footer>
+    </>
+
   );
 }
 
