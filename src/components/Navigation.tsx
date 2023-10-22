@@ -9,7 +9,7 @@ export const Navigation = () => {
         <div className="menu__logo">
           <a href="#">
             <img className="logo-image" src={logo}/>
-            PetSearch
+            HappyPaws
           </a>
         </div>
         <div className="menu__nav">
