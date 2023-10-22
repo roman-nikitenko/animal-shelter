@@ -1,4 +1,7 @@
 import re
+import os
+from django.utils.text import slugify
+import uuid
 
 from django.contrib.auth.models import (
     AbstractUser,
@@ -7,6 +10,7 @@ from django.contrib.auth.models import (
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.utils.translation import gettext as _
+from PIL import Image
 
 
 class UserManager(BaseUserManager):
@@ -45,10 +49,18 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+def user_image_file_path(instance, filename: str):
+    _, extension = os.path.splitext(filename)
+    filename = f"{slugify(instance.email)}-{uuid.uuid4()}{extension}"
+
+    return os.path.join("uploads", "users", filename)
+
+
 class User(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
     phone_number = PhoneNumberField(blank=True)
+    profile_picture = models.ImageField(upload_to=user_image_file_path, blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -78,3 +90,14 @@ class User(AbstractUser):
             raise error_to_raise("Password must contain at least 1 digit")
         elif re.search("[a-zA-Z]", password) is None:
             raise error_to_raise("Password must contain at lest 1 letter")
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.profile_picture:
+            # Resize and save the profile picture to a reasonable size
+            img = Image.open(self.profile_picture.path)
+            if img.height > 300 or img.width > 300:
+                output_size = (300, 300)
+                img.thumbnail(output_size)
+                img.save(self.profile_picture.path)
