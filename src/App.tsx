@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
 import { Header } from './components/Header';
+import { Navigation } from './components/Navigation';
 
 function App() {
-  (() => {
-    console.log('webpack works')
-  })();
-
   return (
     <>
+      <Navigation />
       <Header />
       <main></main>
       <footer></footer>

@@ -1,0 +1,17 @@
+.header {
+  background-color: $violet50;
+  padding: 160px 80px 120px;
+
+  &__content {
+    width: 500px;
+  }
+
+  &__title {
+    margin-bottom: 50px;
+  }
+}
+
+.content__buttons {
+  display: flex;
+  gap: 20px;
+}

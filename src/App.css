@@ -1,0 +1,115 @@
+html {
+  font-family: "Lexend", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: 72px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 52px;
+  letter-spacing: 0;
+  line-height: 58px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 44px;
+  letter-spacing: 0;
+  line-height: 50px;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: #0C0A09;
+}
+
+.button {
+  border: 1px solid #C4B5FD;
+  border-radius: 5px;
+  background-color: #FFF;
+  padding: 10px 20px;
+  color: #7C3AED;
+  cursor: pointer;
+}
+.button__registration {
+  background-color: #6D28D9;
+  color: #FFF;
+}
+.button__signIn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.button__signIn:before {
+  content: url("/src/assets/user.svg");
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  top: 2px;
+}
+.button__foundPet {
+  background-color: #DDD6FE;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 80px;
+}
+
+.nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 20px;
+  justify-content: center;
+}
+.nav__item {
+  list-style-type: none;
+}
+.nav__link {
+  text-decoration: none;
+}
+
+.registration {
+  display: flex;
+  gap: 10px;
+}
+
+.header {
+  background-color: #F5F3FF;
+  padding: 160px 80px 120px;
+}
+.header__content {
+  width: 500px;
+}
+.header__title {
+  margin-bottom: 50px;
+}
+
+.content__buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/*# sourceMappingURL=App.css.map */

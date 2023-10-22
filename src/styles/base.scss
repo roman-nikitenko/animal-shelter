@@ -33,3 +33,41 @@ h3 {
   line-height: 50px;
   font-weight: 700;
 }
+
+a {
+  text-decoration: none;
+  color: $stone950;
+}
+
+.button {
+  border: 1px solid $violet300;
+  border-radius: 5px;
+  background-color: #FFF;
+  padding: 10px 20px;
+  color: $violet600;
+  cursor: pointer;
+
+  &__registration {
+    background-color: $violet700;
+    color: #FFF;
+  }
+
+  &__signIn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__signIn:before {
+    content: url("/src/assets/user.svg");
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    top: 2px;
+  }
+
+  &__foundPet {
+    background-color: $violet200;
+  }
+}
