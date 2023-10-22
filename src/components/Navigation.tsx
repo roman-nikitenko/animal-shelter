@@ -1,14 +1,14 @@
 import React from 'react';
+import logo from '../assets/logo.svg'
 
 export const Navigation = () => {
-  const logo = require('../assets/logo.svg')
 
   return (
     <div className="navigation">
       <div className="menu">
         <div className="menu__logo">
           <a href="#">
-            <img src={logo}/>
+            <img className="logo-image" src={logo}/>
             PetSearch
           </a>
         </div>

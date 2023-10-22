@@ -58,7 +58,7 @@ a {
   gap: 5px;
 }
 .button__signIn:before {
-  content: url("/src/assets/user.svg");
+  content: url("/public/assets/user.svg");
   position: relative;
   display: inline-block;
   align-items: center;
@@ -75,6 +75,16 @@ a {
   align-items: center;
   background-color: #fff;
   padding: 10px 80px;
+}
+.menu__logo {
+  position: relative;
+  margin-left: 27px;
+}
+
+.logo-image {
+  position: absolute;
+  left: -27px;
+  top: -5px;
 }
 
 .nav {

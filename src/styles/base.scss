@@ -60,7 +60,7 @@ a {
   }
 
   &__signIn:before {
-    content: url("/src/assets/user.svg");
+    content: url("/public/assets/user.svg");
     position: relative;
     display: inline-block;
     align-items: center;
