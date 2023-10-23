@@ -30,7 +30,6 @@ export const AboutUs: React.FC = () => {
           </p>
         </div>
       </div>
-
     </section>
   );
 };

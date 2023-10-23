@@ -11,27 +11,30 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
+  letter-spacing: 0;
 }
 
 h1 {
   font-size: 64px;
-  letter-spacing: 0;
   line-height: 72px;
   font-weight: 700;
 }
 
 h2 {
   font-size: 52px;
-  letter-spacing: 0;
   line-height: 58px;
   font-weight: 700;
 }
 
 h3 {
   font-size: 44px;
-  letter-spacing: 0;
   line-height: 50px;
   font-weight: 700;
+}
+
+h4 {
+  font-size: 40px;
+  line-height: 44px;
 }
 
 a {
@@ -129,7 +132,7 @@ p {
 
 .about-us {
   background-color: #C4B5FD;
-  padding: 40px 80px 10px;
+  padding: 40px 80px 10px 100px;
 }
 .about-us__title {
   display: flex;
@@ -181,6 +184,53 @@ p {
 }
 .about-us__text .second-paragraph {
   margin-left: 55px;
+}
+
+.statistics {
+  display: flex;
+  justify-content: center;
+  padding: 75px 0 80px;
+  gap: 150px;
+  background-color: #DDD6FE;
+}
+
+.statistics-column {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  width: 215px;
+}
+.block__title {
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 15px;
+}
+.block__triangle {
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed yellow;
+  transform: rotate(30deg);
+  border-radius: 15px;
+}
+.block__second-triangle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #A78BFA;
+  transform: rotate(20deg);
+}
+.block__subtitle {
+  transform: rotate(-50deg);
+  text-align: center;
 }
 
 /*# sourceMappingURL=App.css.map */

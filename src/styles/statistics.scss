@@ -1,0 +1,54 @@
+$squareSize: 120px;
+$squareRadius: 15px;
+$squareBorder: 2px;
+
+.statistics {
+  display: flex;
+  justify-content: center;
+  padding: 75px 0 80px;
+  gap: 150px;
+  background-color: $violet200;
+}
+
+.statistics-column {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  width: 215px;
+
+  &__title {
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  &__triangle {
+    margin: 0 auto;
+    width: $squareSize;
+    height: $squareSize;
+    border: $squareBorder dashed yellow;
+    transform: rotate(30deg);
+    border-radius: $squareRadius;
+  }
+
+  &__second-triangle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $squareRadius;
+    width: $squareSize;
+    height: $squareSize;
+    border: $squareBorder dashed $violet400;
+    transform: rotate(20deg);
+  }
+
+  &__subtitle {
+    transform: rotate(-50deg);
+    text-align: center;
+  }
+}
