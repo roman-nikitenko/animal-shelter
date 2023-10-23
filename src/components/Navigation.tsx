@@ -1,8 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.svg'
 
-export const Navigation = () => {
-
+export const Navigation: React.FC = () => {
   return (
     <div className="navigation">
       <div className="menu">
