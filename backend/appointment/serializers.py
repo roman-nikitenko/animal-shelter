@@ -11,6 +11,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         data = super(AppointmentSerializer, self).validate(attrs=attrs)
         Appointment.validate_time(
             attrs["time"],
+            attrs["pet_id"],
             ValidationError
         )
         return data

@@ -17,7 +17,7 @@ def pet_image_file_path(instance, filename: str):
     _, extension = os.path.splitext(filename)
     filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
 
-    return os.path.join("uploads", "posts", filename)
+    return os.path.join("uploads", "pets", filename)
 
 
 class Pet(models.Model):
