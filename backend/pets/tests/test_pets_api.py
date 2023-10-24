@@ -62,29 +62,30 @@ class UsersPetsApiTests(TestCase):
     def test_statistic_endpoint(self):
         url = reverse("pets:statistic")
 
-        animal_type1 = sample_animal_type(name="pet1")
-        animal_type2 = sample_animal_type(name="pet2")
-        animal_type3 = sample_animal_type(name="pet3")
-        animal_type4 = sample_animal_type(name="pet4")
+        animal_type = sample_animal_type(name="pet1")
 
-        pet_1 = sample_pet(animal_type=animal_type1)
-        pet_2 = sample_pet(animal_type=animal_type2)
-        pet_3 = sample_pet(animal_type=animal_type3, is_adopted=True)
-        pet_4 = sample_pet(animal_type=animal_type4, is_adopted=True)
+        pet_1 = sample_pet(animal_type=animal_type)
+        pet_2 = sample_pet(animal_type=animal_type, is_adopted=True)
+        pet_3 = sample_pet(animal_type=animal_type, is_adopted=True)
+        pet_4 = sample_pet(animal_type=animal_type, is_adopted=True)
 
-        adopted_pets = Pet.objects.filter(is_adopted=True).order_by("-id")
+        adopted_pets = Pet.objects.filter(is_adopted=True)
         homeless_pets = Pet.objects.filter(is_adopted=False)
+
+        serializer_1 = PetListSerializer(pet_1)
+        serializer_2 = PetListSerializer(pet_2)
+        serializer_3 = PetListSerializer(pet_3)
+        serializer_4 = PetListSerializer(pet_4)
 
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(adopted_pets.count(), 2)
-        self.assertEqual(homeless_pets.count(), 2)
-        self.assertEqual(Pet.objects.count(), 4)
-        self.assertIn(pet_3, adopted_pets)
-        self.assertIn(pet_4, adopted_pets)
-        self.assertNotIn(pet_1, adopted_pets)
-        self.assertNotIn(pet_2, adopted_pets)
+        self.assertEqual(res.data["num_pets_homeless"], homeless_pets.count())
+        self.assertEqual(res.data["num_pets_adopted"], adopted_pets.count())
+        self.assertNotIn(serializer_1.data, res.data["list_of_3_last_adopted_pets"])
+        self.assertIn(serializer_2.data, res.data["list_of_3_last_adopted_pets"])
+        self.assertIn(serializer_3.data, res.data["list_of_3_last_adopted_pets"])
+        self.assertIn(serializer_4.data, res.data["list_of_3_last_adopted_pets"])
 
     def test_pet_list_filter_by_animal_type(self):
         animal_type1 = sample_animal_type(name="pet5")

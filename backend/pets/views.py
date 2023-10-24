@@ -22,7 +22,7 @@ def statistic(request):
 
     list_of_3_last_adopted_pets = Pet.objects.select_related(
         "animal_type"
-    ).filter(is_adopted=True).order_by("-id")[:3]
+    ).filter(is_adopted=True).order_by("-id")[:6]
     serializer = PetListSerializer(list_of_3_last_adopted_pets, many=True)
 
     context = {
