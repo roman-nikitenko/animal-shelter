@@ -1,12 +1,13 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework import status
 
 from .serializers import UserSerializer, CreateUserSerializer
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken, BlacklistedToken
-from rest_framework.generics import GenericAPIView
+from rest_framework_simplejwt.tokens import (
+    RefreshToken, OutstandingToken, BlacklistedToken
+)
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -25,7 +26,7 @@ class ManageUserView(generics.RetrieveUpdateDestroyAPIView):
         return self.request.user
 
 
-class UserLogoutAPIView(GenericAPIView):
+class UserLogoutAPIView(APIView):
     """
     An endpoint to logout users.
     """
