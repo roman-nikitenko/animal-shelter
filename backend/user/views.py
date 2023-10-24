@@ -5,7 +5,7 @@ from rest_framework import status
 
 from .serializers import UserSerializer, CreateUserSerializer
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken
+from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken, BlacklistedToken
 from rest_framework.generics import GenericAPIView
 
 
