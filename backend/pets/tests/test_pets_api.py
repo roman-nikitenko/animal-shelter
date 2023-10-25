@@ -349,8 +349,8 @@ class PetImageUploadTests(TestCase):
     def tearDown(self):
         self.pet.image.delete()
 
-    def test_upload_image_to_movie(self):
-        """Test uploading an image to movie"""
+    def test_upload_image_to_pet(self):
+        """Test uploading an image to pet"""
         animal_type = sample_animal_type(name="animal2")
         url = PET_URL
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
