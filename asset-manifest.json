@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/animal-shelter/static/css/main.e376de0a.css",
-    "main.js": "/animal-shelter/static/js/main.ee22294f.js",
+    "main.css": "/animal-shelter/static/css/main.6220cd47.css",
+    "main.js": "/animal-shelter/static/js/main.6389f76f.js",
     "static/media/sharthair.jpg": "/animal-shelter/static/media/sharthair.f2a9bc7dcc0690fcace6.jpg",
     "static/media/unknown.jpg": "/animal-shelter/static/media/unknown.361255d87160faeb93fb.jpg",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
@@ -10,17 +10,17 @@
     "static/media/phone.svg": "/animal-shelter/static/media/phone.3b372cedf034afdf3b73e06324868028.svg",
     "static/media/logo.svg": "/animal-shelter/static/media/logo.7af86819c0ac49c574ba0869b7bb298c.svg",
     "static/media/dog.svg": "/animal-shelter/static/media/dog.134b8be14346e3bb9898d4ed5718913f.svg",
+    "static/media/paw.svg": "/animal-shelter/static/media/paw.bd749410efb192e8b422e6d47a61e3ac.svg",
     "static/media/cat.svg": "/animal-shelter/static/media/cat.f0b558bce2beba656006e2e47f0d541b.svg",
     "index.html": "/animal-shelter/index.html",
     "static/media/user.svg": "/animal-shelter/static/media/user.9015f1aa3d80678c09e4.svg",
-    "static/media/point.svg": "/animal-shelter/static/media/point.49a9d60c828b7d29bd1dd29eb056b8cf.svg",
     "static/media/male.svg": "/animal-shelter/static/media/male.6aef1186bf7c9687758baa9b991295b3.svg",
     "static/media/female.svg": "/animal-shelter/static/media/female.6872c8a647905d41ac86e12571d01fe8.svg",
-    "main.e376de0a.css.map": "/animal-shelter/static/css/main.e376de0a.css.map",
-    "main.ee22294f.js.map": "/animal-shelter/static/js/main.ee22294f.js.map"
+    "main.6220cd47.css.map": "/animal-shelter/static/css/main.6220cd47.css.map",
+    "main.6389f76f.js.map": "/animal-shelter/static/js/main.6389f76f.js.map"
   },
   "entrypoints": [
-    "static/css/main.e376de0a.css",
-    "static/js/main.ee22294f.js"
+    "static/css/main.6220cd47.css",
+    "static/js/main.6389f76f.js"
   ]
 }
