@@ -1,0 +1,43 @@
+.carouselItem {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+  }
+
+
+  &__photo {
+    width: 280px;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px #78716C;
+    background-position: center;
+    background-size: 640px;
+    background-repeat: no-repeat;
+  }
+
+  &__information {
+    display: grid;
+    row-gap: 7px;
+    grid-template-columns: 1fr 1fr;
+    background-color: #DDD6FE;
+    border-radius: 8px;
+    border: 1px dashed #78716C;
+    padding: 20px 10px 12px;
+
+    &__link {
+      margin-top: 10px;
+      display: flex;
+      text-decoration: underline;
+      grid-column-start: 2;
+      grid-row-end: 4;
+      justify-content: end;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.announcement {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  padding: 80px 0 125px;
+  background-color: $violet100;
+
+  &__title {
+    margin: 0 auto;
+    width: 620px;
+    text-align: center;
+  }
+}
+
+

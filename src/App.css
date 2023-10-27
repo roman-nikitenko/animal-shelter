@@ -233,4 +233,77 @@ p {
   text-align: center;
 }
 
+.announcement {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  padding: 80px 0 125px;
+  background-color: #EDE9FE;
+}
+.announcement__title {
+  margin: 0 auto;
+  width: 620px;
+  text-align: center;
+}
+
+.carousel {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+.carousel__button {
+  display: flex;
+  padding: 10px;
+  border-width: 0 3px 3px 0;
+  justify-content: center;
+  background-color: transparent;
+  align-self: center;
+  cursor: pointer;
+}
+.carousel__button--left {
+  -webkit-transform: rotate(135deg);
+}
+.carousel__button--right {
+  -webkit-transform: rotate(-45deg);
+}
+
+.carouselItem {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.carouselItem p {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+}
+.carouselItem__photo {
+  width: 280px;
+  height: 400px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px #78716C;
+  background-position: center;
+  background-size: 640px;
+  background-repeat: no-repeat;
+}
+.carouselItem__information {
+  display: grid;
+  row-gap: 7px;
+  grid-template-columns: 1fr 1fr;
+  background-color: #DDD6FE;
+  border-radius: 8px;
+  border: 1px dashed #78716C;
+  padding: 20px 10px 12px;
+}
+.carouselItem__information__link {
+  margin-top: 10px;
+  display: flex;
+  text-decoration: underline;
+  grid-column-start: 2;
+  grid-row-end: 4;
+  justify-content: end;
+}
+
 /*# sourceMappingURL=App.css.map */
