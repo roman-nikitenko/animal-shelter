@@ -7,23 +7,18 @@
   padding: 10px 80px;
 
   &__logo {
-    position: relative;
     margin-left: 27px;
   }
-}
 
-.logo-image {
-  position: absolute;
-  left: -27px;
-  top: -5px
+  &__retreat {
+    gap: 20px;
+  }
 }
-
 
 .nav {
   display: flex;
   padding: 0;
   margin: 0;
-  gap: 20px;
   justify-content: center;
 
   &__item {

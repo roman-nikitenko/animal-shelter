@@ -1,0 +1,11 @@
+.logo {
+  position: relative;
+  margin-left: 27px;
+}
+.logo__image {
+  position: absolute;
+  left: -27px;
+  top: -5px;
+}
+
+/*# sourceMappingURL=logo.css.map */

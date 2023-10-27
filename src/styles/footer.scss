@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 130px 35px;
+  background-color: $violet300;
+  gap: 30px;
+
+  &__logo {
+    margin: 0 auto;
+  }
+
+  &__retreat {
+    gap: 40px;
+  }
+}
+
+.sign {
+  text-align: center;
+  background-color: $violet200;
+  padding: 10px;
+
+  &__text {
+    font-size: 12px;
+  }
+}

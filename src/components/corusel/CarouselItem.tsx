@@ -6,8 +6,7 @@ import mala from '../../assets/male.svg';
 import female from '../../assets/female.svg';
 import cat from '../../assets/cat.svg';
 import dog from '../../assets/dog.svg';
-import point from '../../assets/point.svg';
-import image from '../../assets/unknown.jpg';
+import paw from '../../assets/paw.svg';
 
 
 type Props = {
@@ -40,8 +39,8 @@ export const CarouselItem: React.FC<Props> = ({ animal }) => {
           {animal.sex}
         </p>
         <p className="carouselItem__information__address">
-          <img src={point} />
-          {animal.address}
+          <img src={paw} />
+          {animal.name}
         </p>
         <p className="carouselItem__information__breed">
           <img src={breed(animal.animalType)} alt="breed"/>

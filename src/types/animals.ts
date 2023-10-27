@@ -5,7 +5,7 @@ export interface Animals {
   id: number
   sex: Sex,
   breed: string | null,
-  address: string,
+  name: string,
   phoneNumber: string,
   photo: string
   animalType: AnimalType,

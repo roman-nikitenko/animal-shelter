@@ -1,18 +1,15 @@
 import React from 'react';
-import logo from '../assets/logo.svg'
+import { Logo } from './Logo';
 
 export const Navigation: React.FC = () => {
   return (
     <div className="navigation">
       <div className="menu">
         <div className="menu__logo">
-          <a href="#">
-            <img className="logo-image" src={logo}/>
-            HappyPaws
-          </a>
+          <Logo />
         </div>
         <div className="menu__nav">
-          <ul className="nav">
+          <ul className="nav menu__retreat">
             <li className="nav__item">
               <a className="nav__link" href="#">Lost pets</a>
             </li>

@@ -76,6 +76,15 @@ p {
   background-color: #DDD6FE;
 }
 
+.logo {
+  position: relative;
+}
+.logo__image {
+  position: absolute;
+  left: -27px;
+  top: -5px;
+}
+
 .menu {
   display: flex;
   justify-content: space-between;
@@ -85,21 +94,16 @@ p {
   padding: 10px 80px;
 }
 .menu__logo {
-  position: relative;
   margin-left: 27px;
 }
-
-.logo-image {
-  position: absolute;
-  left: -27px;
-  top: -5px;
+.menu__retreat {
+  gap: 20px;
 }
 
 .nav {
   display: flex;
   padding: 0;
   margin: 0;
-  gap: 20px;
   justify-content: center;
 }
 .nav__item {
@@ -244,6 +248,30 @@ p {
   margin: 0 auto;
   width: 620px;
   text-align: center;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 130px 35px;
+  background-color: #C4B5FD;
+  gap: 30px;
+}
+.footer__logo {
+  margin: 0 auto;
+}
+.footer__retreat {
+  gap: 40px;
+}
+
+.sign {
+  text-align: center;
+  background-color: #DDD6FE;
+  padding: 10px;
+}
+.sign__text {
+  font-size: 12px;
 }
 
 .carousel {

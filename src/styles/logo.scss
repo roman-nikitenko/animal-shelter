@@ -1,0 +1,11 @@
+.logo {
+  position: relative;
+
+
+
+  &__image {
+    position: absolute;
+    left: -27px;
+    top: -5px
+  }
+}
