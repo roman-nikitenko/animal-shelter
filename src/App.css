@@ -281,7 +281,6 @@ p {
 .carouselItem__photo {
   width: 280px;
   height: 400px;
-  border: 1px solid black;
   border-radius: 8px;
   box-shadow: 0px 2px 5px #78716C;
   background-position: center;
