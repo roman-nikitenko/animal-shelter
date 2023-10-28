@@ -66,6 +66,11 @@ p {
     font-size: 20px;
     margin: 0 auto;
     padding: 20px 50px;
+
+    &__red {
+      display: inline-block;
+      color: red;
+    }
   }
 
   &__signIn {
