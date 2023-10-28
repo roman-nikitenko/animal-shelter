@@ -1,7 +1,7 @@
 import React from 'react';
 import { Logo } from './Logo';
 
-export const Navigation: React.FC = () => {
+export const  Navigation: React.FC = () => {
   return (
     <div className="navigation">
       <div className="menu">

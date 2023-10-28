@@ -4,7 +4,7 @@ import App from './App';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { ErrorPage } from './pages/ErrorPage';
-import { ListPets } from './pages/ListPets';
+import { ListOfPets } from './pages/ListOfPets';
 
 const router = createHashRouter([
   {
@@ -19,10 +19,10 @@ const router = createHashRouter([
       },
       {
         path: '/list-of-pets',
-        element: <ListPets />
+        element: <ListOfPets />
       }
     ]
-  }
+  },
 ])
 
 const root = ReactDOM.createRoot(

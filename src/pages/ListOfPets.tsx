@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const ListPets: React.FC = () => {
+export const ListOfPets: React.FC = () => {
   return (
-    <div className="ListPets">
+    <div className="ListOfPets">
       <h1>list of pets</h1>
     </div>
   );
