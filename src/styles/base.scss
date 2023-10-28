@@ -51,13 +51,21 @@ p {
   border: 1px solid $violet300;
   border-radius: 5px;
   background-color: #FFF;
-  padding: 10px 20px;
+  padding: 7px 20px;
   color: $violet600;
   cursor: pointer;
 
   &__registration {
+    color: #fff;
+    background-color: $violet700;
+  }
+
+  &__get-pet {
     background-color: $violet700;
     color: #FFF;
+    font-size: 20px;
+    margin: 0 auto;
+    padding: 20px 50px;
   }
 
   &__signIn {

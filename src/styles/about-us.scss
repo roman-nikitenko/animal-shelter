@@ -55,10 +55,14 @@
 .about-us__text {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
   margin-top: 40px;
 
   .second-paragraph {
     margin-left: 55px;
+
+    &__title {
+      font-size: 20px;
+    }
   }
 }

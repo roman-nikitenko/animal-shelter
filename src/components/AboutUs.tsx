@@ -7,7 +7,7 @@ import image3 from '../assets/dog.jpg';
 export const AboutUs: React.FC = () => {
   return (
     <section className="about-us">
-      <h3 className="about-us__title"> About Us</h3>
+      <h2 className="about-us__title"> About Us</h2>
       <div className="about-us__content">
         <div className="about-us__block-images">
           <div className="image-block">
@@ -25,7 +25,7 @@ export const AboutUs: React.FC = () => {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. At illum labore mollitia optio rem soluta ut, veniam voluptatem? Adipisci, aspernatur dolor iure labore laudantium neque praesentium quis quod! Ab amet, assumenda consectetur consequuntur corporis deleniti nostrum recusandae reiciendis sapiente sed suscipit vel voluptate voluptatum? Accusamus commodi debitis id necessitatibus repellendus?
           </p>
           <p className="second-paragraph">
-            <h4>Out Mission:</h4>
+            <h4 className="second-paragraph__title">Out Mission:</h4>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam animi architecto debitis est id ipsam libero officia porro, quae quaerat quo ratione recusandae rem sed totam veniam voluptatibus. Architecto aspernatur doloribus eaque eligendi facere labore mollitia nisi officia, quo quos sit tempore vitae. Adipisci eveniet facere quod reprehenderit unde. Laboriosam.
           </p>
         </div>

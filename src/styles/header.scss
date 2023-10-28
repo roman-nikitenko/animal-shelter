@@ -1,5 +1,7 @@
 .header {
-  background-color: $violet50;
+  display: flex;
+  justify-content: space-between;
+  background-color: $violet100;
   padding: 160px 80px 120px;
 
   &__content {
@@ -8,6 +10,17 @@
 
   &__title {
     margin-bottom: 50px;
+  }
+
+  &__image {
+    background-image: url('./assets/main-image.png');
+    background-size: 600px;
+    background-color: $violet500;
+    background-repeat: no-repeat;
+    background-position: -60px -100px;
+    width: 500px;
+    height: 300px;
+    border: 10px solid white;
   }
 }
 

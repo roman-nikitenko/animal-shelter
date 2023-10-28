@@ -51,13 +51,20 @@ p {
   border: 1px solid #C4B5FD;
   border-radius: 5px;
   background-color: #FFF;
-  padding: 10px 20px;
+  padding: 7px 20px;
   color: #7C3AED;
   cursor: pointer;
 }
 .button__registration {
+  color: #fff;
+  background-color: #6D28D9;
+}
+.button__get-pet {
   background-color: #6D28D9;
   color: #FFF;
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 20px 50px;
 }
 .button__signIn {
   display: flex;
@@ -119,7 +126,9 @@ p {
 }
 
 .header {
-  background-color: #F5F3FF;
+  display: flex;
+  justify-content: space-between;
+  background-color: #EDE9FE;
   padding: 160px 80px 120px;
 }
 .header__content {
@@ -127,6 +136,16 @@ p {
 }
 .header__title {
   margin-bottom: 50px;
+}
+.header__image {
+  background-image: url("./assets/main-image.png");
+  background-size: 600px;
+  background-color: #8B5CF6;
+  background-repeat: no-repeat;
+  background-position: -60px -100px;
+  width: 500px;
+  height: 300px;
+  border: 10px solid white;
 }
 
 .content__buttons {
@@ -183,11 +202,14 @@ p {
 .about-us__text {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
   margin-top: 40px;
 }
 .about-us__text .second-paragraph {
   margin-left: 55px;
+}
+.about-us__text .second-paragraph__title {
+  font-size: 20px;
 }
 
 .statistics {
