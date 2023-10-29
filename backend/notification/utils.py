@@ -1,8 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
-from telegram import Update
-from telegram.ext import CallbackContext
 from animal_shelter import settings
 from telebot import TeleBot
 
