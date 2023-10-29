@@ -13,6 +13,7 @@ from django.http import JsonResponse
 from telegram import Update
 from telegram.ext import CallbackContext
 from .utils import handle_telegram_update
+from asgiref.sync import sync_to_async
 
 
 class NotificationViewset(viewsets.ModelViewSet):
@@ -33,6 +34,7 @@ class NotificationViewset(viewsets.ModelViewSet):
 
 
 class TelegramWebhook(APIView):
+    @sync_to_async
     def post(self, request):
         handle_telegram_update(request)
         return JsonResponse({"status": "ok"})

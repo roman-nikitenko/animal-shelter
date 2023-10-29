@@ -11,7 +11,7 @@ def initialize_telegram_bot(token):
     return Bot(token=token)
 
 
-def handle_telegram_update(request):
+async def handle_telegram_update(request):
     # Initialize the Telegram bot
     bot = initialize_telegram_bot(settings.BOT_TOKEN)
 
@@ -36,5 +36,5 @@ def handle_telegram_update(request):
         else:
             response = f"You said: {message}"
 
-    bot.send_message(chat_id=chat_id, text=response)
+    await bot.send_message(chat_id=chat_id, text=response)
     print(response, chat_id)
