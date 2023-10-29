@@ -7,3 +7,5 @@ db.sqlite3
 uploads/
 .coverage
 htmlcov/
+profile_pictures/
+
