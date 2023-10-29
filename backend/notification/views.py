@@ -10,7 +10,6 @@ from .serializers import NotificationSerializer
 from secrets import token_urlsafe
 
 from django.http import JsonResponse
-from telegram.ext import CallbackContext
 from .utils import handle_telegram_update
 
 
