@@ -13,9 +13,6 @@ from django.http import JsonResponse
 from telegram import Update
 from telegram.ext import CallbackContext
 from .utils import handle_telegram_update
-from asgiref.sync import sync_to_async
-from threading import Thread
-from django.views import View
 
 
 class NotificationViewset(viewsets.ModelViewSet):
@@ -35,9 +32,8 @@ class NotificationViewset(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class TelegramWebhook(View):
+class TelegramWebhook(APIView):
     def post(self, request):
         # Run the asynchronous function in a separate thread
-        thread = Thread(target=handle_telegram_update, args=(request,))
-        thread.start()
+        handle_telegram_update(request)
         return JsonResponse({"status": "ok"})

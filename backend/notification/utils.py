@@ -4,18 +4,12 @@ from django.http import JsonResponse
 from telegram import Update
 from telegram.ext import CallbackContext
 from animal_shelter import settings
-from telegram import Bot
+from telebot import TeleBot
 
 
-def initialize_telegram_bot(token):
-    return Bot(token=token)
+def handle_telegram_update(request):
+    bot = TeleBot(settings.BOT_TOKEN)
 
-
-async def handle_telegram_update(request):
-    # Initialize the Telegram bot
-    bot = initialize_telegram_bot(settings.BOT_TOKEN)
-
-    # Create a dictionary to store the user's state
     user_state = {}
 
     update = Update.de_json(request.data, bot)
@@ -36,5 +30,4 @@ async def handle_telegram_update(request):
         else:
             response = f"You said: {message}"
 
-    asyncio.run(bot.send_message(chat_id=chat_id, text=response))
     print(response, chat_id)
