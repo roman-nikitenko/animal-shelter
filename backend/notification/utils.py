@@ -8,24 +8,12 @@ from telebot import TeleBot
 def handle_telegram_update(request):
     bot = TeleBot(settings.BOT_TOKEN)
 
-    user_state = {}
+    text = message.text.lower()  # Приводим текст к нижнему регистру для удобства сравнения
 
-    update = Update.de_json(request.data, bot)
-
-    chat_id = update.message.chat_id
-    message = update.message.text
-
-    if message == "/start":
-        response = "Welcome to the bot! Please answer this question: What is your favorite color?"
-        # Set the user's state to 'awaiting_color' to expect their response
-        user_state[chat_id] = 'awaiting_color'
+    if text == '/start':
+        bot.send_message(message.chat.id, "Ласкаво просимо! Я ваш бот. Чим я можу допомогти?")
+    elif text == '/help':
+        bot.send_message(message.chat.id,
+                         "Це бот для чогось. Ось доступні команди:\n/start - почати\n/help - отримати довідку")
     else:
-        if chat_id in user_state and user_state[chat_id] == 'awaiting_color':
-            # Print the user's answer on the server
-            print(f"User's favorite color: {message}")
-            user_state.pop(chat_id)  # Remove the user's state
-            response = f"Your favorite color is set to: {message}"
-        else:
-            response = f"You said: {message}"
-
-    print(response, chat_id)
+        bot.send_message(message.chat.id, "Я не розумію цю команду. Введіть /help для отримання довідки.")
