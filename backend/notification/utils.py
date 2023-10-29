@@ -6,7 +6,7 @@ from telebot import TeleBot
 
 bot = TeleBot(settings.BOT_TOKEN)
 @bot.message_handler(func=lambda message: True)
-def handle_message(message):
+def handle_message(message_data):
     print(message)
     # Перевірте, чи правильно визначена змінна message і чи передається вона до цієї функції
     text = message_data['message']['text'].lower()  # Приводим текст к нижнему регистру для удобства сравнения
