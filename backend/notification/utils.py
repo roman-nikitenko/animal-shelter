@@ -13,8 +13,8 @@ def handle_message(message_data):
 
     if text == '/start':
         bot.send_message(chat_id, "Enter your veryfi token")
-    elif "token:" in text:
-        token = text.split("token:")[1]
+    elif "token: " in text:
+        token = text.split("token: ")[1]
         user = Notification.objects.get(telegram_token=token).user
         print(user)
 

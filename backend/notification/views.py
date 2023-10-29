@@ -21,8 +21,9 @@ class NotificationViewset(viewsets.ModelViewSet):
     @action(detail=False, methods=["GET"])
     def get_telegram_token(self, request):
         user = request.user
-        notification = Notification.objects.get(user=user)
-        if not notification:
+        try:
+            notification = Notification.objects.get(user=user)
+        except Notification.DoesNotExist:
             telegram_token = token_urlsafe(8)
             notification = Notification(user=user, telegram_token=telegram_token)
             notification.save()
