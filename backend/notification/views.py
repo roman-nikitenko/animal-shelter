@@ -10,7 +10,7 @@ from .serializers import NotificationSerializer
 from secrets import token_urlsafe
 
 from django.http import JsonResponse
-from .utils import handle_telegram_update
+from .utils import handle_message
 
 
 class NotificationViewset(viewsets.ModelViewSet):
@@ -33,5 +33,6 @@ class NotificationViewset(viewsets.ModelViewSet):
 class TelegramWebhook(APIView):
     def post(self, request):
         # Run the asynchronous function in a separate thread
-        handle_telegram_update(request)
+        message_data = request.data
+        handle_message(message_data)
         return JsonResponse({"status": "ok"})
