@@ -19,7 +19,6 @@ def handle_telegram_update(request):
     user_state = {}
 
     update = Update.de_json(request.data, bot)
-    handle_telegram_update(update, bot)
 
     chat_id = update.message.chat_id
     message = update.message.text
