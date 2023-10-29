@@ -36,5 +36,5 @@ async def handle_telegram_update(request):
         else:
             response = f"You said: {message}"
 
-    await bot.send_message(chat_id=chat_id, text=response)
+    asyncio.run(bot.send_message(chat_id=chat_id, text=response))
     print(response, chat_id)
