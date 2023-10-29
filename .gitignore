@@ -5,3 +5,4 @@ db.sqlite3
 .env
 **__pycache__/
 uploads/
+profile_pictures/

@@ -65,6 +65,8 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    telegram_chat_id = models.BigIntegerField(unique=True, blank=True, null=True)
+
     objects = UserManager()
 
     @property
