@@ -34,5 +34,5 @@ class NotificationViewset(viewsets.ModelViewSet):
 
 class TelegramWebhook(APIView):
     def post(self, request):
-        handle_telegram_update()
+        handle_telegram_update(request)
         return JsonResponse({"status": "ok"})

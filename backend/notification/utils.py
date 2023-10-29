@@ -11,7 +11,7 @@ def initialize_telegram_bot(token):
     return Bot(token=token)
 
 
-def handle_telegram_update():
+def handle_telegram_update(request):
     # Initialize the Telegram bot
     bot = initialize_telegram_bot(settings.BOT_TOKEN)
 
