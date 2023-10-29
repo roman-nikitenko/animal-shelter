@@ -7,5 +7,4 @@ class Notification(models.Model):
     telegram_token = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.user
-
+        return self.telegram_token
