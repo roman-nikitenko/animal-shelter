@@ -4,9 +4,9 @@ from django.http import JsonResponse
 from animal_shelter import settings
 from telebot import TeleBot
 
-
+bot = TeleBot(settings.BOT_TOKEN)
+@bot.message_handler(func=lambda message: True)
 def handle_telegram_update(request):
-    bot = TeleBot(settings.BOT_TOKEN)
 
     text = message.text.lower()  # Приводим текст к нижнему регистру для удобства сравнения
 
