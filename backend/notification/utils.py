@@ -35,5 +35,5 @@ def handle_telegram_update(request):
             response = f"Your favorite color is set to: {message}"
         else:
             response = f"You said: {message}"
-
+    print(response)
     bot.send_message(chat_id=chat_id, text=response)
