@@ -15,6 +15,7 @@ from pathlib import Path
 
 import dj_database_url
 from dotenv import load_dotenv
+from google.oauth2 import service_account
 
 load_dotenv()
 
@@ -189,3 +190,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://roman-nikitenko.github.io",
 ]
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, "happy-paws.json")
+)
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+GS_BUCKET_NAME = "images_for_pets_bucket"
