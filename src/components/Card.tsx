@@ -1,6 +1,5 @@
 import React from 'react';
 import { Animals } from '../types/animals';
-import image from '../assets/dog.jpg'
 import { petType, gender, firstLetterUpperCase } from '../utility/pickIcon';
 
 type Prop = {
@@ -11,7 +10,7 @@ export const Card: React.FC<Prop> = ({ pet }) => {
 
   return (
     <div className="card">
-      <img className="card__image" src={image} alt="dog or cat" />
+      <img className="card__image" src={pet.image} alt="dog or cat" />
       <div className="card__description">
         <h4 className="card__description--name">{pet.name}</h4>
         <p>
