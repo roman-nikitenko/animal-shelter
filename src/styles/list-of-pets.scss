@@ -1,0 +1,72 @@
+.header__list-of-pets {
+
+  &__title {
+    padding: 40px 0;
+    text-align: center;
+    background-color: $violet100;
+    font-size: 40px;
+  }
+}
+
+.filter {
+  padding: 10px 80px;
+  display: flex;
+  background-color: #fff;
+  gap: 20px;
+
+  &__box {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-radius: 8px;
+    height: 40px;
+    width: 200px;
+    border: 1px solid black;
+    color: $stone600;
+
+    &--mark {
+      margin-top: -5px;
+      height: 7px;
+      width: 7px;
+      border-width: 0 2px 2px 0;
+      border-style: solid;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__input {
+
+    &__title {
+      color: $stone500;
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+
+
+.main__list-of-pets {
+  grid-template-columns: 1fr;
+  display: grid;
+  row-gap: 30px;
+  column-gap: 20px;
+  padding: 40px 80px;
+  background-color: $violet100;
+
+  .loader__center {
+    grid-column-start: 2;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 1440px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+
+}

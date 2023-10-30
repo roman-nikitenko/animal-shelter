@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  gap: 10px;
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+
+    &--name {
+      font-size: 36px;
+    }
+
+    p {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 7px;
+    }
+  }
+
+  &__image {
+    width: 260px;
+    height: 350px;
+    object-fit: cover;
+    object-position: -230px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px $stone400;
+  }
+
+  &__link {
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: underline;
+  }
+}

@@ -1,12 +1,9 @@
 import React from 'react';
-import { Animals, AnimalType, Sex } from '../../types/animals';
+import { Animals, AnimalType, Gender } from '../../types/animals';
 import './carouselItem.scss'
 import phone from '../../assets/phone.svg';
-import mala from '../../assets/male.svg';
-import female from '../../assets/female.svg';
-import cat from '../../assets/cat.svg';
-import dog from '../../assets/dog.svg';
 import paw from '../../assets/paw.svg';
+import { petType, gender } from '../../utility/pickIcon';
 
 
 type Props = {
@@ -14,15 +11,7 @@ type Props = {
 }
 
 export const CarouselItem: React.FC<Props> = ({ animal }) => {
-  // const image = require(animal.photo)
 
-  const gender = (sex: Sex) => {
-    return sex === 'Female' ? female : mala;
-  }
-
-  const breed = (animal: AnimalType): string => {
-    return animal === 'cat' ? cat : dog;
-  }
 
 
   return (
@@ -30,20 +19,20 @@ export const CarouselItem: React.FC<Props> = ({ animal }) => {
       <div
         className="carouselItem__photo"
         style={{
-          backgroundImage: `url(${animal.photo})`
+          backgroundImage: `url(${animal.image})`
         }}
       />
       <div className="carouselItem__information">
         <p className="carouselItem__information__sex">
-          <img src={gender(animal.sex)} />
-          {animal.sex}
+          <img src={gender(animal.gender)} />
+          {animal.gender}
         </p>
         <p className="carouselItem__information__address">
           <img src={paw} />
           {animal.name}
         </p>
         <p className="carouselItem__information__breed">
-          <img src={breed(animal.animalType)} alt="breed"/>
+          <img src={petType(animal.animal_type)} alt="breed"/>
           {!animal.breed ? 'Unknown' : animal.breed}
         </p>
         <p className="carouselItem__information__phone-number">
