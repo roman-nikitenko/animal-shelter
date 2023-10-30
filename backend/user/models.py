@@ -1,5 +1,9 @@
+import io
 import re
 import os
+
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.utils.text import slugify
 import uuid
 
@@ -103,8 +107,12 @@ class User(AbstractUser):
 
         if self.profile_picture:
             # Resize and save the profile picture to a reasonable size
-            img = Image.open(self.profile_picture.name)
+            img_path = Image.open(self.profile_picture.name)
+            img = default_storage.open(img_path)
             if img.height > 300 or img.width > 300:
                 output_size = (300, 300)
                 img.thumbnail(output_size)
-                img.save(self.profile_picture.name)
+                in_mem_file = io.BytesIO()
+                img.save(in_mem_file, format=img.format)
+                in_mem_file.seek(0)
+                self.profile_picture.save(img_path, ContentFile(in_mem_file.read()), save=False)
