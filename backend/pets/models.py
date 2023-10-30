@@ -5,6 +5,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
 
+from .google_image_field import GoogleImageField
+
 
 class PetType(models.Model):
     name = models.CharField(max_length=63, unique=True)
@@ -17,7 +19,7 @@ def pet_image_file_path(instance, filename: str):
     _, extension = os.path.splitext(filename)
     filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
 
-    return os.path.join("uploads", "posts", filename)
+    return os.path.join("uploads", "pets", filename)
 
 
 class Pet(models.Model):
@@ -46,4 +48,8 @@ class Pet(models.Model):
     size = models.CharField(max_length=6, choices=SIZE_CHOICES)
     color = models.CharField(max_length=63, blank=True, null=True)
     story = models.TextField(blank=True, null=True)
-    image = models.ImageField(null=True, upload_to=pet_image_file_path)
+    image = GoogleImageField(null=True, upload_to=pet_image_file_path)
+    is_adopted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name} {self.animal_type}"

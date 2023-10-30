@@ -1,4 +1,12 @@
+import io
 import re
+import os
+
+import requests
+from django.core.files.base import ContentFile
+from storages.backends.gcloud import GoogleCloudStorage
+from django.utils.text import slugify
+import uuid
 
 from django.contrib.auth.models import (
     AbstractUser,
@@ -7,6 +15,8 @@ from django.contrib.auth.models import (
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.utils.translation import gettext as _
+from PIL import Image
+from pets.google_image_field import GoogleImageField
 
 
 class UserManager(BaseUserManager):
@@ -45,13 +55,27 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+def user_image_file_path(instance, filename: str):
+    _, extension = os.path.splitext(filename)
+    filename = f"{slugify(instance.email)}-{uuid.uuid4()}{extension}"
+
+    return os.path.join("uploads", "users", filename)
+
+
 class User(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
     phone_number = PhoneNumberField(blank=True)
+    profile_picture = GoogleImageField(
+        upload_to=user_image_file_path, blank=True, null=True
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    telegram_chat_id = models.BigIntegerField(
+        unique=True, blank=True, null=True
+    )
 
     objects = UserManager()
 
@@ -78,3 +102,31 @@ class User(AbstractUser):
             raise error_to_raise("Password must contain at least 1 digit")
         elif re.search("[a-zA-Z]", password) is None:
             raise error_to_raise("Password must contain at lest 1 letter")
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.profile_picture:
+            # Resize and save the profile picture to a reasonable size
+            response = requests.get(self.profile_picture.url)
+            img = Image.open(io.BytesIO(response.content))
+
+            if img.height > 300 or img.width > 300:
+                output_size = (300, 300)
+                img.thumbnail(output_size)
+                in_mem_file = io.BytesIO()
+                img.save(in_mem_file, format=img.format)
+                in_mem_file.seek(0)
+
+                if self.profile_picture.name:
+                    storage = GoogleCloudStorage()
+                    bucket = storage.bucket
+                    blob = bucket.blob(self.profile_picture.name)
+                    if blob.exists():
+                        blob.delete()
+
+                self.profile_picture.save(
+                    self.profile_picture.name,
+                    ContentFile(in_mem_file.read()),
+                    save=False
+                )

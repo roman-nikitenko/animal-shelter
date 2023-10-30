@@ -21,6 +21,7 @@ class PetSerializer(serializers.ModelSerializer):
 
 
 class PetListSerializer(PetSerializer):
+    animal_type = serializers.SlugRelatedField(slug_field="name", read_only=True)
 
     class Meta:
         model = Pet
@@ -30,12 +31,14 @@ class PetListSerializer(PetSerializer):
             "gender",
             "age",
             "breed",
-            "image"
+            "image",
+            "size",
+            "color",
+            "animal_type"
         )
 
 
-class PetDetailSerializer(serializers.ModelSerializer):
-    animal_type = serializers.SlugRelatedField(slug_field="name", read_only=True)
+class PetDetailSerializer(PetListSerializer):
 
     class Meta:
         model = Pet
