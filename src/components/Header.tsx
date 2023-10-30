@@ -17,7 +17,9 @@ export const Header: React.FC = () => {
             className="button button__get-pet">Take me</button>
         </div>
       </div>
-      <div className="header__image"></div>
+      <div className="header__image">
+
+      </div>
     </header>
   );
 };

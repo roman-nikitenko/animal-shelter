@@ -48,12 +48,13 @@ p {
 }
 
 .button {
-  border: 1px solid #C4B5FD;
+  border: none;
   border-radius: 5px;
   background-color: #FFF;
   padding: 7px 20px;
   color: #7C3AED;
   cursor: pointer;
+  box-shadow: 2px 2px 5px #A8A29E;
 }
 .button__registration {
   color: #fff;
@@ -75,6 +76,7 @@ p {
   flex-direction: row;
   align-items: center;
   gap: 5px;
+  border: 1px solid #C4B5FD;
 }
 .button__signIn:before {
   content: url("/public/assets/user.svg");
@@ -144,12 +146,10 @@ p {
 .header__image {
   background-image: url("./assets/main-image.png");
   background-size: 600px;
-  background-color: #8B5CF6;
   background-repeat: no-repeat;
   background-position: -60px -100px;
   width: 500px;
   height: 300px;
-  border: 10px solid white;
 }
 
 .content__buttons {
