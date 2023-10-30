@@ -192,7 +192,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    "etc/secrets/happy-paws.json"
+    os.path.join(BASE_DIR, "happy-paws.json")
 )
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = "images_for_pets_bucket"
