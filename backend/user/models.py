@@ -11,6 +11,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.utils.translation import gettext as _
 from PIL import Image
+from pets.google_image_field import GoogleImageField
 
 
 class UserManager(BaseUserManager):
@@ -60,12 +61,16 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(_("email address"), unique=True)
     phone_number = PhoneNumberField(blank=True)
-    profile_picture = models.ImageField(upload_to=user_image_file_path, blank=True, null=True)
+    profile_picture = GoogleImageField(
+        upload_to=user_image_file_path, blank=True, null=True
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-    telegram_chat_id = models.BigIntegerField(unique=True, blank=True, null=True)
+    telegram_chat_id = models.BigIntegerField(
+        unique=True, blank=True, null=True
+    )
 
     objects = UserManager()
 
