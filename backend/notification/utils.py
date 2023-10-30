@@ -17,8 +17,12 @@ def handle_message(message_data):
         bot.send_message(chat_id, "Enter your veryfi token")
     elif "token: " in text:
         token = text.split("token: ")[1]
-        user = Notification.objects.get(telegram_token=token).user
-        print(user)
+        try:
+            notification = Notification.objects.get(telegram_token=token)
+            user = notification.user
+            bot.send_message(chat_id, "You verify successfully")
+        except Notification.DoesNotExist:
+            bot.send_message(chat_id, "Token don't exist")
 
     else:
         bot.send_message(chat_id, "i dont understand you")
