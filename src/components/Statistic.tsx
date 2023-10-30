@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export const Statistic: React.FC = () => {
+  useEffect(() => {
+    fetch('https://happy-paws-pqwx.onrender.com/api/pets/statistic/')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+  }, []);
+
   return (
     <section className="statistics">
       <div className="statistics-column">
