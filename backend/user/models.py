@@ -103,8 +103,8 @@ class User(AbstractUser):
 
         if self.profile_picture:
             # Resize and save the profile picture to a reasonable size
-            img = Image.open(self.profile_picture.path)
+            img = Image.open(self.profile_picture.name)
             if img.height > 300 or img.width > 300:
                 output_size = (300, 300)
                 img.thumbnail(output_size)
-                img.save(self.profile_picture.path)
+                img.save(self.profile_picture.name)
