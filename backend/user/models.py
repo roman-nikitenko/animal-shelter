@@ -104,6 +104,7 @@ class User(AbstractUser):
             raise error_to_raise("Password must contain at lest 1 letter")
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
         if self.profile_picture:
             # Resize and save the profile picture to a reasonable size
@@ -129,4 +130,3 @@ class User(AbstractUser):
                     ContentFile(in_mem_file.read()),
                     save=False
                 )
-        super().save(*args, **kwargs)
