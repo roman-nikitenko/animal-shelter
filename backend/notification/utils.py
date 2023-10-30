@@ -9,9 +9,7 @@ bot = TeleBot(settings.BOT_TOKEN)
 def handle_message(message_data):
     print(message_data)
     chat_id = message_data["message"]["chat"]["id"]
-    text = message_data["message"][
-        "text"
-    ].lower()
+    text = message_data["message"]["text"]
 
     if text == "/start":
         bot.send_message(chat_id, "Enter your veryfi token")
