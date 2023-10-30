@@ -32,6 +32,8 @@ class PetListSerializer(PetSerializer):
             "age",
             "breed",
             "image",
+            "size",
+            "color",
             "animal_type"
         )
 
