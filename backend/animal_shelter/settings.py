@@ -33,7 +33,10 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "happy-paws-pqwx.onrender.com", "localhost", "127.0.0.1", "pets-0n6g.onrender.com"
+    "happy-paws-pqwx.onrender.com",
+    "localhost",
+    "127.0.0.1",
+    "pets-0n6g.onrender.com",
 ]
 
 

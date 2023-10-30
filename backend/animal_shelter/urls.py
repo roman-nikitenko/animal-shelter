@@ -21,27 +21,22 @@ from django.urls import path, include
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
-    SpectacularSwaggerView
+    SpectacularSwaggerView,
 )
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/pets/", include("pets.urls", namespace="pets")),
     path("api/users/", include("user.urls", namespace="user")),
-    path(
-        "api/appointments/",
-        include("appointment.urls", namespace="appointment")
-    ),
+    path("api/appointments/", include("appointment.urls", namespace="appointment")),
     path("api/notification/", include("notification.urls", namespace="notification")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/doc/swagger/",
         SpectacularSwaggerView.as_view(url_name="schema"),
-        name="swagger-ui"
+        name="swagger-ui",
     ),
     path(
-        "api/doc/redoc/",
-        SpectacularRedocView.as_view(url_name="schema"),
-        name="redoc"
+        "api/doc/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

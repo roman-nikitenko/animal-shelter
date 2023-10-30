@@ -8,10 +8,12 @@ bot = TeleBot(settings.BOT_TOKEN)
 @bot.message_handler(func=lambda message: True)
 def handle_message(message_data):
     print(message_data)
-    chat_id = message_data['message']['chat']['id']
-    text = message_data['message']['text'].lower()  # Приводим текст к нижнему регистру для удобства сравнения
+    chat_id = message_data["message"]["chat"]["id"]
+    text = message_data["message"][
+        "text"
+    ].lower()
 
-    if text == '/start':
+    if text == "/start":
         bot.send_message(chat_id, "Enter your veryfi token")
     elif "token: " in text:
         token = text.split("token: ")[1]
@@ -19,5 +21,4 @@ def handle_message(message_data):
         print(user)
 
     else:
-        bot.send_message(message_data['message']['chat']['id'],
-                         "Я не розумію цю команду. Введіть /help для отримання довідки.")
+        bot.send_message(chat_id, "i dont understand you")

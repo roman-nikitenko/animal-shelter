@@ -14,6 +14,4 @@ class NotificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Notification
-        fields = (
-            "token_with_prefix",
-        )
+        fields = ("token_with_prefix",)
