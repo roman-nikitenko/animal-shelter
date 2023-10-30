@@ -4,7 +4,7 @@ import os
 
 import requests
 from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
+from storages.backends.gcloud import GoogleCloudStorage
 from django.utils.text import slugify
 import uuid
 
@@ -104,7 +104,6 @@ class User(AbstractUser):
             raise error_to_raise("Password must contain at lest 1 letter")
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
         if self.profile_picture:
             # Resize and save the profile picture to a reasonable size
@@ -117,8 +116,17 @@ class User(AbstractUser):
                 in_mem_file = io.BytesIO()
                 img.save(in_mem_file, format=img.format)
                 in_mem_file.seek(0)
+
+                if self.profile_picture.name:
+                    storage = GoogleCloudStorage()
+                    bucket = storage.bucket
+                    blob = bucket.blob(self.profile_picture.name)
+                    if blob.exists():
+                        blob.delete()
+
                 self.profile_picture.save(
                     self.profile_picture.name,
                     ContentFile(in_mem_file.read()),
                     save=False
                 )
+        super().save(*args, **kwargs)
