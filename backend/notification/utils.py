@@ -20,6 +20,7 @@ def handle_message(message_data):
         try:
             notification = Notification.objects.get(telegram_token=token)
             user = notification.user
+            user.telegram_chat_id = chat_id
             bot.send_message(chat_id, "You verify successfully")
         except Notification.DoesNotExist:
             bot.send_message(chat_id, "Token don't exist")
