@@ -1,13 +1,20 @@
+import io
 import tempfile
+import uuid
+from unittest.mock import patch
+
 from PIL import Image
 
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.text import slugify
 from rest_framework.test import APIClient
 from rest_framework import status
+from storages.backends.gcloud import GoogleCloudStorage
 
+from pets.google_image_field import GoogleImageField
 from pets.models import Pet, PetType
 from pets.serializers import PetListSerializer, PetDetailSerializer
 
@@ -442,3 +449,22 @@ class PetImageUploadTests(TestCase):
         res = self.client.get(PET_URL)
 
         self.assertIn("image", res.data[0].keys())
+
+    def test_upload_image_to_google_storage(self):
+        animal_type = sample_animal_type(name="animal2")
+        storage = GoogleCloudStorage()
+
+        with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
+            img = Image.new("RGB", (10, 10))
+            img.save(ntf, format="JPEG")
+            ntf.seek(0)
+            image = SimpleUploadedFile(
+                "test_image.jpg", ntf.read(), content_type="image/jpeg"
+            )
+
+            pet = sample_pet(animal_type=animal_type, image=image)
+
+            bucket = storage.bucket
+            blob = bucket.blob(pet.image.name)
+
+            self.assertTrue(blob.exists())
