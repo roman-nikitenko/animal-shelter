@@ -37,11 +37,12 @@ def statistic(request):
                     "result": num_pets_adopted
                 },
                 {
-                    "name": "Average time to find a lost animals",
+                    "name": "Average time to find a family for a pet",
                     "result": 5
                 },
                 {
-                    "name": "Percentage of animals returned in the last month",
+                    "name": "Percentage of pets that have found "
+                            "a home in the last month",
                     "result": 85
                 },
             ],
