@@ -45,7 +45,7 @@ def statistic(request):
                     "result": 85
                 },
             ],
-        "list_of_3_last_adopted_pets": serializer.data
+        "list_of_last_adopted_pets": serializer.data
     }
 
     return Response(context, status=status.HTTP_200_OK)
