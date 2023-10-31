@@ -80,12 +80,16 @@ class UsersPetsApiTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data["num_pets_homeless"], homeless_pets.count())
-        self.assertEqual(res.data["num_pets_adopted"], adopted_pets.count())
-        self.assertNotIn(serializer_1.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_2.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_3.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_4.data, res.data["list_of_3_last_adopted_pets"])
+        self.assertEqual(
+            res.data["statistic"][0]["result"], homeless_pets.count()
+        )
+        self.assertEqual(
+            res.data["statistic"][1]["result"], adopted_pets.count()
+        )
+        self.assertNotIn(serializer_1.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_2.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_3.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_4.data, res.data["list_of_last_adopted_pets"])
 
     def test_pet_list_filter_by_animal_type(self):
         animal_type1 = sample_animal_type(name="pet5")
@@ -275,7 +279,7 @@ class UsersPetsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_delete_book_unauthorised_users_not_allowed(self):
+    def test_delete_pet_unauthorised_users_not_allowed(self):
         animal_type = sample_animal_type(name="test9")
         pet = sample_pet(animal_type=animal_type)
         url = detail_url(pet.id)

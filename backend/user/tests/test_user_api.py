@@ -1,8 +1,7 @@
 import tempfile
-from unittest.mock import patch, Mock
-
 from PIL import Image
 from django.contrib.auth import get_user_model
+from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
@@ -93,9 +92,7 @@ class UserRegisterApiTests(TestCase):
                 "test_image.jpg", ntf.read(), content_type="image/jpeg"
             )
             payload = sample_payload(profile_picture=image_file)
-            res = self.client.post(
-                CREATE_USER_URL, payload, format="multipart"
-            )
+            res = self.client.post(CREATE_USER_URL, payload, format="multipart")
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         user_id = res.data.get("id")
@@ -133,28 +130,19 @@ class AuthenticatedUserTests(TestCase):
 
         self.assertIn("profile_picture", res.data)
 
-    @patch('PIL.Image.open')
-    def test_resize_profile_picture(self, mock_image_open):
+    def test_resize_profile_picture(self):
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
-            img = Image.new("RGB", (10, 10))
+            img = Image.new("RGB", (400, 400))
             img.save(ntf, format="JPEG")
             ntf.seek(0)
-            image_file = SimpleUploadedFile(
-                "test_image.jpg", ntf.read(), content_type="image/jpeg"
-            )
+            image_file = ContentFile(ntf.read(), name="test_image.jpg")
             self.user.profile_picture = image_file
-            img_mock = Mock()
-            img_mock.height = 500
-            img_mock.width = 500
-            mock_image_open.return_value = img_mock
 
             # Call the method that resizes the profile picture
             self.user.save()
 
-        # Assert the calls to the methods
-        mock_image_open.assert_called_with(self.user.profile_picture.path)
-        img_mock.thumbnail.assert_called_with((300, 300))
-        img_mock.save.assert_called_with(self.user.profile_picture.path)
+        self.assertTrue(self.user.profile_picture.height == 300)
+        self.assertTrue(self.user.profile_picture.width == 300)
 
     def test_user_logout(self):
         url = reverse("user:logout-user")
@@ -164,7 +152,6 @@ class AuthenticatedUserTests(TestCase):
         self.assertEqual(res.data, {"status": "Logout successful"})
 
     def test_retrieve_user_detail(self):
-
         res = self.client.get(PROFILE_URL)
 
         serializer = UserSerializer(self.user)
