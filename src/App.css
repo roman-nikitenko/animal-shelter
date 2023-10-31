@@ -142,6 +142,7 @@ p {
 }
 .header__title {
   margin-bottom: 50px;
+  width: 720px;
 }
 .header__image {
   background-image: url("./assets/main-image.png");
@@ -215,20 +216,21 @@ p {
 .about-us__text .second-paragraph__title {
   font-size: 20px;
   font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .statistics {
   display: flex;
   justify-content: center;
-  padding: 75px 0 80px;
-  gap: 150px;
+  padding: 90px 0;
   background-color: #DDD6FE;
 }
-
-.statistics-column {
-  display: flex;
-  flex-direction: column;
-  gap: 90px;
+.statistics__container {
+  display: grid;
+  gap: 150px;
+  margin-right: 350px;
+  grid-template-columns: 200px 200px;
+  width: 200px;
 }
 
 .block {

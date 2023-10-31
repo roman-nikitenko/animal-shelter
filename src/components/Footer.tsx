@@ -1,5 +1,6 @@
 import React from 'react';
 import { Logo } from './Logo';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,19 +12,9 @@ export const Footer: React.FC = () => {
         <div className="footer__navigation">
           <ul className="nav footer__retreat">
             <li className="nav__item">
-              <a href="#" className="nav__link">
-                Lost pets
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="nav__link">
-                Found pets
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="nav__link">
-                About
-              </a>
+              <Link to="/list-of-pets" className="nav__link">
+                Pets
+              </Link>
             </li>
             <li className="nav__item">
               <a href="#" className="nav__link">
@@ -43,6 +34,11 @@ export const Footer: React.FC = () => {
             <li className="nav__item">
               <a href="#" className="nav__link">
                 Terms of use
+              </a>
+            </li>
+            <li className="nav__item">
+              <a href="#" className="nav__link">
+                About
               </a>
             </li>
           </ul>

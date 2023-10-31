@@ -5,15 +5,16 @@ $squareBorder: 2px;
 .statistics {
   display: flex;
   justify-content: center;
-  padding: 75px 0 80px;
-  gap: 150px;
+  padding: 90px 0;
   background-color: $violet200;
-}
 
-.statistics-column {
-  display: flex;
-  flex-direction: column;
-  gap: 90px;
+  &__container {
+    display: grid;
+    gap: 150px;
+    margin-right: 350px;
+    grid-template-columns: 200px 200px;
+    width: 200px;
+  }
 }
 
 .block {

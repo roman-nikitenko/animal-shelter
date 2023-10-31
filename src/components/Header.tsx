@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
     <header className="header">
       <div className="header__content">
         <h2 className="header__title">
-          Let's help pets find their home
+          Let's help every tail to find their home and loving family
         </h2>
         <div className="content__buttons">
           <button

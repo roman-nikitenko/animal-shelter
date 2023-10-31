@@ -11,3 +11,8 @@ export interface Animals {
   image: string
   animal_type: AnimalType,
 }
+
+export type Statistics = {
+  name: string,
+  result: number,
+}

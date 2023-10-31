@@ -44,7 +44,7 @@ export const Carousel: React.FC = () => {
       />
 
       {animals.map(animal => (
-        <CarouselItem animal={animal} />
+        <CarouselItem key={animal.id} animal={animal} />
       ))}
       <button
         type="button"
