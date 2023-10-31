@@ -38,11 +38,11 @@ def statistic(request):
                 },
                 {
                     "name": "Average time to find a family for a pet",
-                    "result": 5
+                    "result": "5 days"
                 },
                 {
                     "name": "Percentage of adopted pets in the last month",
-                    "result": 85
+                    "result": "85 %"
                 },
             ],
         "list_of_last_adopted_pets": serializer.data
