@@ -1,6 +1,7 @@
 import React from 'react';
 import { Animals } from '../types/animals';
 import { petType, gender, firstLetterUpperCase } from '../utility/pickIcon';
+import { Link } from 'react-router-dom';
 
 type Prop = {
   pet: Animals
@@ -21,7 +22,7 @@ export const Card: React.FC<Prop> = ({ pet }) => {
           <img src={gender(pet.gender)}/>
           {pet.gender}
         </p>
-        <a className="card__link" href='#'>See details</a>
+        <Link className="card__link" to={`${pet.id}`}>See details</Link>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { ErrorPage } from './pages/ErrorPage';
 import { ListOfPets } from './pages/ListOfPets';
+import { PetDetailPage } from './pages/PetDetailPage';
 
 const router = createHashRouter([
   {
@@ -19,7 +20,11 @@ const router = createHashRouter([
       },
       {
         path: '/list-of-pets',
-        element: <ListOfPets />
+        element: <ListOfPets />,
+      },
+      {
+        path: '/list-of-pets/:petId',
+        element: <PetDetailPage />,
       }
     ]
   },

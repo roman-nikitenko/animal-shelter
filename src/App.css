@@ -456,4 +456,16 @@ p {
   text-decoration: underline;
 }
 
+.ErrorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 77vh;
+}
+.ErrorPage h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*# sourceMappingURL=App.css.map */
