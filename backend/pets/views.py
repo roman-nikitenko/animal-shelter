@@ -41,8 +41,7 @@ def statistic(request):
                     "result": 5
                 },
                 {
-                    "name": "Percentage of pets that have found "
-                            "a home in the last month",
+                    "name": "Percentage of adopted pets in the last month",
                     "result": 85
                 },
             ],
