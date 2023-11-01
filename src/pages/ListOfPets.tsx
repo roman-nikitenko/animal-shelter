@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Animals } from '../types/animals';
+import React, { useContext } from 'react';
 import { Card } from '../components/Card';
 import { Loader } from '../components/Loader';
+import { PetsContext } from '../store/PetsContext';
 
 export const ListOfPets: React.FC = () => {
-  const [pets, getPets] = useState<Animals[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch('https://happy-paws-pqwx.onrender.com/api/pets/')
-      .then(response => response.json())
-      .then(data => {
-        setIsLoading(false);
-        getPets(data);
-      })
-  }, []);
-
-
-
+  const pets = useContext(PetsContext);
   return (
     <>
       <header className="header__list-of-pets">
@@ -54,13 +39,7 @@ export const ListOfPets: React.FC = () => {
       </header>
       <main className="main__list-of-pets">
 
-          {isLoading && (
-            <div className="loader__center">
-              <Loader />
-            </div>
-          )}
-
-        {!isLoading && pets.map(pet => (
+        {!pets ? <Loader/> : pets.map(pet => (
           <Card pet={pet} />
         ))}
       </main>

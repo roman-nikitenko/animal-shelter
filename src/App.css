@@ -307,6 +307,8 @@ p {
   display: flex;
   gap: 40px;
   justify-content: center;
+  width: 950px;
+  overflow: hidden;
 }
 .carousel__button {
   display: flex;

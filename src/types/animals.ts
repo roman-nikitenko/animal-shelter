@@ -1,7 +1,7 @@
 export type Gender = 'Male' | 'Female';
 export type AnimalType = 'dog' | 'cat';
 
-export interface Animals {
+export type Animals = {
   id: number,
   age?: string,
   gender: Gender,

@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage';
 import { ErrorPage } from './pages/ErrorPage';
 import { ListOfPets } from './pages/ListOfPets';
 import { PetDetailPage } from './pages/PetDetailPage';
+import { PetsContext, PetsProvider } from './store/PetsContext';
 
 const router = createHashRouter([
   {
@@ -37,6 +38,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PetsProvider>
+      <RouterProvider router={router} />
+    </PetsProvider>
   </React.StrictMode>
 );
