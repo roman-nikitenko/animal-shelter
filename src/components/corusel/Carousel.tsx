@@ -4,22 +4,18 @@ import { PetsContext } from '../../store/PetsContext';
 import { Loader } from '../Loader';
 
 export const Carousel: React.FC = () => {
-  const animals = useContext(PetsContext);
+  const { carouselPets } = useContext(PetsContext);
   const [offset, setOffset] = useState(0);
-  const stepOffset = 960;
+  const showItemPerStep = 3;
+  const stepOffset = 320;
   let maxLength = 0;
-  const showItemPerStep = 3
 
-  if (animals) {
-    maxLength = animals?.length * stepOffset / showItemPerStep
+  if (carouselPets) {
+    maxLength = carouselPets?.length * stepOffset / showItemPerStep;
   }
 
-  console.log(offset, -maxLength )
-
-
   const next = () => {
-    if (offset <= -maxLength + stepOffset)  {
-      console.log(true)
+    if (offset < -maxLength)  {
       setOffset(stepOffset);
     }
     setOffset(prev => prev - stepOffset);
@@ -27,7 +23,7 @@ export const Carousel: React.FC = () => {
 
   const prev = () => {
     if (offset >= 0) {
-      setOffset(-maxLength);
+      setOffset(-maxLength -stepOffset * 2)
     }
 
     setOffset(prev => prev + stepOffset);
@@ -42,16 +38,12 @@ export const Carousel: React.FC = () => {
       />
 
       <div className="carousel__window">
-
-        {!animals ? <Loader /> : (
-          animals.map(animal => (
-            <CarouselItem offset={offset} key={animal.id} animal={animal} />
+        {carouselPets.length === 0 ? <Loader /> : (
+          carouselPets.map(pet => (
+            <CarouselItem offset={offset} key={pet.id} animal={pet} />
           ))
         )}
-
       </div>
-
-
 
       <button
         type="button"

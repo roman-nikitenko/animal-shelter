@@ -55,6 +55,7 @@ p {
   color: #7C3AED;
   cursor: pointer;
   box-shadow: 2px 2px 5px #A8A29E;
+  transition: all 400ms ease;
 }
 .button__registration {
   color: #fff;
@@ -70,6 +71,10 @@ p {
 .button__get-pet__red {
   display: inline-block;
   color: red;
+}
+.button__get-pet:hover {
+  scale: 1.05;
+  box-shadow: none;
 }
 .button__signIn {
   display: flex;
@@ -87,6 +92,11 @@ p {
 }
 .button__foundPet {
   background-color: #DDD6FE;
+}
+
+.button:hover {
+  scale: 1.05;
+  box-shadow: none;
 }
 
 .logo {
@@ -227,7 +237,8 @@ p {
 }
 .statistics__container {
   display: grid;
-  gap: 150px;
+  column-gap: 150px;
+  row-gap: 100px;
   margin-right: 350px;
   grid-template-columns: 200px 200px;
   width: 200px;
@@ -262,6 +273,7 @@ p {
   transform: rotate(20deg);
 }
 .block__subtitle {
+  font-size: 45px;
   transform: rotate(-50deg);
   text-align: center;
 }
@@ -347,11 +359,13 @@ p {
 .carouselItem__photo {
   width: 280px;
   height: 400px;
-  border-radius: 8px;
+}
+.carouselItem__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
   box-shadow: 0px 2px 5px #78716C;
-  background-position: center;
-  background-size: 640px;
-  background-repeat: no-repeat;
 }
 .carouselItem__information {
   display: grid;

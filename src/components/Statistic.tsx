@@ -14,9 +14,9 @@ export const Statistic: React.FC = () => {
 
   const showPercentagesOrDays = (str: string): string => {
     switch (str) {
-      case 'Average time to find a lost animals':
+      case 'Average time to find a family for a pet':
         return ' days';
-      case 'Percentage of animals returned in the last month':
+      case 'Percentage of adopted pets in the last month':
         return '%';
       default:
         return '';

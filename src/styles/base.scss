@@ -55,6 +55,7 @@ p {
   color: $violet600;
   cursor: pointer;
   box-shadow: 2px 2px 5px $stone400;
+  transition: all 400ms ease;
 
   &__registration {
     color: #fff;
@@ -72,6 +73,11 @@ p {
       display: inline-block;
       color: red;
     }
+  }
+
+  &__get-pet:hover {
+    scale: 1.05;
+    box-shadow: none;
   }
 
   &__signIn {
@@ -95,4 +101,9 @@ p {
   &__foundPet {
     background-color: $violet200;
   }
+}
+
+.button:hover {
+  scale: 1.05;
+  box-shadow: none;
 }

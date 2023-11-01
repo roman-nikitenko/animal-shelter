@@ -10,7 +10,8 @@ $squareBorder: 2px;
 
   &__container {
     display: grid;
-    gap: 150px;
+    column-gap: 150px;
+    row-gap: 100px;
     margin-right: 350px;
     grid-template-columns: 200px 200px;
     width: 200px;
@@ -49,6 +50,7 @@ $squareBorder: 2px;
   }
 
   &__subtitle {
+    font-size: 45px;
     transform: rotate(-50deg);
     text-align: center;
   }

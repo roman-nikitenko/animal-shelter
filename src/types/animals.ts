@@ -10,6 +10,7 @@ export type Animals = {
   phoneNumber: string,
   image: string
   animal_type: AnimalType,
+  size: string,
 }
 
 export type Statistics = {

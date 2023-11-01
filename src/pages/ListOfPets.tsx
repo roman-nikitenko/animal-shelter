@@ -4,7 +4,7 @@ import { Loader } from '../components/Loader';
 import { PetsContext } from '../store/PetsContext';
 
 export const ListOfPets: React.FC = () => {
-  const pets = useContext(PetsContext);
+  const { pets } = useContext(PetsContext);
   return (
     <>
       <header className="header__list-of-pets">
