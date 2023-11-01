@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/animal-shelter/static/css/main.6d952c88.css",
-    "main.js": "/animal-shelter/static/js/main.62a2b0d7.js",
+    "main.css": "/animal-shelter/static/css/main.15c6129c.css",
+    "main.js": "/animal-shelter/static/js/main.4b2349f0.js",
     "static/media/main-image.png": "/animal-shelter/static/media/main-image.013b02f4e3c5e366d007.png",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
     "static/media/bigl.jpg": "/animal-shelter/static/media/bigl.f83f3f1906525f0fed64.jpg",
     "static/media/dog.jpg": "/animal-shelter/static/media/dog.1b60cfcd40644a63ce07.jpg",
-    "static/media/phone.svg": "/animal-shelter/static/media/phone.3b372cedf034afdf3b73e06324868028.svg",
     "static/media/logo.svg": "/animal-shelter/static/media/logo.7af86819c0ac49c574ba0869b7bb298c.svg",
     "static/media/dog.svg": "/animal-shelter/static/media/dog.134b8be14346e3bb9898d4ed5718913f.svg",
     "static/media/paw.svg": "/animal-shelter/static/media/paw.bd749410efb192e8b422e6d47a61e3ac.svg",
     "static/media/cat.svg": "/animal-shelter/static/media/cat.f0b558bce2beba656006e2e47f0d541b.svg",
     "index.html": "/animal-shelter/index.html",
+    "static/media/size.svg": "/animal-shelter/static/media/size.921b1d3236a308704e56af4ee630efdf.svg",
     "static/media/user.svg": "/animal-shelter/static/media/user.9015f1aa3d80678c09e4.svg",
     "static/media/male.svg": "/animal-shelter/static/media/male.6aef1186bf7c9687758baa9b991295b3.svg",
     "static/media/female.svg": "/animal-shelter/static/media/female.6872c8a647905d41ac86e12571d01fe8.svg",
-    "main.6d952c88.css.map": "/animal-shelter/static/css/main.6d952c88.css.map",
-    "main.62a2b0d7.js.map": "/animal-shelter/static/js/main.62a2b0d7.js.map"
+    "main.15c6129c.css.map": "/animal-shelter/static/css/main.15c6129c.css.map",
+    "main.4b2349f0.js.map": "/animal-shelter/static/js/main.4b2349f0.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d952c88.css",
-    "static/js/main.62a2b0d7.js"
+    "static/css/main.15c6129c.css",
+    "static/js/main.4b2349f0.js"
   ]
 }
