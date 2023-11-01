@@ -1,21 +1,23 @@
 import React from 'react';
-import { Animals, AnimalType, Gender } from '../../types/animals';
+import { Animals } from '../../types/animals';
 import './carouselItem.scss'
 import phone from '../../assets/phone.svg';
 import paw from '../../assets/paw.svg';
 import { petType, gender } from '../../utility/pickIcon';
+import { Link } from 'react-router-dom';
 
 
 type Props = {
   animal: Animals;
+  offset: number
 }
 
-export const CarouselItem: React.FC<Props> = ({ animal }) => {
+export const CarouselItem: React.FC<Props> = ({ animal, offset }) => {
 
 
 
   return (
-    <div className="carouselItem">
+    <div className="carouselItem" style={{ transform: `translateX(${offset}px)` }}>
       <div
         className="carouselItem__photo"
         style={{
@@ -39,9 +41,12 @@ export const CarouselItem: React.FC<Props> = ({ animal }) => {
           <img src={phone} alt="phone"/>
           {animal.phoneNumber}
         </p>
-        <a className="carouselItem__information__link" href="#">
+        <Link
+          className="carouselItem__information__link"
+          to={`/list-of-pets/${animal.id}`}
+        >
           See details
-        </a>
+        </Link>
       </div>
     </div>
   );

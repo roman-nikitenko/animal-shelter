@@ -2,8 +2,16 @@
   display: flex;
   gap: 40px;
   justify-content: center;
-  width: 950px;
-  overflow: hidden;
+
+  &__window {
+    display: flex;
+    width: 920px;
+    overflow: hidden;
+    gap: 40px;
+    padding: 5px;
+
+    transition: all 600ms ease-in-out;
+  }
 
   &__button {
     display: flex;

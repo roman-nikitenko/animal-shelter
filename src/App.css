@@ -307,8 +307,14 @@ p {
   display: flex;
   gap: 40px;
   justify-content: center;
-  width: 950px;
+}
+.carousel__window {
+  display: flex;
+  width: 920px;
   overflow: hidden;
+  gap: 40px;
+  padding: 5px;
+  transition: all 600ms ease-in-out;
 }
 .carousel__button {
   display: flex;
@@ -330,6 +336,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  transition: all 500ms ease-in-out;
 }
 .carouselItem p {
   display: flex;
