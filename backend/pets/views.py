@@ -26,9 +26,26 @@ def statistic(request):
     serializer = PetListSerializer(list_of_3_last_adopted_pets, many=True)
 
     context = {
-        "num_pets_homeless": num_pets_homeless,
-        "num_pets_adopted": num_pets_adopted,
-        "list_of_3_last_adopted_pets": serializer.data
+        "statistic":
+            [
+                {
+                    "name": "Number of pets in our shelter",
+                    "result": num_pets_homeless
+                },
+                {
+                    "name": "Number of pets adopted",
+                    "result": num_pets_adopted
+                },
+                {
+                    "name": "Average time to find a family for a pet",
+                    "result": 5
+                },
+                {
+                    "name": "Percentage of adopted pets in the last month",
+                    "result": 85
+                },
+            ],
+        "list_of_last_adopted_pets": serializer.data
     }
 
     return Response(context, status=status.HTTP_200_OK)

@@ -1,13 +1,20 @@
+import io
 import tempfile
+import uuid
+from unittest.mock import patch
+
 from PIL import Image
 
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.text import slugify
 from rest_framework.test import APIClient
 from rest_framework import status
+from storages.backends.gcloud import GoogleCloudStorage
 
+from pets.google_image_field import GoogleImageField
 from pets.models import Pet, PetType
 from pets.serializers import PetListSerializer, PetDetailSerializer
 
@@ -80,12 +87,16 @@ class UsersPetsApiTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data["num_pets_homeless"], homeless_pets.count())
-        self.assertEqual(res.data["num_pets_adopted"], adopted_pets.count())
-        self.assertNotIn(serializer_1.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_2.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_3.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_4.data, res.data["list_of_3_last_adopted_pets"])
+        self.assertEqual(
+            res.data["statistic"][0]["result"], homeless_pets.count()
+        )
+        self.assertEqual(
+            res.data["statistic"][1]["result"], adopted_pets.count()
+        )
+        self.assertNotIn(serializer_1.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_2.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_3.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_4.data, res.data["list_of_last_adopted_pets"])
 
     def test_pet_list_filter_by_animal_type(self):
         animal_type1 = sample_animal_type(name="pet5")
@@ -275,7 +286,7 @@ class UsersPetsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_delete_book_unauthorised_users_not_allowed(self):
+    def test_delete_pet_unauthorised_users_not_allowed(self):
         animal_type = sample_animal_type(name="test9")
         pet = sample_pet(animal_type=animal_type)
         url = detail_url(pet.id)
@@ -438,3 +449,22 @@ class PetImageUploadTests(TestCase):
         res = self.client.get(PET_URL)
 
         self.assertIn("image", res.data[0].keys())
+
+    def test_upload_image_to_google_storage(self):
+        animal_type = sample_animal_type(name="animal2")
+        storage = GoogleCloudStorage()
+
+        with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
+            img = Image.new("RGB", (10, 10))
+            img.save(ntf, format="JPEG")
+            ntf.seek(0)
+            image = SimpleUploadedFile(
+                "test_image.jpg", ntf.read(), content_type="image/jpeg"
+            )
+
+            pet = sample_pet(animal_type=animal_type, image=image)
+
+            bucket = storage.bucket
+            blob = bucket.blob(pet.image.name)
+
+            self.assertTrue(blob.exists())
