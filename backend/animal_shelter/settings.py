@@ -98,16 +98,33 @@ WSGI_APPLICATION = "animal_shelter.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+#
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# db_from_env["OPTIONS"] = {"sslmode": "require"}
+# DATABASES["default"].update(db_from_env)
+
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ["POSTGRES_HOST"],
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+        "PORT": "5432",
+        "OPTIONS": {
+            "options": f'endpoint=ep-empty-base-05117191',
+            "sslmode": "require",
+        },
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-db_from_env["OPTIONS"] = {"sslmode": "require"}
-DATABASES["default"].update(db_from_env)
 
 
 # Password validation
@@ -197,3 +214,11 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 )
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = "images_for_pets_bucket"
+
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_BROKER_URL")
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+
