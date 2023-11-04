@@ -52,6 +52,6 @@ urllib3==2.0.7
 whitenoise==6.4.0
 yarl==1.9.2
 zipp==3.15.0
-celery==5.3.4
+celery==5.3.0
 Redis
 celery[redis]
