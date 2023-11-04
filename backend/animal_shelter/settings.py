@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "pets-0n6g.onrender.com",
+    "animal-shelter-n96d.onrender.com",
 ]
 
 
