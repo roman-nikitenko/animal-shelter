@@ -4,6 +4,7 @@ export type AnimalType = 'dog' | 'cat';
 export type Animals = {
   id: number,
   age?: string,
+  color?: string,
   gender: Gender,
   breed: string | null,
   name: string,

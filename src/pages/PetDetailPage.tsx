@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import { firstLetterUpperCase, gender, petType } from '../utility/pickIcon';
 import sizeImg from '../assets/size.svg';
@@ -29,8 +29,6 @@ export const PetDetailPage: React.FC = () => {
       .then(response => response.json())
       .then(data => setPet(data))
   }, []);
-
-  console.log(pet);
 
   return (
     <>
