@@ -491,4 +491,67 @@ p {
   align-items: center;
 }
 
+.top__section {
+  padding: 60px 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 100px;
+  background-color: #EDE9FE;
+}
+
+.detail-page__text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.detail-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 40px;
+}
+.detail-page__story {
+  width: 600px;
+}
+.detail-page__button {
+  width: 300px;
+  height: 55px;
+  font-size: 18px;
+  color: #FFF;
+  background-color: #6D28D9;
+  letter-spacing: 1px;
+}
+.detail-page__box--img {
+  position: relative;
+  top: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px #78716C;
+  height: 770px;
+}
+
+.bottom__section {
+  display: flex;
+  justify-content: space-between;
+  background-color: #DDD6FE;
+  padding: 180px 300px;
+}
+.bottom__section--paragrahp {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+.bottom__section--paragrahp__subtitle {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: center;
+}
+.bottom__section--paragrahp__description {
+  font-weight: 400;
+  font-size: 16px;
+}
+
 /*# sourceMappingURL=App.css.map */
