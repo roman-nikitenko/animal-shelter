@@ -493,7 +493,7 @@ p {
 
 .top__section {
   position: relative;
-  padding: 60px 130px;
+  padding: 30px 130px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -538,10 +538,10 @@ p {
 }
 .detail-page__box--img {
   position: relative;
-  top: 100px;
+  top: 0;
   border-radius: 10px;
   box-shadow: 0px 2px 5px #78716C;
-  height: 770px;
+  height: 550px;
   max-width: 600px;
   overflow: hidden;
   object-fit: cover;
@@ -551,7 +551,7 @@ p {
   display: flex;
   justify-content: space-between;
   background-color: #DDD6FE;
-  padding: 180px 300px;
+  padding: 30px 300px;
 }
 .bottom__section--paragrahp {
   display: flex;

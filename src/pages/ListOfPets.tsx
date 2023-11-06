@@ -5,6 +5,7 @@ import { PetsContext } from '../store/PetsContext';
 
 export const ListOfPets: React.FC = () => {
   const { pets } = useContext(PetsContext);
+  console.log(pets)
   return (
     <>
       <header className="header__list-of-pets">
@@ -39,7 +40,7 @@ export const ListOfPets: React.FC = () => {
       </header>
       <main className="main__list-of-pets">
 
-        {!pets ? <Loader/> : pets.map(pet => (
+        {pets.length === 0 ? <Loader/> : pets.map(pet => (
           <Card pet={pet} />
         ))}
       </main>
