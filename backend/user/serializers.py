@@ -6,10 +6,6 @@ from rest_framework.exceptions import ValidationError
 class CreateUserSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         data = super(CreateUserSerializer, self).validate(attrs=attrs)
-        get_user_model().validate_phone_number(
-            attrs["phone_number"],
-            ValidationError
-        )
         get_user_model().validate_password(
             attrs["password"],
             ValidationError
@@ -24,8 +20,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "password",
-            "phone_number",
-            "profile_picture",
         )
         extra_kwargs = {"password": {"write_only": True}}
 
