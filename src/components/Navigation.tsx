@@ -1,8 +1,9 @@
 import React from 'react';
 import { Logo } from './Logo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const  Navigation: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="navigation">
       <div className="menu">
@@ -27,7 +28,13 @@ export const  Navigation: React.FC = () => {
         </div>
         <div className="menu__registration registration">
           <button className="button button__signIn" type="button">Sign in</button>
-          <button className="button button__registration" type="button">Registration</button>
+          <button
+            className="button button__registration"
+            type="button"
+            onClick={() => navigate('/registration')}
+          >
+            Registration
+          </button>
         </div>
       </div>
     </div>

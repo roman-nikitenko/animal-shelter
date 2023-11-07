@@ -571,4 +571,88 @@ p {
   font-size: 16px;
 }
 
+.RegistrationPage {
+  background-color: #EDE9FE;
+  height: 100vh;
+  position: relative;
+}
+
+.registration__left-box {
+  width: 50%;
+  background-image: url("./assets/pappi.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+.registration__right-box {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration__from {
+  box-shadow: 2px 2px 10px #78716C;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding: 100px 130px;
+  background-color: #DDD6FE;
+  border-radius: 10px;
+}
+.registration__from--title {
+  display: flex;
+  margin: 0 auto;
+}
+.registration__from--subtitle {
+  color: #78716C;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.form__input {
+  border: 1px solid #5B21B6;
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
+}
+.form__button {
+  background-color: #6D28D9;
+  border: 1px solid #6D28D9;
+  padding: 10px;
+  color: #FFFFFF;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #57534E;
+  transition: all 400ms ease;
+}
+.form__button:hover {
+  box-shadow: none;
+}
+.form__button:active {
+  background-color: #7C3AED;
+}
+
+.button__close {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button__close:active {
+  opacity: 0.7;
+}
+
 /*# sourceMappingURL=App.css.map */

@@ -7,6 +7,7 @@ import { ErrorPage } from './pages/ErrorPage';
 import { ListOfPets } from './pages/ListOfPets';
 import { PetDetailPage } from './pages/PetDetailPage';
 import { PetsProvider } from './store/PetsContext';
+import { RegistrationPage } from './pages/RegistrationPage';
 
 const router = createHashRouter([
   {
@@ -26,6 +27,10 @@ const router = createHashRouter([
       {
         path: '/list-of-pets/:petId',
         element: <PetDetailPage />,
+      },
+      {
+        path: '/registration',
+        element: <RegistrationPage />,
       }
     ]
   },
