@@ -14,6 +14,7 @@ class HomePageView(TemplateView):
 
 
 @csrf_exempt
+@api_view(["GET"])
 def stripe_config(request):
     if request.method == 'GET':
         stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
@@ -21,6 +22,7 @@ def stripe_config(request):
 
 
 @csrf_exempt
+@api_view(["GET"])
 def create_stripe_session(request):
     stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
