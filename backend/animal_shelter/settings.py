@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "user",
     "appointment",
     "notification",
+    "donation",
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ ROOT_URLCONF = "animal_shelter.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR, "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -197,3 +198,6 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 )
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = "images_for_pets_bucket"
+
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
