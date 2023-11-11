@@ -538,7 +538,7 @@ p {
 }
 .detail-page__box--img {
   position: relative;
-  top: 0;
+  top: 60px;
   border-radius: 10px;
   box-shadow: 0px 2px 5px #78716C;
   height: 550px;
@@ -551,7 +551,7 @@ p {
   display: flex;
   justify-content: space-between;
   background-color: #DDD6FE;
-  padding: 30px 300px;
+  padding: 60px 300px;
 }
 .bottom__section--paragrahp {
   display: flex;
@@ -591,6 +591,7 @@ p {
 }
 
 .registration__from {
+  width: 260px;
   box-shadow: 2px 2px 10px #78716C;
   position: relative;
   display: flex;
@@ -617,7 +618,7 @@ p {
   row-gap: 20px;
 }
 .form__input {
-  border: 1px solid #5B21B6;
+  border: 1px solid #A78BFA;
   border-radius: 8px;
   padding: 10px;
   outline: none;
@@ -653,6 +654,60 @@ p {
 
 .button__close:active {
   opacity: 0.7;
+}
+
+.isDangerous {
+  border-color: #ec7676;
+}
+
+.pay {
+  background-color: #EDE9FE;
+  display: flex;
+}
+.pay__left {
+  width: 100vh;
+  height: 100vh;
+}
+.pay__right {
+  flex: 1;
+  height: 100vh;
+  background-color: #C4B5FD;
+}
+
+.user-page {
+  display: flex;
+  column-gap: 200px;
+  padding: 40px 120px;
+  background-color: #EDE9FE;
+  height: 87vh;
+}
+.user-page__photo {
+  border-radius: 10px;
+  box-shadow: 2xp 2px 5px #57534E;
+  width: 440px;
+  height: 440px;
+}
+.user-page__information {
+  row-gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.user-page p {
+  font-size: 18px;
+}
+.user-page button {
+  align-items: end;
+  border: 1px solid #A78BFA;
+  border-radius: 8px;
+  background-color: #FFF;
+  padding: 8px 60px;
+  color: #5B21B6;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+.user-page button:active {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=App.css.map */

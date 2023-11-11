@@ -19,7 +19,7 @@ export const  Navigation: React.FC = () => {
               <a className="nav__link" href="#">Services</a>
             </li>
             <li className="nav__item">
-              <a className="nav__link" href="#">Donations</a>
+              <Link className="nav__link" to="/donation">Donations</Link>
             </li>
             <li className="nav__item">
               <a className="nav__link" href="#">About</a>
@@ -27,11 +27,17 @@ export const  Navigation: React.FC = () => {
           </ul>
         </div>
         <div className="menu__registration registration">
-          <button className="button button__signIn" type="button">Sign in</button>
+          <button
+            className="button button__signIn"
+            type="button"
+            onClick={() => navigate('/access/log-in')}
+          >
+            Sign in
+          </button>
           <button
             className="button button__registration"
             type="button"
-            onClick={() => navigate('/registration')}
+            onClick={() => navigate('/access/registration')}
           >
             Registration
           </button>

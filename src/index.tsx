@@ -7,7 +7,11 @@ import { ErrorPage } from './pages/ErrorPage';
 import { ListOfPets } from './pages/ListOfPets';
 import { PetDetailPage } from './pages/PetDetailPage';
 import { PetsProvider } from './store/PetsContext';
-import { RegistrationPage } from './pages/RegistrationPage';
+import { AccessPage } from './pages/AccessPage';
+import { DonatePage } from './pages/DonatePage';
+import { UserPage } from './pages/UserPage';
+import { RegistrationForm } from './components/RegistrationForm';
+import { LogInForm } from './components/LogInForm';
 
 const router = createHashRouter([
   {
@@ -29,8 +33,26 @@ const router = createHashRouter([
         element: <PetDetailPage />,
       },
       {
-        path: '/registration',
-        element: <RegistrationPage />,
+        path: '/access',
+        element: <AccessPage />,
+        children: [
+          {
+            path: '/access/registration',
+            element: <RegistrationForm />
+          },
+          {
+            path: '/access/log-in',
+            element: <LogInForm />
+          }
+        ]
+      },
+      {
+        path: '/donation',
+        element: <DonatePage />,
+      },
+      {
+        path: '/user',
+        element: <UserPage />,
       }
     ]
   },

@@ -6,6 +6,7 @@ import { Announcement } from '../components/Announcement';
 
 export const HomePage: React.FC = () => {
 
+
   return (
     <>
       <Header />
