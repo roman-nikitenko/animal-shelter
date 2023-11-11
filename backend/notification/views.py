@@ -12,28 +12,24 @@ from secrets import token_urlsafe
 from django.http import JsonResponse
 from .utils import handle_message
 
-from .tasks import your_celery_task
+from .tasks import send_message_to_tg
 
 
 class NotificationViewset(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=["GET"])
     def get_telegram_token(self, request):
-        # user = request.user
-        your_celery_task.delay()
-        # try:
-        #     notification = Notification.objects.get(user=user)
-        #
-        # except Notification.DoesNotExist:
-        #     telegram_token = token_urlsafe(8)
-        #     notification = Notification(user=user, telegram_token=telegram_token)
-        #     notification.save()
-        # serializer = NotificationSerializer(notification, context={"request": request})
-        return JsonResponse({"status": "ok"})
-
+        user = request.user
+        notification = Notification.objects.get(user=user)
+        if not notification:
+            telegram_token = token_urlsafe(8)
+            notification = Notification(user=user, telegram_token=telegram_token)
+            notification.save()
+        serializer = NotificationSerializer(notification, context={"request": request})
+        return Response(serializer.data)
 
 class TelegramWebhook(APIView):
     def post(self, request):

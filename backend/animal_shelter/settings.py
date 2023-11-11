@@ -16,6 +16,8 @@ from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 from google.oauth2 import service_account
+import ssl
+from celery.schedules import crontab
 
 load_dotenv()
 
@@ -61,6 +63,8 @@ INSTALLED_APPS = [
     "user",
     "appointment",
     "notification",
+    "celery",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -99,33 +103,16 @@ WSGI_APPLICATION = "animal_shelter.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-#
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# db_from_env["OPTIONS"] = {"sslmode": "require"}
-# DATABASES["default"].update(db_from_env)
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ["POSTGRES_HOST"],
-        "NAME": os.environ["POSTGRES_DB"],
-        "USER": os.environ["POSTGRES_USER"],
-        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
-        "PORT": "5432",
-        "OPTIONS": {
-            "options": f'endpoint=ep-empty-base-05117191',
-            "sslmode": "require",
-        },
+if DATABASE_URL is not None:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        ),
     }
-}
-
 
 
 # Password validation
@@ -218,8 +205,21 @@ GS_BUCKET_NAME = "images_for_pets_bucket"
 
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
+from celery.schedules import timedelta
 
+CELERY_BEAT_SCHEDULE = {
+    "notification_period_task": {
+        "task": "notification.tasks.notification_period_task",
+        "schedule": timedelta(hour=8, minute=0),
+    },
+}
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")

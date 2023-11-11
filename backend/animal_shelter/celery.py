@@ -9,7 +9,7 @@ app = Celery("animal_shelter")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
 # Автоматично відкривайте і закривайте з'єднання Redis.
-app.conf.broker_transport_options = {'visibility_timeout': 3600}
+app.conf.broker_transport_options = {"visibility_timeout": 3600}
 
 app.autodiscover_tasks()
 
