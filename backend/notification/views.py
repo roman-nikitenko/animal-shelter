@@ -12,7 +12,7 @@ from secrets import token_urlsafe
 from django.http import JsonResponse
 from .utils import handle_message
 
-from .tasks import send_message_to_tg
+from .tasks import succes_appoin_notification
 
 
 class NotificationViewset(viewsets.ModelViewSet):

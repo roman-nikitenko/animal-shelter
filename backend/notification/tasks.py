@@ -6,6 +6,7 @@ import logging
 from appointment.models import Appointment
 from datetime import date
 from user.models import User
+from pets.models import Pet
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -13,12 +14,28 @@ from django.core.mail import send_mail
 logger = logging.getLogger(__name__)
 
 @shared_task
-def send_message_to_tg():
+def succes_appoin_notification(user_id, pet_id, reservation_date):
     bot = TeleBot(settings.BOT_TOKEN)
-    try:
-        bot.send_message(395907153, "Test")
-    except Exception as e:
-        logger.error("Помилка при відправці повідомлення: %s" % str(e))
+
+    user = User.objects.filter(id=user_id)
+    pet = Pet.objects.filter(id=pet_id)
+
+    message = f"Hello, successful reservation visit with pet {pet.name} " \
+              f"your visit planing {reservation_date}"
+    subject = "Animal shelter appointment"
+    telegram_chat_id = user.telegram_chat_id
+    if telegram_chat_id:
+        try:
+            bot.send_message(chat_bot_id, message)
+        except Exception as e:
+            logger.error("Помилка при відправці повідомлення: %s" % str(e))
+    else:
+        try:
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user_email, ]
+            send_mail(subject, message, email_from, recipient_list)
+        except Exception as e:
+            logger.error("Помилка при відправці повідомлення: %s" % str(e))
 
 
 @app.task
