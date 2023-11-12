@@ -2,10 +2,11 @@ venv/
 db.sqlite3
 ../.idea/
 .idea
-.env
+backend/.env
 **__pycache__/
 uploads/
 .coverage
 htmlcov/
 profile_pictures/
 happy-paws.json
+data/
