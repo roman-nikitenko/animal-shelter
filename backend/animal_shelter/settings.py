@@ -43,6 +43,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "pets-0n6g.onrender.com",
     "animal-shelter-n96d.onrender.com",
+    "happy-paws-animal-shelter.onrender.com"
 ]
 
 
