@@ -24,7 +24,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
         pet = serializer.validated_data.get("pet", None)
         reservation_date = serializer.validated_data.get("time", None)
-        succes_appoin_notification.delay(user.pk, pet.pk, reservation_date)
+        succes_appoin_notification.delay(user, pet, reservation_date)
 
     @staticmethod
     def _params_to_ints(qs):
