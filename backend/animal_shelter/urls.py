@@ -24,6 +24,7 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/pets/", include("pets.urls", namespace="pets")),
@@ -43,5 +44,5 @@ urlpatterns = [
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 ) + static(
-    settings.STATIC_URL, document_root=settings.STATIC_ROOT
-)
+    settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

@@ -19,7 +19,12 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrIsAdmin,)
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        user = self.request.user
+        serializer.save(user=user)
+
+        pet = serializer.validated_data.get("pet", None)
+        reservation_date = serializer.validated_data.get("time", None)
+        succes_appoin_notification.delay(user.pk, pet.pk, reservation_date)
 
     @staticmethod
     def _params_to_ints(qs):
@@ -30,11 +35,11 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         user_id = self.request.query_params.get("user_id")
 
         if not self.request.user.is_staff:
-            return self.queryset.filter(user=self.request.user)
+            return self.queryset.filter(user_id=self.request.user.id)
 
         if user_id and self.request.user.is_staff:
             user_id = self._params_to_ints(user_id)
-            self.queryset = self.queryset.filter(user__id__in=user_id)
+            self.queryset = self.queryset.filter(user_id__in=user_id)
 
         return self.queryset
 
