@@ -14,14 +14,16 @@ class Appointment(models.Model):
         Pet, related_name="pets", on_delete=models.CASCADE
     )
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name="users", on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL,
+        related_name="users",
+        on_delete=models.CASCADE
     )
 
     @staticmethod
-    def validate_time(time, pet_id, error_to_raise):
+    def validate_time(time, pet, error_to_raise):
         conflicting_appointment = Appointment.objects.filter(
-            Q(pet_id=pet_id, time__gte=(time - timedelta(hours=1))) &
-            Q(pet_id=pet_id, time__lt=(time + timedelta(hours=1)))
+            Q(pet=pet, time__gte=(time - timedelta(hours=1))) &
+            Q(pet=pet, time__lt=(time + timedelta(hours=1)))
         )
 
         min_appointment_time = timezone.now() + timedelta(hours=2)
