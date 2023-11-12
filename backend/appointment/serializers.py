@@ -11,14 +11,14 @@ class AppointmentSerializer(serializers.ModelSerializer):
         data = super(AppointmentSerializer, self).validate(attrs=attrs)
         Appointment.validate_time(
             attrs["time"],
-            attrs["pet_id"],
+            attrs["pet"],
             ValidationError
         )
         return data
 
     class Meta:
         model = Appointment
-        fields = ("id", "time", "pet_id")
+        fields = ("id", "time", "pet")
 
 
 class AppointmentListSerializer(serializers.ModelSerializer):

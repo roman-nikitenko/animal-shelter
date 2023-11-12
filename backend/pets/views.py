@@ -37,15 +37,15 @@ def statistic(request):
                     "result": num_pets_adopted
                 },
                 {
-                    "name": "Average time to find a lost animals",
+                    "name": "Average time to find a family for a pet",
                     "result": 5
                 },
                 {
-                    "name": "Percentage of animals returned in the last month",
+                    "name": "Percentage of adopted pets in the last month",
                     "result": 85
                 },
             ],
-        "list_of_3_last_adopted_pets": serializer.data
+        "list_of_last_adopted_pets": serializer.data
     }
 
     return Response(context, status=status.HTTP_200_OK)
@@ -68,23 +68,26 @@ class PetViewSet(viewsets.ModelViewSet):
             self.queryset = self.queryset.filter(is_adopted=False)
 
         animal_type = self.request.query_params.get("animal_type")
-        color = self.request.query_params.get("color")
         gender = self.request.query_params.get("gender")
-        size = self.request.query_params.get("size")
+        age = self.request.query_params.get("age")
 
         if animal_type:
             self.queryset = self.queryset.filter(
                 animal_type__name__icontains=animal_type
             )
 
-        if color:
-            self.queryset = self.queryset.filter(color__icontains=color)
+        if age:
+            if age == "Baby":
+                self.queryset = self.queryset.filter(age__lte=0.6)
+            if age == "Young":
+                self.queryset = self.queryset.filter(age__gte=0.7, age__lte=5)
+            if age == "Adult":
+                self.queryset = self.queryset.filter(age__gte=6, age__lte=10)
+            if age == "Senior":
+                self.queryset = self.queryset.filter(age__gte=11)
 
         if gender:
             self.queryset = self.queryset.filter(gender=gender)
-
-        if size:
-            self.queryset = self.queryset.filter(size__icontains=size)
 
         return self.queryset
 
@@ -98,10 +101,10 @@ class PetViewSet(viewsets.ModelViewSet):
                             "pet types (ex. ?animal_type=Dog)"
             ),
             OpenApiParameter(
-                name="color",
+                name="age",
                 type=OpenApiTypes.STR,
                 description="Filter pets by "
-                            "color (ex. ?color=black)"
+                            "age (ex. ?age=[Baby, Young, Adult, Senior])"
             ),
             OpenApiParameter(
                 name="gender",
@@ -109,12 +112,6 @@ class PetViewSet(viewsets.ModelViewSet):
                 description="Filter pets by "
                             "gender (ex. ?gender=Male or ?gender=Female)."
             ),
-            OpenApiParameter(
-                name="size",
-                type=OpenApiTypes.STR,
-                description="Filter pets by "
-                            "size (ex. ?size=MIDDLE)"
-            )
         ]
     )
     def list(self, request, *args, **kwargs):

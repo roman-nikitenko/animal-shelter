@@ -1,13 +1,20 @@
+import io
 import tempfile
+import uuid
+from unittest.mock import patch
+
 from PIL import Image
 
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.text import slugify
 from rest_framework.test import APIClient
 from rest_framework import status
+from storages.backends.gcloud import GoogleCloudStorage
 
+from pets.google_image_field import GoogleImageField
 from pets.models import Pet, PetType
 from pets.serializers import PetListSerializer, PetDetailSerializer
 
@@ -80,12 +87,16 @@ class UsersPetsApiTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data["num_pets_homeless"], homeless_pets.count())
-        self.assertEqual(res.data["num_pets_adopted"], adopted_pets.count())
-        self.assertNotIn(serializer_1.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_2.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_3.data, res.data["list_of_3_last_adopted_pets"])
-        self.assertIn(serializer_4.data, res.data["list_of_3_last_adopted_pets"])
+        self.assertEqual(
+            res.data["statistic"][0]["result"], homeless_pets.count()
+        )
+        self.assertEqual(
+            res.data["statistic"][1]["result"], adopted_pets.count()
+        )
+        self.assertNotIn(serializer_1.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_2.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_3.data, res.data["list_of_last_adopted_pets"])
+        self.assertIn(serializer_4.data, res.data["list_of_last_adopted_pets"])
 
     def test_pet_list_filter_by_animal_type(self):
         animal_type1 = sample_animal_type(name="pet5")
@@ -102,27 +113,6 @@ class UsersPetsApiTests(TestCase):
         serializer_4 = PetListSerializer(pet_4)
 
         res = self.client.get(PET_URL, {"animal_type": f"{animal_type1}"})
-
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertIn(serializer_1.data, res.data)
-        self.assertNotIn(serializer_2.data, res.data)
-        self.assertIn(serializer_3.data, res.data)
-        self.assertNotIn(serializer_4.data, res.data)
-
-    def test_pet_list_filter_by_color(self):
-        animal_type = sample_animal_type(name="pet7")
-
-        pet_1 = sample_pet(animal_type=animal_type, color="black, white")
-        pet_2 = sample_pet(animal_type=animal_type, color="red")
-        pet_3 = sample_pet(animal_type=animal_type, color="red, black")
-        pet_4 = sample_pet(animal_type=animal_type, color="white")
-
-        serializer_1 = PetListSerializer(pet_1)
-        serializer_2 = PetListSerializer(pet_2)
-        serializer_3 = PetListSerializer(pet_3)
-        serializer_4 = PetListSerializer(pet_4)
-
-        res = self.client.get(PET_URL, {"color": "black"})
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertIn(serializer_1.data, res.data)
@@ -151,26 +141,35 @@ class UsersPetsApiTests(TestCase):
         self.assertNotIn(serializer_3.data, res.data)
         self.assertIn(serializer_4.data, res.data)
 
-    def test_pet_list_filter_by_size(self):
+    def test_pet_list_filter_by_age(self):
         animal_type = sample_animal_type(name="pet9")
 
-        pet_1 = sample_pet(animal_type=animal_type)
-        pet_2 = sample_pet(animal_type=animal_type, size="Middle")
-        pet_3 = sample_pet(animal_type=animal_type, size="Big")
-        pet_4 = sample_pet(animal_type=animal_type, size="Big")
+        pet_1 = sample_pet(animal_type=animal_type, age=0.6)
+        pet_2 = sample_pet(animal_type=animal_type, age=5)
+        pet_3 = sample_pet(animal_type=animal_type, age=10)
+        pet_4 = sample_pet(animal_type=animal_type, age=11)
 
         serializer_1 = PetListSerializer(pet_1)
         serializer_2 = PetListSerializer(pet_2)
         serializer_3 = PetListSerializer(pet_3)
         serializer_4 = PetListSerializer(pet_4)
 
-        res = self.client.get(PET_URL, {"size": "Big"})
+        res_1 = self.client.get(PET_URL, {"age": "Baby"})
+        res_2 = self.client.get(PET_URL, {"age": "Young"})
+        res_3 = self.client.get(PET_URL, {"age": "Adult"})
+        res_4 = self.client.get(PET_URL, {"age": "Senior"})
 
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertNotIn(serializer_1.data, res.data)
-        self.assertNotIn(serializer_2.data, res.data)
-        self.assertIn(serializer_3.data, res.data)
-        self.assertIn(serializer_4.data, res.data)
+        self.assertEqual(res_1.status_code, status.HTTP_200_OK)
+        self.assertEqual(res_2.status_code, status.HTTP_200_OK)
+        self.assertEqual(res_3.status_code, status.HTTP_200_OK)
+        self.assertEqual(res_4.status_code, status.HTTP_200_OK)
+        self.assertIn(serializer_1.data, res_1.data)
+        self.assertNotIn(serializer_2.data, res_1.data)
+        self.assertIn(serializer_2.data, res_2.data)
+        self.assertNotIn(serializer_3.data, res_2.data)
+        self.assertIn(serializer_3.data, res_3.data)
+        self.assertNotIn(serializer_4.data, res_3.data)
+        self.assertIn(serializer_4.data, res_4.data)
 
     def test_list_pets(self):
         animal_type1 = sample_animal_type(name="test1")
@@ -275,7 +274,7 @@ class UsersPetsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_delete_book_unauthorised_users_not_allowed(self):
+    def test_delete_pet_unauthorised_users_not_allowed(self):
         animal_type = sample_animal_type(name="test9")
         pet = sample_pet(animal_type=animal_type)
         url = detail_url(pet.id)
@@ -438,3 +437,22 @@ class PetImageUploadTests(TestCase):
         res = self.client.get(PET_URL)
 
         self.assertIn("image", res.data[0].keys())
+
+    def test_upload_image_to_google_storage(self):
+        animal_type = sample_animal_type(name="animal2")
+        storage = GoogleCloudStorage()
+
+        with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
+            img = Image.new("RGB", (10, 10))
+            img.save(ntf, format="JPEG")
+            ntf.seek(0)
+            image = SimpleUploadedFile(
+                "test_image.jpg", ntf.read(), content_type="image/jpeg"
+            )
+
+            pet = sample_pet(animal_type=animal_type, image=image)
+
+            bucket = storage.bucket
+            blob = bucket.blob(pet.image.name)
+
+            self.assertTrue(blob.exists())

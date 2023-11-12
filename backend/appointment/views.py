@@ -19,7 +19,12 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrIsAdmin,)
 
     def perform_create(self, serializer):
-        serializer.save(user_id=self.request.user.id)
+        user = self.request.user
+        serializer.save(user=user)
+
+        pet = serializer.validated_data.get("pet", None)
+        reservation_date = serializer.validated_data.get("time", None)
+        succes_appoin_notification.delay(user.pk, pet.pk, reservation_date)
 
     @staticmethod
     def _params_to_ints(qs):
