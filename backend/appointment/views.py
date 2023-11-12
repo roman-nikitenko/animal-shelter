@@ -8,7 +8,6 @@ from .serializers import (
     AppointmentDetailSerializer
 )
 from .permissions import IsAuthenticatedOrIsAdmin
-from notification.tasks import succes_appoin_notification
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
@@ -20,14 +19,12 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrIsAdmin,)
 
     def perform_create(self, serializer):
-        user_id = self.request.user.id
-        serializer.save(user_id=user_id)
+        user = self.request.user
+        serializer.save(user=user)
 
-        pet_id = serializer.validated_data.get("pet_id", None)
+        pet = serializer.validated_data.get("pet", None)
         reservation_date = serializer.validated_data.get("time", None)
-        succes_appoin_notification.delay(user_id, pet_id, reservation_date)
-
-
+        succes_appoin_notification.delay(user.pk, pet.pk, reservation_date)
 
     @staticmethod
     def _params_to_ints(qs):

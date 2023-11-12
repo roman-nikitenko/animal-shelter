@@ -3,6 +3,7 @@ import datetime
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 
 from rest_framework.test import APIClient
@@ -32,7 +33,7 @@ def sample_pet(**params):
 
 def sample_appointment(**params):
     defaults = {
-        "time": datetime.datetime(2023, 11, 11, 11, 11),
+        "time": timezone.now() + datetime.timedelta(hours=3),
     }
     defaults.update(params)
     
@@ -65,13 +66,13 @@ class AuthenticatedAppointmentApiTests(TestCase):
 
     def test_list_appointments(self):
 
-        time = datetime.datetime(2023, 11, 11, 12, 12)
+        time = timezone.now() + datetime.timedelta(hours=6)
 
         sample_appointment(
-            pet_id=self.pet.id, user_id=self.user.id
+            pet=self.pet, user=self.user
         )
         sample_appointment(
-            pet_id=self.pet.id, time=time, user_id=self.user.id
+            pet=self.pet, time=time, user=self.user
         )
 
         res = self.client.get(APPOINTMENT_URL)
@@ -83,6 +84,7 @@ class AuthenticatedAppointmentApiTests(TestCase):
         self.assertEqual(res.data, serializer.data)
 
     def test_users_can_see_only_their_appointments(self):
+
         user2 = get_user_model().objects.create_user(
             "user1@user.com",
             "user1pass"
@@ -91,10 +93,10 @@ class AuthenticatedAppointmentApiTests(TestCase):
         pet3 = sample_pet(animal_type=self.animal_type)
 
         appointment1 = sample_appointment(
-            pet_id=self.pet.id, user_id=self.user.id
+            pet=self.pet, user=self.user
         )
-        appointment2 = sample_appointment(pet_id=pet2.id, user_id=user2.id)
-        appointment3 = sample_appointment(pet_id=pet3.id, user_id=self.user.id)
+        appointment2 = sample_appointment(pet=pet2, user=user2)
+        appointment3 = sample_appointment(pet=pet3, user=self.user)
 
         res = self.client.get(APPOINTMENT_URL)
 
@@ -109,7 +111,7 @@ class AuthenticatedAppointmentApiTests(TestCase):
     def test_retrieve_appointment_detail(self):
 
         appointment = sample_appointment(
-            pet_id=self.pet.id, user_id=self.user.id
+            pet=self.pet, user=self.user
         )
 
         url = detail_url(appointment.id)
@@ -122,15 +124,15 @@ class AuthenticatedAppointmentApiTests(TestCase):
     def test_put_appointment_forbidden(self):
 
         appointment = sample_appointment(
-            pet_id=self.pet.id, user_id=self.user.id
+            pet=self.pet, user=self.user
         )
 
         pet2 = sample_pet(animal_type=self.animal_type)
 
         payload = {
-            "time": datetime.datetime(2023, 11, 11, 11, 11),
-            "pet_id": pet2.id,
-            "user_id": self.user.id
+            "time": timezone.now() + datetime.timedelta(hours=4),
+            "pet": pet2.id,
+            "user": self.user.id
         }
 
         url = detail_url(appointment.id)
@@ -141,7 +143,7 @@ class AuthenticatedAppointmentApiTests(TestCase):
     def test_delete_appointment_forbidden(self):
 
         appointment = sample_appointment(
-            pet_id=self.pet.id, user_id=self.user.id
+            pet=self.pet, user=self.user
         )
 
         url = detail_url(appointment.id)
@@ -154,15 +156,17 @@ class AdminAppointmentApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = get_user_model().objects.create_superuser(
-            "admin@admin.com", "testpass"
+            "admin@admin.com", "testpass123"
         )
+        self.animal_type = PetType.objects.create(name="animal5")
         self.client.force_authenticate(self.user)
 
-    def test_filter_appointments_by_user_ids(self):
-        animal_type = PetType.objects.create(name="animal5")
-        pet_1 = sample_pet(animal_type=animal_type)
-        pet_2 = sample_pet(animal_type=animal_type)
-        pet_3 = sample_pet(animal_type=animal_type)
+    def test_filter_appointments_by_users(self):
+
+        pet_1 = sample_pet(animal_type=self.animal_type)
+        pet_2 = sample_pet(animal_type=self.animal_type)
+        pet_3 = sample_pet(animal_type=self.animal_type)
+
         user_1 = get_user_model().objects.create_user(
             "user1@user.com",
             "user1pass"
@@ -176,9 +180,9 @@ class AdminAppointmentApiTests(TestCase):
             "user3pass"
         )
 
-        appointment_1 = sample_appointment(user_id=user_1.id, pet_id=pet_1.id)
-        appointment_2 = sample_appointment(user_id=user_2.id, pet_id=pet_2.id)
-        appointment_3 = sample_appointment(user_id=user_3.id, pet_id=pet_3.id)
+        appointment_1 = sample_appointment(user=user_1, pet=pet_1)
+        appointment_2 = sample_appointment(user=user_2, pet=pet_2)
+        appointment_3 = sample_appointment(user=user_3, pet=pet_3)
 
         res = self.client.get(
             APPOINTMENT_URL, {"user_id": f"{user_1.id}, {user_2.id}"}
@@ -197,7 +201,11 @@ class CreateAppointmentValidationTest(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
-            "test@test.com", "testpass"
+            "test@test.com", "testpass123"
+        )
+        self.user_2 = get_user_model().objects.create_user(
+            "user2@user.com",
+            "user2pass"
         )
         self.animal_type = PetType.objects.create(name="animal2")
         self.pet = sample_pet(animal_type=self.animal_type)
@@ -205,71 +213,63 @@ class CreateAppointmentValidationTest(TestCase):
 
     def test_validate_conflicting_appointments_at_the_same_time(self):
 
-        user_2 = get_user_model().objects.create_user(
-            "user2@user.com",
-            "user2pass"
-        )
-        time = datetime.datetime(2023, 12, 12, 12, 00)
+        time = datetime.datetime(2025, 12, 12, 12, 0)
 
         sample_appointment(
-            user_id=self.user.id, pet_id=self.pet.id, time=time)
+            user=self.user, pet=self.pet, time=time
+        )
 
         payload = {
             "time": time,
-            "user_id": user_2.id,
-            "pet_id": self.pet.id
+            "user": self.user_2.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
+        error = res.json()["non_field_errors"]
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertRaisesMessage(
-            ValidationError, "The appointment at this time already exists"
+        self.assertEqual(
+            error[0],
+            "The appointment at this time already exists"
         )
 
     def test_validate_conflicting_appointments_less_then_in_hour(self):
 
-        user_2 = get_user_model().objects.create_user(
-            "user2@user.com",
-            "user2pass"
-        )
-        time_1 = datetime.datetime(2023, 12, 12, 12, 00)
-        time_2 = datetime.datetime(2023, 12, 12, 12, 20)
+        time_1 = datetime.datetime(2025, 12, 12, 12, 0)
+        time_2 = datetime.datetime(2025, 12, 12, 12, 59)
 
         sample_appointment(
-            user_id=self.user.id, pet_id=self.pet.id, time=time_1
+            user=self.user, pet=self.pet, time=time_1
         )
 
         payload = {
             "time": time_2,
-            "user_id": user_2.id,
-            "pet_id": self.pet.id
+            "user": self.user_2.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
+        error = res.json()["non_field_errors"]
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertRaisesMessage(
-            ValidationError, "The appointment at this time already exists"
+        self.assertEqual(
+            error[0],
+            "The appointment at this time already exists"
         )
 
-    def test_create_conflict_appointments_more_then_in_hour_is_success(self):
-
-        user_2 = get_user_model().objects.create_user(
-            "user2@user.com",
-            "user2pass"
-        )
-        time_1 = datetime.datetime(2023, 12, 12, 12, 0)
-        time_2 = datetime.datetime(2023, 12, 12, 13, 1)
+    def test_create_appointments_more_then_in_hour_is_success(self):
+        time_1 = datetime.datetime(2025, 12, 12, 12, 0)
+        time_2 = datetime.datetime(2025, 12, 12, 13, 1)
 
         sample_appointment(
-            user_id=self.user.id, pet_id=self.pet.id, time=time_1
+            user=self.user, pet=self.pet, time=time_1
         )
 
         payload = {
             "time": time_2,
-            "user_id": user_2.id,
-            "pet_id": self.pet.id
+            "user": self.user_2.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -278,19 +278,21 @@ class CreateAppointmentValidationTest(TestCase):
 
     def test_create_appointment_on_weekends_is_forbidden(self):
 
-        time = datetime.date(2023, 10, 28)
+        time = datetime.datetime(2023, 10, 28, 12, 0)
 
         payload = {
             "time": time,
-            "user_id": self.user.id,
-            "pet_id": self.pet.id
+            "user": self.user.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
+        error = res.json()["non_field_errors"]
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertRaisesMessage(
-            ValidationError, "Appointments can only be scheduled on workdays."
+        self.assertEqual(
+            error[0],
+            "Appointments can only be scheduled on workdays."
         )
 
     def test_create_appointment_before_9_oclock_is_forbidden(self):
@@ -299,15 +301,16 @@ class CreateAppointmentValidationTest(TestCase):
 
         payload = {
             "time": time,
-            "user_id": self.user.id,
-            "pet_id": self.pet.id
+            "user": self.user.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
+        error = res.json()["non_field_errors"]
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertRaisesMessage(
-            ValidationError,
+        self.assertEqual(
+            error[0],
             "Appointments are only allowed between 9:00 and 18:00."
         )
 
@@ -317,29 +320,30 @@ class CreateAppointmentValidationTest(TestCase):
 
         payload = {
             "time": time,
-            "user_id": self.user.id,
-            "pet_id": self.pet.id
+            "user": self.user.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
+        error = res.json()["non_field_errors"]
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertRaisesMessage(
-            ValidationError,
+        self.assertEqual(
+            error[0],
             "Appointments are only allowed between 9:00 and 18:00."
         )
 
     def test_create_appointment_from_now_for_two_hours_forbidden(self):
 
         time = (
-                datetime.datetime.now()
+                timezone.now()
                 + datetime.timedelta(hours=1, minutes=59)
         )
 
         payload = {
             "time": time,
-            "user_id": self.user.id,
-            "pet_id": self.pet.id
+            "user": self.user.pk,
+            "pet": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)

@@ -13,6 +13,7 @@ from django.core.mail import send_mail
 
 logger = logging.getLogger(__name__)
 
+
 @shared_task
 def succes_appoin_notification(user_id, pet_id, reservation_date):
     bot = TeleBot(settings.BOT_TOKEN)
@@ -62,6 +63,5 @@ def notification_period_task():
                 send_mail(subject, message, email_from, recipient_list)
             except Exception as e:
                 logger.error("Помилка при відправці повідомлення: %s" % str(e))
-
 
     return "success"

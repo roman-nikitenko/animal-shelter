@@ -6,5 +6,7 @@ pip install -r requirements.txt
 
 python manage.py collectstatic --no-input
 python manage.py migrate
-celery -A animal_shelter worker --loglevel=info
+
+#docker-compose up --build
+#celery -A animal_shelter worker --loglevel=info
 

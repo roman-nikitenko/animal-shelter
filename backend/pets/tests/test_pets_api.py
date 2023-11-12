@@ -120,27 +120,6 @@ class UsersPetsApiTests(TestCase):
         self.assertIn(serializer_3.data, res.data)
         self.assertNotIn(serializer_4.data, res.data)
 
-    def test_pet_list_filter_by_color(self):
-        animal_type = sample_animal_type(name="pet7")
-
-        pet_1 = sample_pet(animal_type=animal_type, color="black, white")
-        pet_2 = sample_pet(animal_type=animal_type, color="red")
-        pet_3 = sample_pet(animal_type=animal_type, color="red, black")
-        pet_4 = sample_pet(animal_type=animal_type, color="white")
-
-        serializer_1 = PetListSerializer(pet_1)
-        serializer_2 = PetListSerializer(pet_2)
-        serializer_3 = PetListSerializer(pet_3)
-        serializer_4 = PetListSerializer(pet_4)
-
-        res = self.client.get(PET_URL, {"color": "black"})
-
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertIn(serializer_1.data, res.data)
-        self.assertNotIn(serializer_2.data, res.data)
-        self.assertIn(serializer_3.data, res.data)
-        self.assertNotIn(serializer_4.data, res.data)
-
     def test_pet_list_filter_by_gender(self):
         animal_type = sample_animal_type(name="pet8")
 
@@ -162,26 +141,35 @@ class UsersPetsApiTests(TestCase):
         self.assertNotIn(serializer_3.data, res.data)
         self.assertIn(serializer_4.data, res.data)
 
-    def test_pet_list_filter_by_size(self):
+    def test_pet_list_filter_by_age(self):
         animal_type = sample_animal_type(name="pet9")
 
-        pet_1 = sample_pet(animal_type=animal_type)
-        pet_2 = sample_pet(animal_type=animal_type, size="Middle")
-        pet_3 = sample_pet(animal_type=animal_type, size="Big")
-        pet_4 = sample_pet(animal_type=animal_type, size="Big")
+        pet_1 = sample_pet(animal_type=animal_type, age=0.6)
+        pet_2 = sample_pet(animal_type=animal_type, age=5)
+        pet_3 = sample_pet(animal_type=animal_type, age=10)
+        pet_4 = sample_pet(animal_type=animal_type, age=11)
 
         serializer_1 = PetListSerializer(pet_1)
         serializer_2 = PetListSerializer(pet_2)
         serializer_3 = PetListSerializer(pet_3)
         serializer_4 = PetListSerializer(pet_4)
 
-        res = self.client.get(PET_URL, {"size": "Big"})
+        res_1 = self.client.get(PET_URL, {"age": "Baby"})
+        res_2 = self.client.get(PET_URL, {"age": "Young"})
+        res_3 = self.client.get(PET_URL, {"age": "Adult"})
+        res_4 = self.client.get(PET_URL, {"age": "Senior"})
 
-        self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertNotIn(serializer_1.data, res.data)
-        self.assertNotIn(serializer_2.data, res.data)
-        self.assertIn(serializer_3.data, res.data)
-        self.assertIn(serializer_4.data, res.data)
+        self.assertEqual(res_1.status_code, status.HTTP_200_OK)
+        self.assertEqual(res_2.status_code, status.HTTP_200_OK)
+        self.assertEqual(res_3.status_code, status.HTTP_200_OK)
+        self.assertEqual(res_4.status_code, status.HTTP_200_OK)
+        self.assertIn(serializer_1.data, res_1.data)
+        self.assertNotIn(serializer_2.data, res_1.data)
+        self.assertIn(serializer_2.data, res_2.data)
+        self.assertNotIn(serializer_3.data, res_2.data)
+        self.assertIn(serializer_3.data, res_3.data)
+        self.assertNotIn(serializer_4.data, res_3.data)
+        self.assertIn(serializer_4.data, res_4.data)
 
     def test_list_pets(self):
         animal_type1 = sample_animal_type(name="test1")

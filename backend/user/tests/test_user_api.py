@@ -82,30 +82,6 @@ class UserRegisterApiTests(TestCase):
             ValidationError, "Your phone number must be started with '+380'"
         )
 
-    def test_create_user_with_profile_picture(self):
-        """Test uploading an image to user"""
-        with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
-            img = Image.new("RGB", (10, 10))
-            img.save(ntf, format="JPEG")
-            ntf.seek(0)
-            image_file = SimpleUploadedFile(
-                "test_image.jpg", ntf.read(), content_type="image/jpeg"
-            )
-            payload = sample_payload(profile_picture=image_file)
-            res = self.client.post(CREATE_USER_URL, payload, format="multipart")
-
-        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
-        user_id = res.data.get("id")
-        user = get_user_model().objects.get(id=user_id)
-        self.assertTrue(user.profile_picture)
-
-    def test_upload_image_bad_request(self):
-        """Test uploading an invalid image"""
-        payload = sample_payload(profile_picture="image")
-        res = self.client.post(CREATE_USER_URL, payload, format="multipart")
-
-        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-
 
 class AuthenticatedUserTests(TestCase):
     def setUp(self):
@@ -114,6 +90,32 @@ class AuthenticatedUserTests(TestCase):
             "test@test.com", "password12345"
         )
         self.client.force_authenticate(self.user)
+
+    def test_upload_profile_picture_at_the_users_cabinet(self):
+        """Test uploading an image to user"""
+
+        with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
+            img = Image.new("RGB", (10, 10))
+            img.save(ntf, format="JPEG")
+            ntf.seek(0)
+            image_file = SimpleUploadedFile(
+                "test_image.jpg", ntf.read(), content_type="image/jpeg"
+            )
+            payload = sample_payload(profile_picture=image_file)
+            res = self.client.put(PROFILE_URL, payload, format="multipart")
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        user_id = res.data.get("id")
+        user = get_user_model().objects.get(id=user_id)
+        self.assertTrue(user.profile_picture)
+
+    def test_upload_profile_picture_bad_request(self):
+        """Test uploading an invalid image"""
+
+        payload = sample_payload(profile_picture="image")
+        res = self.client.put(PROFILE_URL, payload, format="multipart")
+
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_image_url_is_shown_on_user_detail(self):
         with tempfile.NamedTemporaryFile(suffix=".jpg") as ntf:
