@@ -8,6 +8,7 @@ from .serializers import (
     AppointmentDetailSerializer
 )
 from .permissions import IsAuthenticatedOrIsAdmin
+from .notification import succes_appoin_notification
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
