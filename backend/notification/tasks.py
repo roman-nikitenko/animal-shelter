@@ -25,13 +25,13 @@ def succes_appoin_notification(user, pet, reservation_date):
     telegram_chat_id = user.telegram_chat_id
     if telegram_chat_id:
         try:
-            bot.send_message(chat_bot_id, message)
+            bot.send_message(telegram_chat_id, message)
         except Exception as e:
             logger.error("Помилка при відправці повідомлення: %s" % str(e))
     else:
         try:
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user_email, ]
+            recipient_list = [user.email, ]
             send_mail(subject, message, email_from, recipient_list)
         except Exception as e:
             logger.error("Помилка при відправці повідомлення: %s" % str(e))
