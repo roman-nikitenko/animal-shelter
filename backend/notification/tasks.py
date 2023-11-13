@@ -15,14 +15,18 @@ logger = logging.getLogger(__name__)
 
 
 @shared_task
-def succes_appoin_notification(user, pet, reservation_date):
+def succes_appoin_notification(notification_info):
     bot = TeleBot(settings.BOT_TOKEN)
+    telegram_chat_id = notification_info["telegram_chat_id"]
+    user_email = notification_info["user_email"]
+    pet_name = notification_info["pet_name"]
+    reservation_date = notification_info["reservation_date"]
+    reservation_time = notification_info["reservation_time"]
 
-    message = f"Your appointment with { pet.name } was created successfully. " \
-              f"We will be waiting for you on { reservation_date.date() } at { reservation_date.time() } at our shelter. " \
+    message = f"Your appointment with { pet_name } was created successfully. " \
+              f"We will be waiting for you on { reservation_date } at { reservation_time } at our shelter. " \
               f"Thank you and have a nice day!"
     subject = "Animal shelter appointment"
-    telegram_chat_id = user.telegram_chat_id
     if telegram_chat_id:
         try:
             bot.send_message(telegram_chat_id, message)
@@ -31,7 +35,7 @@ def succes_appoin_notification(user, pet, reservation_date):
     else:
         try:
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email, ]
+            recipient_list = [user_email, ]
             send_mail(subject, message, email_from, recipient_list)
         except Exception as e:
             logger.error("Помилка при відправці повідомлення: %s" % str(e))
