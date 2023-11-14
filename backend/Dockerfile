@@ -16,13 +16,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Redis
 RUN apt-get update && apt-get install -y redis-server
-RUN service redis-server start
 
 # Expose port 8000 for the Django application
 EXPOSE 8000
 
 # Run commands to start services
-CMD sh -c "\
+CMD sh -c "sleep 10 && \
+    service redis-server start && \
     python manage.py wait_for_db && \
     python manage.py migrate && \
     python manage.py runserver 0.0.0.0:8000 && \
