@@ -25,7 +25,8 @@ CMD sh -c "sleep 10 && \
     service redis-server start && \
     python manage.py wait_for_db && \
     python manage.py migrate && \
-    python manage.py runserver 0.0.0.0:8000 && \
-    celery -A animal_shelter worker -l INFO && \
-    celery -A animal_shelter beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler && \
+    python manage.py runserver 0.0.0.0:8000 & \
+    celery -A animal_shelter worker -l INFO & \
+    sh -c 'python manage.py wait_for_db && \
+    celery -A animal_shelter beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler' & \
     celery -A animal_shelter flower --address=0.0.0.0"
