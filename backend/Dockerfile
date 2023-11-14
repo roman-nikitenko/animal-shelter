@@ -15,7 +15,8 @@ COPY . /code
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Redis
-RUN apt-get update && apt-get install -y redis-server
+RUN apt-get update && apt-get install redis-server
+RUN service redis-server start
 
 # Expose port 8000 for the Django application
 EXPOSE 8000
