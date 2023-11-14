@@ -26,7 +26,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         pet = serializer.validated_data.get("pet", None)
         reservation_date = serializer.validated_data.get("time", None)
         notification_info = {
-            "telegram_chat_id":user.telegram_chat_id,
+            "telegram_chat_id": user.telegram_chat_id,
             "user_email": user.email,
             "pet_name": pet.name,
             "reservation_date": str(reservation_date.date()),
