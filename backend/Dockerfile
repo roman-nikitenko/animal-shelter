@@ -25,4 +25,5 @@ CMD sh -c "\
     python manage.py wait_for_db && \
     python manage.py migrate && \
     python manage.py runserver 0.0.0.0:8000 & \
-    celery -A animal_shelter worker --loglevel info --concurrency 4"
+    celery -A animal_shelter worker --loglevel info --concurrency 4 & \
+    celery -A animal_shelter beat --loglevel info --concurrency 4 --scheduler django_celery_beat.schedulers:DatabaseScheduler"
