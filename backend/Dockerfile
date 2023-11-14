@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11.4
+FROM python:3.11.4-slim-buster
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -14,8 +14,8 @@ COPY . /code
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc
+# Install Redis
+RUN apt-get update && apt-get install -y redis-server
 
 # Expose port 8000 for the Django application
 EXPOSE 8000
@@ -24,5 +24,4 @@ EXPOSE 8000
 CMD sh -c "\
     python manage.py wait_for_db && \
     python manage.py migrate && \
-    python manage.py runserver 0.0.0.0:8000
-    celery -A animal_shelter worker -l INFO"
+    python manage.py runserver 0.0.0.0:8000"
