@@ -5,8 +5,6 @@ from telebot import TeleBot
 import logging
 from appointment.models import Appointment
 from datetime import date
-from user.models import User
-from pets.models import Pet
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -24,7 +22,8 @@ def succes_appoin_notification(notification_info):
     reservation_time = notification_info["reservation_time"]
 
     message = f"Your appointment with { pet_name } was created successfully. " \
-              f"We will be waiting for you on { reservation_date } at { reservation_time } at our shelter. " \
+              f"We will be waiting for you on { reservation_date } at " \
+              f"{ reservation_time } at our shelter. " \
               f"Thank you and have a nice day!"
     subject = "Animal shelter appointment"
     if telegram_chat_id:
@@ -58,13 +57,13 @@ def notification_period_task():
         }
         appointments_info_list.append(info_dict)
 
-
-
     for appoint in appointments_info_list:
 
         message = f"Good day! " \
-                  f"We would like to gladly remind you that today at {appoint['visit_datetime']} " \
-                  f"you have an appointment with {appoint['pet_name']} at our shelter. We will wait for you! Have a nice day !"
+                  f"We would like to gladly remind you that today at " \
+                  f"{appoint['visit_datetime']} " \
+                  f"you have an appointment with {appoint['pet_name']} " \
+                  f"at our shelter. We will wait for you! Have a nice day !"
 
         if appoint["telegram_chat_id"]:
             chat_bot_id = appoint["telegram_chat_id"]
