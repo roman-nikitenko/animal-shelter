@@ -222,7 +222,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time,
             "user": self.user_2.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -246,7 +246,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time_2,
             "user": self.user_2.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -269,7 +269,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time_2,
             "user": self.user_2.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -283,7 +283,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time,
             "user": self.user.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -302,7 +302,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time,
             "user": self.user.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -321,7 +321,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time,
             "user": self.user.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
@@ -343,7 +343,7 @@ class CreateAppointmentValidationTest(TestCase):
         payload = {
             "time": time,
             "user": self.user.pk,
-            "pet": self.pet.pk
+            "pet_id": self.pet.pk
         }
 
         res = self.client.post(APPOINTMENT_URL, payload)
