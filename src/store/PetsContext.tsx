@@ -1,14 +1,17 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
+import { User } from '../types/user';
 
 type petContext = {
   pets: Animals[],
   carouselPets: Animals[],
+  user: User | null | undefined,
 }
 
 export const PetsContext = createContext<petContext>({
   pets: [],
   carouselPets: [],
+  user: null,
 });
 
 type Prop = {
@@ -18,9 +21,10 @@ type Prop = {
 export const PetsProvider: React.FC<Prop> = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [carouselPets, setCarouselPets] = useState([]);
+  const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    fetch('https://happy-paws-pqwx.onrender.com/api/pets/')
+    fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/')
       .then(response => response.json())
       .then(petsFromServer => {
         setPets(petsFromServer);
@@ -35,10 +39,31 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
       })
   }, []);
 
+
+
+  // useEffect(() => {
+  //   fetch('https://happy-paws-animal-shelter.onrender.com/api/users/me/', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer`
+  //     }
+  //   })
+  //     .then(res => {
+  //       if (!res.ok) {
+  //         console.log('something went wrong');
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(user => {
+  //       setUser(user);
+  //     })
+  // }, []);
+
   const value = useMemo(() => ({
     pets,
     carouselPets,
-  }), [pets, carouselPets]);
+    user,
+  }), [pets, carouselPets, user]);
 
   return (
     <PetsContext.Provider value={value}>

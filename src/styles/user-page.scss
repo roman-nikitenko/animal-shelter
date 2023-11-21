@@ -13,6 +13,11 @@
   }
 
   &__information {
+    display: flex;
+    column-gap: 100px;
+  }
+
+  &__description {
     row-gap: 20px;
     display: flex;
     flex-direction: column;
@@ -37,6 +42,14 @@
   button:active {
     opacity: 0.5;
   }
+}
 
+.image-wrapper {
+  position: relative;
 
+  .upload-file {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

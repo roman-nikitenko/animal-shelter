@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import closeIcon from '../assets/close.svg';
 import classNames from 'classnames';
-import { UserPage } from '../pages/UserPage';
+import { init } from '../utility/localClient';
+import { Loader } from './LoaderTypeScript';
+import { logIn } from '../api/fetch';
 
 export const LogInForm: React.FC = () => {
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [{
     email,
@@ -45,33 +48,24 @@ export const LogInForm: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submitting')
+    setIsSubmitting(true);
+
     const user = {
-      email,
+      email: email.toLowerCase(),
       password,
     }
 
-    fetch('https://happy-paws-pqwx.onrender.com/api/users/token/', {
-      method: 'POST',
-      body: JSON.stringify(user),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
-        if (!response.ok) {
-          console.log('wrong access');
-          setErrors({ email: true, password: true, })
-          return
+    logIn(user)
+      .then(data => {
+        if (data) {
+          setIsSubmitting(false);
+          localStorage.setItem('token', data.access);
+          navigate('/user');
         }
-
-        console.log(response);
-        navigate('/user');
         clearForm();
       })
       .catch(error => {
-        console.log('error')
-        throw error;
+        console.log(error, 'something went wrong')
       })
   };
 
@@ -84,7 +78,7 @@ export const LogInForm: React.FC = () => {
           alt="close the form registration"
         />
       </button>
-      <h2 className="registration__from--title">LogIn</h2>
+      <h2 className="registration__from--title">Sign In</h2>
       <p className="registration__from--subtitle">
         Please LogIn yourself
       </p>
@@ -99,6 +93,7 @@ export const LogInForm: React.FC = () => {
           name="email"
           value={email}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
         <input
           className={classNames('form__input', {
@@ -109,10 +104,17 @@ export const LogInForm: React.FC = () => {
           name="password"
           value={password}
           onChange={handleChange}
+          disabled={isSubmitting}
         />
-        <button className="form__button" type="submit">Login</button>
-      </form>
+        {isSubmitting && <Loader size={1} />}
 
+        {!isSubmitting && (
+          <button className="form__button" type="submit">
+            SignIn
+          </button>
+        ) }
+
+      </form>
     </div>
   );
 };

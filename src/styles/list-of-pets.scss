@@ -1,7 +1,7 @@
 .header__list-of-pets {
 
   &__title {
-    padding: 40px 0;
+    padding: 48px 0;
     text-align: center;
     background-color: $violet100;
     font-size: 40px;
@@ -9,21 +9,21 @@
 }
 
 .filter {
-  padding: 10px 80px;
+  padding: 8px 136px;
   display: flex;
   background-color: #fff;
-  gap: 20px;
+  gap: 50px;
 
   &__box {
+    position: relative;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
+    padding: 8px 16px;
     border-radius: 8px;
-    height: 40px;
-    width: 200px;
-    border: 1px solid black;
+    width: 100%;
+    border: 1px solid $violet800;
     color: $stone600;
 
     &--mark {
@@ -37,11 +37,21 @@
   }
 
   &__input {
+    position: relative;
 
     &__title {
-      color: $stone500;
+      color: $violet950;
       font-size: 12px;
+      line-height: 18px;
+      font-weight: 500;
       margin-bottom: 3px;
+      opacity: 0.7;
+    }
+
+    &__name {
+      color: $violet950;
+      font-size: 16px;
+      line-height: 24px;
     }
   }
 }
@@ -51,9 +61,9 @@
 .main__list-of-pets {
   grid-template-columns: 1fr;
   display: grid;
-  row-gap: 30px;
+  row-gap: 56px;
   column-gap: 20px;
-  padding: 40px 80px;
+  padding: 56px 136px;
   background-color: $violet100;
 
   .loader__center {
@@ -67,6 +77,34 @@
   @media (min-width: 1440px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
 
+.drop__down {
+  opacity: 0;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid black;
+  border-top: 0px;
+  bottom: -86px;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 10px 10px;
 
+  &--list {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &--item {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  &--item:hover {
+    background-color: $stone200;
+  }
+}
+
+.show__dropdown {
+  opacity: 1;
 }

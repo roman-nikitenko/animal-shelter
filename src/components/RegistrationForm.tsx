@@ -8,24 +8,33 @@ export const RegistrationForm: React.FC = () => {
   const [{
     email,
     password,
-    name,
+    first_name,
+    last_name,
+    phone_number,
+    profile_picture,
   }, setValue] = useState({
-    name: '',
+    first_name: '',
     email: '',
     password: '',
+    phone_number: '',
+    last_name: '',
+    profile_picture: '',
   });
 
   const [errors, setErrors] = useState({
-    name: false,
+    first_name: false,
     email: false,
     password: false,
   });
 
   const clearForm = () => {
     setValue({
-      name: '',
+      first_name: '',
       password: '',
       email: '',
+      phone_number: '',
+      last_name: '',
+      profile_picture: '',
     })
   }
 
@@ -44,9 +53,12 @@ export const RegistrationForm: React.FC = () => {
     e.preventDefault();
     console.log('submitting')
     const newUser = {
-      email,
-      first_name: name,
+      email: email.toLowerCase(),
+      first_name: first_name.toLowerCase(),
+      last_name: last_name.toLowerCase(),
       password,
+      phone_number,
+      profile_picture,
     }
 
     fetch('https://happy-paws-pqwx.onrender.com/api/users/register/', {
@@ -58,8 +70,15 @@ export const RegistrationForm: React.FC = () => {
     })
       .then(response => {
         if (!response.ok) {
-          throw 'something went wrong';
+          console.log('something went wrong');
+          return;
         }
+
+        return response.json();
+      })
+      .then(data => {
+        console.log(data)
+        navigate('/access/login');
         clearForm();
       })
       .catch(error => {
@@ -85,9 +104,17 @@ export const RegistrationForm: React.FC = () => {
         <input
           className="form__input"
           type="text"
-          placeholder="Your name"
-          name="name"
-          value={name}
+          placeholder="First name"
+          name="first_name"
+          value={first_name}
+          onChange={handleChange}
+        />
+        <input
+          className="form__input"
+          type="text"
+          placeholder="Last name"
+          name="last_name"
+          value={last_name}
           onChange={handleChange}
         />
         <input
@@ -98,6 +125,15 @@ export const RegistrationForm: React.FC = () => {
           value={email}
           onChange={handleChange}
         />
+        <input
+          className="form__input"
+          type="text"
+          placeholder="Phone number (+380)"
+          name="phone_number"
+          value={phone_number}
+          onChange={handleChange}
+        />
+
         <input
           className="form__input"
           type="password"

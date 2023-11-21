@@ -8,7 +8,7 @@ export const Logo: React.FC = () => {
       <div className="logo">
         <Link to="/">
           <img className="logo__image" src={logo}/>
-          HappyPaws
+          <p className="logo__text"> HappyPaws</p>
         </Link>
       </div>
 

@@ -41,7 +41,7 @@ const router = createHashRouter([
             element: <RegistrationForm />
           },
           {
-            path: '/access/log-in',
+            path: '/access/login',
             element: <LogInForm />
           }
         ]

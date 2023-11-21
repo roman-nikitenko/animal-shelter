@@ -48,17 +48,19 @@ p {
 }
 
 .button {
-  border: none;
-  border-radius: 5px;
-  background-color: #FFF;
-  padding: 7px 20px;
-  color: $violet600;
+  border-radius: 8px;
+  background-color: $stone50;
+  padding: 5px 16px;
+  color: $violet500;
+  font-family: 'Poppins', 'sans-serif';
+  border: 1px solid $primary-500;
   cursor: pointer;
-  box-shadow: 2px 2px 5px $stone400;
+  font-size: 16px;
+  line-height: 24px;
   transition: all 400ms ease;
 
   &__registration {
-    color: #fff;
+    color: $stone50;
     background-color: $violet700;
   }
 
@@ -75,27 +77,13 @@ p {
     }
   }
 
-  &__get-pet:hover {
-    scale: 1.05;
-    box-shadow: none;
-  }
-
   &__signIn {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 5px;
-    border: 1px solid $violet300;
-
-  }
-
-  &__signIn:before {
-    content: url("/public/assets/user.svg");
-    position: relative;
-
-    display: inline-block;
-    align-items: center;
-    top: 2px;
+    column-gap: 6px;
+    border: 1px solid $violet700;
+    color: $violet700;
   }
 
   &__foundPet {
@@ -103,7 +91,23 @@ p {
   }
 }
 
+.activeButton {
+  background-color: $violet200;
+  border: 1px solid #503BC4;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.30);
+  color: $violet950;
+}
+
 .button:hover {
-  scale: 1.05;
-  box-shadow: none;
+  background-color: $violet200;
+  border: 1px solid #503BC4;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.30);
+  color: $violet950;
+}
+
+.activeLink {
+  color: $violet900;
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
 }

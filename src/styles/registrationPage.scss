@@ -96,3 +96,16 @@
 .isDangerous {
   border-color: #ec7676;
 }
+
+.user-menu {
+  display: flex;
+  gap: 20px;
+
+  &__user {
+    cursor: pointer;
+  }
+
+  &__logout {
+    cursor: pointer;
+  }
+}

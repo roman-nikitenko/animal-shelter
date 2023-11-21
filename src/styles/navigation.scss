@@ -4,14 +4,14 @@
   gap: 50px;
   align-items: center;
   background-color: #fff;
-  padding: 10px 80px;
+  padding: 16px 136px;
 
   &__logo {
     margin-left: 27px;
   }
 
   &__retreat {
-    gap: 20px;
+    gap: 32px;
   }
 }
 
@@ -27,12 +27,20 @@
 
   &__link {
     text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: $stone900;
+    transition: all 400ms ease;
+  }
+
+  &__link:hover {
+    color: $violet500;
   }
 }
 
 .registration {
   display: flex;
-  gap: 10px;
+  gap: 16px;
 }
 
 

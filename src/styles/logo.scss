@@ -1,11 +1,21 @@
 .logo {
   position: relative;
 
+  &__text {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Lexend', sans-serif;
+    transition: all 400ms ease;
+  }
 
+  &__text:hover {
+    color: $violet500;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.30);
+  }
 
   &__image {
     position: absolute;
-    left: -27px;
-    top: -5px
+    left: -30px;
+    top: 1px
   }
 }

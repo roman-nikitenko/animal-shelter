@@ -1,10 +1,13 @@
 .about-us {
   background-color: $violet300;
-  padding: 40px 80px 10px 100px;
+  padding: 59px 136px 24px;
 
   &__title {
     display: flex;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 40px;
     justify-content: center;
   }
 }
@@ -55,7 +58,7 @@
 .about-us__text {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 48px;
   margin-top: 40px;
 
   .second-paragraph {

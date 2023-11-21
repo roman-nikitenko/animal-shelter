@@ -48,17 +48,19 @@ p {
 }
 
 .button {
-  border: none;
-  border-radius: 5px;
-  background-color: #FFF;
-  padding: 7px 20px;
-  color: #7C3AED;
+  border-radius: 8px;
+  background-color: #FAFAF9;
+  padding: 5px 16px;
+  color: #8B5CF6;
+  font-family: "Poppins", "sans-serif";
+  border: 1px solid #503BC4;
   cursor: pointer;
-  box-shadow: 2px 2px 5px #A8A29E;
+  font-size: 16px;
+  line-height: 24px;
   transition: all 400ms ease;
 }
 .button__registration {
-  color: #fff;
+  color: #FAFAF9;
   background-color: #6D28D9;
 }
 .button__get-pet {
@@ -72,40 +74,56 @@ p {
   display: inline-block;
   color: red;
 }
-.button__get-pet:hover {
-  scale: 1.05;
-  box-shadow: none;
-}
 .button__signIn {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
-  border: 1px solid #C4B5FD;
-}
-.button__signIn:before {
-  content: url("/public/assets/user.svg");
-  position: relative;
-  display: inline-block;
-  align-items: center;
-  top: 2px;
+  column-gap: 6px;
+  border: 1px solid #6D28D9;
+  color: #6D28D9;
 }
 .button__foundPet {
   background-color: #DDD6FE;
 }
 
+.activeButton {
+  background-color: #DDD6FE;
+  border: 1px solid #503BC4;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  color: #2E1065;
+}
+
 .button:hover {
-  scale: 1.05;
-  box-shadow: none;
+  background-color: #DDD6FE;
+  border: 1px solid #503BC4;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  color: #2E1065;
+}
+
+.activeLink {
+  color: #4C1D95;
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
 }
 
 .logo {
   position: relative;
 }
+.logo__text {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: "Lexend", sans-serif;
+  transition: all 400ms ease;
+}
+.logo__text:hover {
+  color: #8B5CF6;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
 .logo__image {
   position: absolute;
-  left: -27px;
-  top: -5px;
+  left: -30px;
+  top: 1px;
 }
 
 .menu {
@@ -114,13 +132,13 @@ p {
   gap: 50px;
   align-items: center;
   background-color: #fff;
-  padding: 10px 80px;
+  padding: 16px 136px;
 }
 .menu__logo {
   margin-left: 27px;
 }
 .menu__retreat {
-  gap: 20px;
+  gap: 32px;
 }
 
 .nav {
@@ -134,18 +152,25 @@ p {
 }
 .nav__link {
   text-decoration: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1C1917;
+  transition: all 400ms ease;
+}
+.nav__link:hover {
+  color: #8B5CF6;
 }
 
 .registration {
   display: flex;
-  gap: 10px;
+  gap: 16px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   background-color: #EDE9FE;
-  padding: 160px 80px 120px;
+  padding: 272px 136px 192px;
 }
 .header__content {
   width: 500px;
@@ -170,11 +195,14 @@ p {
 
 .about-us {
   background-color: #C4B5FD;
-  padding: 40px 80px 10px 100px;
+  padding: 59px 136px 24px;
 }
 .about-us__title {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 40px;
   justify-content: center;
 }
 
@@ -217,7 +245,7 @@ p {
 .about-us__text {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 48px;
   margin-top: 40px;
 }
 .about-us__text .second-paragraph {
@@ -386,28 +414,28 @@ p {
 }
 
 .header__list-of-pets__title {
-  padding: 40px 0;
+  padding: 48px 0;
   text-align: center;
   background-color: #EDE9FE;
   font-size: 40px;
 }
 
 .filter {
-  padding: 10px 80px;
+  padding: 8px 136px;
   display: flex;
   background-color: #fff;
-  gap: 20px;
+  gap: 50px;
 }
 .filter__box {
+  position: relative;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 8px 16px;
   border-radius: 8px;
-  height: 40px;
-  width: 200px;
-  border: 1px solid black;
+  width: 100%;
+  border: 1px solid #5B21B6;
   color: #57534E;
 }
 .filter__box--mark {
@@ -418,18 +446,29 @@ p {
   border-style: solid;
   transform: rotate(45deg);
 }
+.filter__input {
+  position: relative;
+}
 .filter__input__title {
-  color: #78716C;
+  color: #2E1065;
   font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
   margin-bottom: 3px;
+  opacity: 0.7;
+}
+.filter__input__name {
+  color: #2E1065;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .main__list-of-pets {
   grid-template-columns: 1fr;
   display: grid;
-  row-gap: 30px;
+  row-gap: 56px;
   column-gap: 20px;
-  padding: 40px 80px;
+  padding: 56px 136px;
   background-color: #EDE9FE;
 }
 .main__list-of-pets .loader__center {
@@ -444,6 +483,33 @@ p {
   .main__list-of-pets {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+.drop__down {
+  opacity: 0;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid black;
+  border-top: 0px;
+  bottom: -86px;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 10px 10px;
+}
+.drop__down--list {
+  padding: 0;
+  list-style-type: none;
+}
+.drop__down--item {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.drop__down--item:hover {
+  background-color: #E7E5E4;
+}
+
+.show__dropdown {
+  opacity: 1;
 }
 
 .card {
@@ -493,16 +559,14 @@ p {
 
 .top__section {
   position: relative;
-  padding: 30px 130px;
+  padding: 32px 136px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   column-gap: 100px;
   background-color: #EDE9FE;
 }
 .top__section .back-to-pets {
   position: absolute;
-  top: 40px;
   font-size: 18px;
   cursor: pointer;
 }
@@ -517,20 +581,31 @@ p {
 .detail-page__text {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 16px;
+  margin-top: 100px;
 }
 .detail-page__content {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 40px;
+  gap: 32px;
 }
 .detail-page__story {
-  width: 600px;
+  width: 572px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.detail-page__name {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 72px;
+  color: #1C1917;
 }
 .detail-page__button {
-  width: 300px;
-  height: 55px;
+  width: 272px;
+  height: 48px;
+  padding: 5px 28px;
   font-size: 18px;
   color: #FFF;
   background-color: #6D28D9;
@@ -538,11 +613,11 @@ p {
 }
 .detail-page__box--img {
   position: relative;
-  top: 60px;
+  top: 55px;
   border-radius: 10px;
   box-shadow: 0px 2px 5px #78716C;
-  height: 550px;
-  max-width: 600px;
+  height: 520px;
+  max-width: 430px;
   overflow: hidden;
   object-fit: cover;
 }
@@ -551,12 +626,12 @@ p {
   display: flex;
   justify-content: space-between;
   background-color: #DDD6FE;
-  padding: 60px 300px;
+  padding: 110px 235px;
 }
 .bottom__section--paragrahp {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 16px;
   font-size: 24px;
   font-weight: 700;
 }
@@ -565,6 +640,9 @@ p {
   flex-direction: row;
   column-gap: 10px;
   align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
 }
 .bottom__section--paragrahp__description {
   font-weight: 400;
@@ -660,6 +738,17 @@ p {
   border-color: #ec7676;
 }
 
+.user-menu {
+  display: flex;
+  gap: 20px;
+}
+.user-menu__user {
+  cursor: pointer;
+}
+.user-menu__logout {
+  cursor: pointer;
+}
+
 .pay {
   background-color: #EDE9FE;
   display: flex;
@@ -688,6 +777,10 @@ p {
   height: 440px;
 }
 .user-page__information {
+  display: flex;
+  column-gap: 100px;
+}
+.user-page__description {
   row-gap: 20px;
   display: flex;
   flex-direction: column;
@@ -708,6 +801,15 @@ p {
 }
 .user-page button:active {
   opacity: 0.5;
+}
+
+.image-wrapper {
+  position: relative;
+}
+.image-wrapper .upload-file {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 /*# sourceMappingURL=App.css.map */
