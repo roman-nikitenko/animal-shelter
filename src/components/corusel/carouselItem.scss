@@ -41,6 +41,11 @@
       grid-column-start: 2;
       grid-row-end: 4;
       justify-content: end;
+      transition: all 400ms ease;
+    }
+
+    &__link:hover {
+      color: #8B5CF6;
     }
   }
 }

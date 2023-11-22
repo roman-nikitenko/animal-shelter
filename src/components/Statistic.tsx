@@ -5,7 +5,7 @@ export const Statistic: React.FC = () => {
   const [statistics, setStatistics] = useState<Statistics[]>([]);
 
   useEffect(() => {
-    fetch('https://happy-paws-pqwx.onrender.com/api/pets/statistic/')
+    fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/statistic/')
       .then(response => response.json())
       .then(data => {
         setStatistics(data.statistic);

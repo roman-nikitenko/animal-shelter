@@ -1,9 +1,8 @@
 import React from 'react';
 import { Logo } from './Logo';
-import personImg from '../assets/person.svg';
-import logOut from '../assets/logout.svg';
 import { useNavigate, NavLink } from 'react-router-dom';
 import userIcon from '../assets/userIcon.svg';
+import { UserIcon } from './UserIcon';
 
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
@@ -57,18 +56,18 @@ export const  Navigation: React.FC = () => {
 
           {hasJWT() ? (
             <div className="user-menu">
-              <img
-                className="user-menu__user"
-                src={personImg}
-                alt="person button"
-                onClick={() => navigate('/user')}
-              />
-              <img
-                className="user-menu__logout"
-                src={logOut}
-                alt="log out button"
+              <NavLink  to="/user" className="user-button">
+                <UserIcon size={23} color={'#FAFAF9'} />
+              </NavLink>
+
+              <button
+                className="button button__signIn"
+                type="button"
                 onClick={logOutHandler}
-              />
+              >
+                <UserIcon size={23} color={'#6D28D9'} />
+                Sign out
+              </button>
             </div>
           ) : (
             <>

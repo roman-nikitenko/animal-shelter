@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
 import { User } from '../types/user';
 
@@ -32,32 +32,13 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    fetch('https://happy-paws-pqwx.onrender.com/api/pets/statistic/')
+    fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/statistic/')
       .then(response => response.json())
       .then(pet => {
+        console.log(pet.list_of_last_adopted_pets)
         setCarouselPets(pet.list_of_last_adopted_pets);
       })
   }, []);
-
-
-
-  // useEffect(() => {
-  //   fetch('https://happy-paws-animal-shelter.onrender.com/api/users/me/', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer`
-  //     }
-  //   })
-  //     .then(res => {
-  //       if (!res.ok) {
-  //         console.log('something went wrong');
-  //       }
-  //       return res.json();
-  //     })
-  //     .then(user => {
-  //       setUser(user);
-  //     })
-  // }, []);
 
   const value = useMemo(() => ({
     pets,

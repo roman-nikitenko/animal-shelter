@@ -51,7 +51,6 @@ export const RegistrationForm: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submitting')
     const newUser = {
       email: email.toLowerCase(),
       first_name: first_name.toLowerCase(),
@@ -61,7 +60,7 @@ export const RegistrationForm: React.FC = () => {
       profile_picture,
     }
 
-    fetch('https://happy-paws-pqwx.onrender.com/api/users/register/', {
+    fetch('https://happy-paws-animal-shelter.onrender.com/api/users/register/', {
       method: 'POST',
       body: JSON.stringify(newUser),
       headers: {

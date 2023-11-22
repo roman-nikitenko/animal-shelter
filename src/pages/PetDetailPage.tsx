@@ -17,6 +17,7 @@ type PetDetailType = {
   name: string,
   size: string,
   story: string,
+  is_adopted: boolean,
 }
 
 export const PetDetailPage: React.FC = () => {
@@ -25,7 +26,7 @@ export const PetDetailPage: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://happy-paws-pqwx.onrender.com/api/pets/${id.petId}`)
+    fetch(`https://happy-paws-animal-shelter.onrender.com/api/pets/${id.petId}`)
       .then(response => response.json())
       .then(data => setPet(data))
   }, []);
@@ -49,7 +50,8 @@ export const PetDetailPage: React.FC = () => {
                 <p className="detail-page__story">{pet.story}</p>
               </div>
 
-              <button className="button detail-page__button">Respond</button>
+              {!pet.is_adopted && <button className="button detail-page__button">Respond</button>}
+
             </div>
             <div className="detail-page__box">
               <img className="detail-page__box--img" src={pet.image} />
