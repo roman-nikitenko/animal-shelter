@@ -53,5 +53,6 @@ class PetDetailSerializer(PetListSerializer):
             "size",
             "color",
             "story",
-            "image"
+            "image",
+            "is_adopted"
         )
