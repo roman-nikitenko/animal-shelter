@@ -1,29 +1,30 @@
 {
   "files": {
-    "main.css": "/animal-shelter/static/css/main.546f9a07.css",
-    "main.js": "/animal-shelter/static/js/main.9d424466.js",
+    "main.css": "/animal-shelter/static/css/main.d06e7c6d.css",
+    "main.js": "/animal-shelter/static/js/main.a084d02e.js",
     "static/media/pappi.jpeg": "/animal-shelter/static/media/pappi.3d082ee5937c31adc6d9.jpeg",
     "static/media/main-image.png": "/animal-shelter/static/media/main-image.013b02f4e3c5e366d007.png",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
     "static/media/bigl.jpg": "/animal-shelter/static/media/bigl.f83f3f1906525f0fed64.jpg",
-    "static/media/user.jpg": "/animal-shelter/static/media/user.4e1103b43457e0472adc.jpg",
     "static/media/dog.jpg": "/animal-shelter/static/media/dog.1b60cfcd40644a63ce07.jpg",
     "static/media/logo.svg": "/animal-shelter/static/media/logo.7af86819c0ac49c574ba0869b7bb298c.svg",
     "static/media/dog.svg": "/animal-shelter/static/media/dog.65c85bdc02d8dc37aa6029cd86ccb20c.svg",
     "static/media/paw.svg": "/animal-shelter/static/media/paw.9e1fb0f590fce735a4b28e76a6e8e85f.svg",
     "static/media/cat.svg": "/animal-shelter/static/media/cat.5c91c63e9322901dae380f43bd6f26aa.svg",
+    "static/media/add-new-photo.svg": "/animal-shelter/static/media/add-new-photo.c1a1e86200e53b03a753089dd0c2cd50.svg",
     "index.html": "/animal-shelter/index.html",
     "static/media/userIcon.svg": "/animal-shelter/static/media/userIcon.0cf116447ea625ffd8fc3080253ea51d.svg",
+    "static/media/pancel.svg": "/animal-shelter/static/media/pancel.60c9a92a6e1f6e604ecd.svg",
     "static/media/size.svg": "/animal-shelter/static/media/size.9b755292d9303e121c72c9de72e13de2.svg",
     "static/media/male.svg": "/animal-shelter/static/media/male.496f23b17142578aeca3b348fbdef988.svg",
     "static/media/female.svg": "/animal-shelter/static/media/female.d786529dafb2fd1e98e11ef8736ae931.svg",
     "static/media/close.svg": "/animal-shelter/static/media/close.1ded1e99216871d2a3aec0714440eb62.svg",
     "static/media/arrowGoToback.svg": "/animal-shelter/static/media/arrowGoToback.0537bdf529f1f2b50ed6646cfff1bc87.svg",
-    "main.546f9a07.css.map": "/animal-shelter/static/css/main.546f9a07.css.map",
-    "main.9d424466.js.map": "/animal-shelter/static/js/main.9d424466.js.map"
+    "main.d06e7c6d.css.map": "/animal-shelter/static/css/main.d06e7c6d.css.map",
+    "main.a084d02e.js.map": "/animal-shelter/static/js/main.a084d02e.js.map"
   },
   "entrypoints": [
-    "static/css/main.546f9a07.css",
-    "static/js/main.9d424466.js"
+    "static/css/main.d06e7c6d.css",
+    "static/js/main.a084d02e.js"
   ]
 }
