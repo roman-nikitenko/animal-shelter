@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import { firstLetterUpperCase, gender, petType } from '../utility/pickIcon';
 import sizeImg from '../assets/size.svg';
 import { AnimalType, Gender } from '../types/animals';
 import goToBack from '../assets/arrowGoToback.svg'
+import { PetsContext } from '../store/PetsContext';
 
 type PetDetailType = {
   age: string,
@@ -24,6 +25,7 @@ export const PetDetailPage: React.FC = () => {
   const [pet, setPet] = useState<PetDetailType>();
   const id = useParams();
   const navigate = useNavigate();
+  const { user } = useContext(PetsContext);
 
   useEffect(() => {
     fetch(`https://happy-paws-animal-shelter.onrender.com/api/pets/${id.petId}`)
@@ -50,7 +52,7 @@ export const PetDetailPage: React.FC = () => {
                 <p className="detail-page__story">{pet.story}</p>
               </div>
 
-              {!pet.is_adopted && <button className="button detail-page__button">Respond</button>}
+              {!pet.is_adopted && user?.is_staff && user && <button className="button detail-page__button">Respond</button>}
 
             </div>
             <div className="detail-page__box">

@@ -2,13 +2,14 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import closeIcon from '../assets/close.svg';
 import classNames from 'classnames';
-import { init } from '../utility/localClient';
 import { Loader } from './LoaderTypeScript';
-import { logIn } from '../api/fetch';
+import { getUser, logIn } from '../api/fetch';
+import { PetsContext } from '../store/PetsContext';
 
 export const LogInForm: React.FC = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { setUser } = useContext(PetsContext);
 
   const [{
     email,
@@ -62,6 +63,10 @@ export const LogInForm: React.FC = () => {
           localStorage.setItem('token', data.access);
           navigate('/user');
         }
+
+        getUser(data.access)
+          .then(user => setUser(user));
+
         clearForm();
       })
       .catch(error => {

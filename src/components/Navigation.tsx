@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Logo } from './Logo';
 import { useNavigate, NavLink } from 'react-router-dom';
 import userIcon from '../assets/userIcon.svg';
 import { UserIcon } from './UserIcon';
+import { PetsContext } from '../store/PetsContext';
 
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
+  const { setUser } = useContext(PetsContext);
 
   function hasJWT() {
     let flag: boolean;
@@ -17,6 +19,7 @@ export const  Navigation: React.FC = () => {
 
   const logOutHandler = () => {
     localStorage.removeItem("token");
+    setUser(undefined);
     navigate('/');
   }
 

@@ -1,12 +1,14 @@
 // @ts-ignore
 
+const BASE_URL = 'https://happy-paws-animal-shelter.onrender.com';
+
 type AccessUser = {
   password: string,
   email: string
 }
 
 export async function logIn(user: AccessUser) {
-  const response = await fetch('https://happy-paws-animal-shelter.onrender.com/api/users/token/', {
+  const response = await fetch(BASE_URL + '/api/users/token/', {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {'Content-Type': 'application/json'}
@@ -20,7 +22,7 @@ export async function logIn(user: AccessUser) {
 }
 
 export async function getUser(token: string) {
-  const response = await fetch('https://happy-paws-animal-shelter.onrender.com/api/users/me/', {
+  const response = await fetch(BASE_URL + '/api/users/me/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -1,17 +1,20 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
 import { User } from '../types/user';
+import { getUser } from '../api/fetch';
 
 type petContext = {
   pets: Animals[],
   carouselPets: Animals[],
   user: User | null | undefined,
+  setUser: React.Dispatch<React.SetStateAction<User | undefined>>,
 }
 
 export const PetsContext = createContext<petContext>({
   pets: [],
   carouselPets: [],
   user: null,
+  setUser: () => {},
 });
 
 type Prop = {
@@ -22,6 +25,17 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [carouselPets, setCarouselPets] = useState([]);
   const [user, setUser] = useState<User>();
+
+
+  let token = localStorage.getItem('token');
+
+
+  useEffect(() => {
+    if (token) {
+      getUser(token)
+        .then(user => setUser(user))
+    }
+  }, []);
 
   useEffect(() => {
     fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/')
@@ -35,7 +49,6 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
     fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/statistic/')
       .then(response => response.json())
       .then(pet => {
-        console.log(pet.list_of_last_adopted_pets)
         setCarouselPets(pet.list_of_last_adopted_pets);
       })
   }, []);
@@ -44,6 +57,7 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
     pets,
     carouselPets,
     user,
+    setUser
   }), [pets, carouselPets, user]);
 
   return (
