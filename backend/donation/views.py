@@ -16,8 +16,8 @@ class HomePageView(TemplateView):
 @csrf_exempt
 @api_view(["GET"])
 def stripe_config(request):
-    if request.method == 'GET':
-        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+    if request.method == "GET":
+        stripe_config = {"publicKey": settings.STRIPE_PUBLISHABLE_KEY}
         return JsonResponse(stripe_config, safe=False)
 
 
@@ -27,7 +27,7 @@ def create_stripe_session(request):
     stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
     session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
+        payment_method_types=["card"],
         submit_type="donate",
         line_items=[
             {
