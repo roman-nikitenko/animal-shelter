@@ -1,3 +1,4 @@
+from django.utils import timezone
 from rest_framework import viewsets, status
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
@@ -14,7 +15,7 @@ from .permissions import IsAdminOrReadOnly
 def statistic(request):
 
     """It shows the number of pets that are currently in the shelter,
-    the number of pets that have been adopted and the list of the last three
+    the number of pets that have been adopted and the list of the
     adopted pets"""
 
     num_pets_homeless = Pet.objects.filter(is_adopted=False).count()
@@ -22,7 +23,7 @@ def statistic(request):
 
     list_of_6_last_adopted_pets = Pet.objects.select_related(
         "animal_type"
-    ).filter(is_adopted=True).order_by("-id")[:6]
+    ).filter(is_adopted=True).order_by("-adopted_date")[:6]
     serializer = PetListSerializer(list_of_6_last_adopted_pets, many=True)
 
     context = {
@@ -129,6 +130,7 @@ def adopted(request, pk):
 
     if not pet.is_adopted:
         pet.is_adopted = True
+        pet.adopted_date = timezone.now()
         pet.save()
         return Response(
             {"message": f"{pet.name} is successfully adopted!"},
