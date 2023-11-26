@@ -83,25 +83,25 @@ class User(AbstractUser):
     def full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
-    @staticmethod
-    def validate_phone_number(phone_number, error_to_raise):
-        if len(phone_number) != 13:
-            raise error_to_raise(
-                "Your phone number must have at least 13 numbers"
-            )
-        if not phone_number.startswith("+380"):
-            raise error_to_raise(
-                "Your phone number must be started with '+380'"
-            )
-
-    @staticmethod
-    def validate_password(password, error_to_raise):
-        if len(password) < 8:
-            raise error_to_raise("Password must have at least 8 symbols")
-        elif re.search("[0-9]", password) is None:
-            raise error_to_raise("Password must contain at least 1 digit")
-        elif re.search("[a-zA-Z]", password) is None:
-            raise error_to_raise("Password must contain at lest 1 letter")
+    # @staticmethod
+    # def validate_phone_number(phone_number, error_to_raise):
+    #     if len(phone_number) != 13:
+    #         raise error_to_raise(
+    #             "Your phone number must have at least 13 numbers"
+    #         )
+    #     if not phone_number.startswith("+380"):
+    #         raise error_to_raise(
+    #             "Your phone number must be started with '+380'"
+    #         )
+    #
+    # @staticmethod
+    # def validate_password(password, error_to_raise):
+    #     if len(password) < 8:
+    #         raise error_to_raise("Password must have at least 8 symbols")
+    #     elif re.search("[0-9]", password) is None:
+    #         raise error_to_raise("Password must contain at least 1 digit")
+    #     elif re.search("[a-zA-Z]", password) is None:
+    #         raise error_to_raise("Password must contain at lest 1 letter")
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

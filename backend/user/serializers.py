@@ -4,17 +4,17 @@ from rest_framework.exceptions import ValidationError
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-    def validate(self, attrs):
-        data = super(CreateUserSerializer, self).validate(attrs=attrs)
-        get_user_model().validate_phone_number(
-            attrs["phone_number"],
-            ValidationError
-        )
-        get_user_model().validate_password(
-            attrs["password"],
-            ValidationError
-        )
-        return data
+    # def validate(self, attrs):
+    #     data = super(CreateUserSerializer, self).validate(attrs=attrs)
+    #     get_user_model().validate_phone_number(
+    #         attrs["phone_number"],
+    #         ValidationError
+    #     )
+    #     get_user_model().validate_password(
+    #         attrs["password"],
+    #         ValidationError
+    #     )
+    #     return data
 
     class Meta:
         model = get_user_model()
@@ -34,17 +34,17 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    def validate(self, attrs):
-        data = super(UserSerializer, self).validate(attrs=attrs)
-        get_user_model().validate_phone_number(
-            attrs["phone_number"],
-            ValidationError
-        )
-        get_user_model().validate_password(
-            attrs["password"],
-            ValidationError
-        )
-        return data
+    # def validate(self, attrs):
+    #     data = super(UserSerializer, self).validate(attrs=attrs)
+    #     get_user_model().validate_phone_number(
+    #         attrs["phone_number"],
+    #         ValidationError
+    #     )
+    #     get_user_model().validate_password(
+    #         attrs["password"],
+    #         ValidationError
+    #     )
+    #     return data
 
     class Meta:
         model = get_user_model()
