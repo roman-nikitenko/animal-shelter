@@ -1,10 +1,6 @@
-import io
 import re
 import os
 
-import requests
-from django.core.files.base import ContentFile
-from storages.backends.gcloud import GoogleCloudStorage
 from django.utils.text import slugify
 import uuid
 
@@ -15,7 +11,6 @@ from django.contrib.auth.models import (
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.utils.translation import gettext as _
-from PIL import Image
 from pets.google_image_field import GoogleImageField
 
 
