@@ -46,8 +46,8 @@ class ManageUserView(
     )
     def upload_image(self, request, pk=None):
         """Endpoint for uploading image to specific movie"""
-        movie = self.get_object()
-        serializer = self.get_serializer(movie, data=request.data)
+        user = self.get_object()
+        serializer = self.get_serializer(user, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
