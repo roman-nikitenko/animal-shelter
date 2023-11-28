@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Loader } from '../components/LoaderTypeScript';
 import { firstLetterUpperCase } from '../utility/pickIcon';
 import { PetsContext } from '../store/PetsContext';
 import addPhoto from '../assets/add-new-photo.svg';
-import { BASE_URL, getUser } from '../api/fetch';
+import { BASE_URL } from '../api/fetch';
+import { Loader } from '../components/LoaderTypeScript';
 
 export const UserPage: React.FC = () => {
   const { user } = useContext(PetsContext);
@@ -119,8 +119,14 @@ export const UserPage: React.FC = () => {
 
               {file && (
                 <div className="buttons">
-                  <button className="button button__signIn" onClick={cancelHandler}>Cancel</button>
-                  <button className="button button__signIn" onClick={submitHandler}>Submit</button>
+                  {!submitting && (
+                    <button className="button button__signIn" onClick={cancelHandler}>Cancel</button>
+                  )}
+
+                  <button className="button button__signIn" onClick={submitHandler}>
+                    {submitting && <Loader size={1} />}
+                    {!submitting && 'Submit'}
+                  </button>
                 </div>
               )}
 
