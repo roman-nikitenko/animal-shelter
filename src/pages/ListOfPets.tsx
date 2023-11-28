@@ -19,6 +19,11 @@ export const ListOfPets: React.FC = () => {
 
   const { pets } = useContext(PetsContext);
 
+  const filters = {
+    pet: 'All pets',
+
+  }
+
 
   return (
     <>

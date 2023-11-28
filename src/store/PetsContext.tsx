@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
 import { User } from '../types/user';
-import { getUser } from '../api/fetch';
+import { BASE_URL, getUser } from '../api/fetch';
 
 type petContext = {
   pets: Animals[],
@@ -38,7 +38,7 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/')
+    fetch( BASE_URL + '/api/pets/')
       .then(response => response.json())
       .then(petsFromServer => {
         setPets(petsFromServer);
@@ -46,7 +46,7 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    fetch('https://happy-paws-animal-shelter.onrender.com/api/pets/statistic/')
+    fetch(BASE_URL + '/api/pets/statistic/')
       .then(response => response.json())
       .then(pet => {
         setCarouselPets(pet.list_of_last_adopted_pets);

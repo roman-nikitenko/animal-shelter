@@ -1,6 +1,6 @@
 // @ts-ignore
 
-const BASE_URL = 'https://happy-paws-animal-shelter.onrender.com';
+export const BASE_URL = 'https://happy-paws-animal-shelter.onrender.com';
 
 type AccessUser = {
   password: string,
