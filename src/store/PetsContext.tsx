@@ -26,6 +26,10 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   const [carouselPets, setCarouselPets] = useState([]);
   const [user, setUser] = useState<User>();
 
+  window.addEventListener('storage', () => {
+    console.log('Storage changed');
+  })
+
 
   let token = localStorage.getItem('token');
 

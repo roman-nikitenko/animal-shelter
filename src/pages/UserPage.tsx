@@ -32,12 +32,6 @@ export const UserPage: React.FC = () => {
     const target = e.target as HTMLInputElement & {
       files: FileList;
     }
-
-    // target.files[0].text()
-    //   .then(r => {
-    //     setFile(r);
-    //   });
-
     setFile(target.files[0]);
 
     const fileReader = new FileReader;
@@ -60,8 +54,6 @@ export const UserPage: React.FC = () => {
     if (typeof file === 'undefined') return;
 
     const formData = new FormData();
-
-    //users/me/upload-image/
 
     formData.append('profile_picture', file);
 

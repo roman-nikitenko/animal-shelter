@@ -65,7 +65,7 @@ export const LogInForm: React.FC = () => {
         }
 
         getUser(data.access)
-          .then(user => setUser(user));
+          .then(user => setUser(user))
 
         clearForm();
       })

@@ -22,18 +22,33 @@ export async function logIn(user: AccessUser) {
 }
 
 export async function getUser(token: string) {
-  const response = await fetch(BASE_URL + '/api/users/me/', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }
-  });
+  try {
+    const response = await fetch(BASE_URL + '/api/users/me/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
 
-  if (!response.ok) {
-    throw 'Something went wrong to get user from server'
+    if (!response.ok) {
+      throw 'Something went wrong to get user from server'
+    }
+
+    return response.json()
+
+
+  } catch (error) {
+    console.log(error)
   }
 
-  return response.json()
+
+
+
+
 }
+
+// export async function filteredPets(otion: string) {
+//   const
+// }
 

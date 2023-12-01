@@ -5,6 +5,7 @@
   justify-content: space-between;
   column-gap: 100px;
   background-color: $violet100;
+  transition: hidden 400ms ease;
 
   .back-to-pets {
     position: absolute;

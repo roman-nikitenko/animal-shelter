@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import { firstLetterUpperCase, gender, petType } from '../utility/pickIcon';
@@ -6,6 +6,8 @@ import sizeImg from '../assets/size.svg';
 import { AnimalType, Gender } from '../types/animals';
 import goToBack from '../assets/arrowGoToback.svg'
 import { PetsContext } from '../store/PetsContext';
+import { Respond } from '../components/Respond';
+import { useOnClickOutSide } from '../servoces/useOnClickOutSide';
 
 type PetDetailType = {
   age: string,
@@ -23,12 +25,26 @@ type PetDetailType = {
 
 export const PetDetailPage: React.FC = () => {
   const [pet, setPet] = useState<PetDetailType>();
-  const id = useParams();
+  const { petId } = useParams();
   const navigate = useNavigate();
   const { user } = useContext(PetsContext);
+  const [hidden, setHidden] = useState(true);
+  const refRespond = useRef<HTMLDivElement>(null);
+  const refRespondButton = useRef<HTMLButtonElement>(null);
+
+  const handleHidden = () => {
+    setHidden(true);
+  }
+
+  useOnClickOutSide(refRespond, handleHidden);
+
+  const handleOpenCalendar = () => {
+    setHidden(false);
+  }
+
 
   useEffect(() => {
-    fetch(`https://happy-paws-animal-shelter.onrender.com/api/pets/${id.petId}`)
+    fetch(`https://happy-paws-animal-shelter.onrender.com/api/pets/${petId}`)
       .then(response => response.json())
       .then(data => setPet(data))
   }, []);
@@ -47,12 +63,23 @@ export const PetDetailPage: React.FC = () => {
               </div>
             </div>
             <div className="detail-page__content">
+
+              <Respond refRespond={refRespond} hidden={hidden} id={ petId } />
+
               <div className="detail-page__text">
                 <h1 className="detail-page__name">{pet.name}</h1>
                 <p className="detail-page__story">{pet.story}</p>
               </div>
 
-              {!pet.is_adopted && user?.is_staff && user && <button className="button detail-page__button">Respond</button>}
+              {!pet.is_adopted && user?.is_staff && user &&
+                <button
+                  className="button detail-page__button"
+                  onClick={handleOpenCalendar}
+                  ref={refRespondButton}
+                >
+                  Respond
+                </button>
+              }
 
             </div>
             <div className="detail-page__box">

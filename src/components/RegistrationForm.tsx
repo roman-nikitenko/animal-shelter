@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
 import closeIcon from '../assets/close.svg';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../api/fetch';
+import classNames from 'classnames';
+import { Loader } from './LoaderTypeScript';
+import useValidate from '../servoces/useValidate';
 
 export const RegistrationForm: React.FC = () => {
   const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
+
+  function validPhoneNumber(phoneNumber: string) {
+    return phoneNumber.includes('+380') && phoneNumber.length === 13;
+  }
 
   const [{
-    email,
-    password,
     first_name,
     last_name,
+    email,
     phone_number,
+    password,
     profile_picture,
   }, setValue] = useState({
     first_name: '',
+    last_name: '',
     email: '',
     password: '',
     phone_number: '',
-    last_name: '',
     profile_picture: '',
   });
 
   const [errors, setErrors] = useState({
     first_name: false,
+    last_name: false,
+    phone_number: false,
     email: false,
     password: false,
   });
@@ -38,11 +49,16 @@ export const RegistrationForm: React.FC = () => {
     })
   }
 
+
   const handleChange = (event:  React.ChangeEvent<HTMLInputElement>) => {
     const { name: field, value } = event.target;
 
-    setValue(current => ({ ...current, [field]: value }))
+    setValue(current => ({ ...current, [field]: value }));
+    setErrors(current => ({ ...current, [field]: false }));
   }
+
+  const validPW = useValidate(password);
+  const validPhone = validPhoneNumber(phone_number);
 
 
   const closeHandler = () => {
@@ -51,6 +67,17 @@ export const RegistrationForm: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setErrors({
+      last_name: !last_name,
+      first_name: !first_name,
+      phone_number: !validPhone,
+      password: !validPW,
+      email: !email,
+    });
+
+    if (!last_name || !first_name || !validPhone || !validPW || !email) return
+
     const newUser = {
       email: email.toLowerCase(),
       first_name: first_name.toLowerCase(),
@@ -60,7 +87,7 @@ export const RegistrationForm: React.FC = () => {
       profile_picture,
     }
 
-    fetch('https://happy-paws-animal-shelter.onrender.com/api/users/register/', {
+    fetch(BASE_URL + '/api/users/register/', {
       method: 'POST',
       body: JSON.stringify(newUser),
       headers: {
@@ -68,8 +95,9 @@ export const RegistrationForm: React.FC = () => {
       }
     })
       .then(response => {
+        setSubmitting(true);
         if (!response.ok) {
-          console.log('something went wrong');
+          throw 'Servers problem'
           return;
         }
 
@@ -78,9 +106,11 @@ export const RegistrationForm: React.FC = () => {
       .then(data => {
         console.log(data)
         navigate('/access/login');
+        setSubmitting(false);
         clearForm();
       })
       .catch(error => {
+        setSubmitting(false);
         console.log('error')
         throw error;
       })
@@ -100,48 +130,79 @@ export const RegistrationForm: React.FC = () => {
         Please Register yourself
       </p>
       <form className="form" onSubmit={submitHandler}>
-        <input
-          className="form__input"
-          type="text"
-          placeholder="First name"
-          name="first_name"
-          value={first_name}
-          onChange={handleChange}
-        />
-        <input
-          className="form__input"
-          type="text"
-          placeholder="Last name"
-          name="last_name"
-          value={last_name}
-          onChange={handleChange}
-        />
-        <input
-          className="form__input"
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
-        <input
-          className="form__input"
-          type="text"
-          placeholder="Phone number (+380)"
-          name="phone_number"
-          value={phone_number}
-          onChange={handleChange}
-        />
+        <label className="label">
+          <input
+            className={classNames("form__input", {
+              'isDangerous': errors.first_name
+            })}
+            type="text"
+            placeholder="First name"
+            name="first_name"
+            value={first_name}
+            onChange={handleChange}
+          />
+          {errors.first_name && <p className="error--message">Required</p>}
+        </label>
 
-        <input
-          className="form__input"
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-        <button className="form__button" type="submit">Register</button>
+        <label className="label" >
+          <input
+            className={classNames("form__input", {
+              'isDangerous': errors.last_name
+            })}
+            type="text"
+            placeholder="Last name"
+            name="last_name"
+            value={last_name}
+            onChange={handleChange}
+          />
+          {errors.last_name && <p className="error--message">Required</p>}
+        </label>
+
+        <label className="label">
+          <input
+            className={classNames("form__input", {
+              'isDangerous': errors.email
+            })}
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+          {errors.email && <p className="error--message">Required</p>}
+        </label>
+
+        <label className="label">
+          <input
+            className={classNames("form__input", {
+              'isDangerous isDangerous--phone': errors.phone_number
+            })}
+            type="text"
+            placeholder="Phone number (+380)"
+            name="phone_number"
+            value={phone_number}
+            onChange={handleChange}
+          />
+          {errors.phone_number && <p className="error--message">At least 13 digits are required</p>}
+        </label>
+
+        <label className="label">
+          <input
+            className={classNames("form__input", {
+              'isDangerous': errors.password
+            })}
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+          {errors.password && <p className="error--message">Min 8 characters - contains @A1</p>}
+        </label>
+
+        {submitting && <Loader size={1} />}
+        {!submitting && <button className="form__button" type="submit">Register</button>}
+
       </form>
     </div>
   );

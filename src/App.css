@@ -573,6 +573,7 @@ p {
   justify-content: space-between;
   column-gap: 100px;
   background-color: #EDE9FE;
+  transition: hidden 400ms ease;
 }
 .top__section .back-to-pets {
   position: absolute;
@@ -710,6 +711,28 @@ p {
   padding: 10px;
   outline: none;
 }
+.form .label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.form .label .error--message {
+  display: flex;
+  column-gap: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  position: absolute;
+  top: 38px;
+  left: 5px;
+  color: #D92D20;
+}
+.form .label .error--message:before {
+  background: url("./assets/error-icon.svg");
+  display: flex;
+  content: "";
+  width: 16px;
+  height: 16px;
+}
 .form__button {
   background-color: #6D28D9;
   border: 1px solid #6D28D9;
@@ -744,7 +767,7 @@ p {
 }
 
 .isDangerous {
-  border-color: #ec7676;
+  border-color: #D92D20;
 }
 
 .user-menu {
@@ -860,6 +883,18 @@ p {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.respond {
+  width: 400px;
+  height: 200px;
+  border: 1px solid black;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 10px;
+  top: 330px;
+  left: 460px;
+  transition: opacity 400ms ease;
 }
 
 /*# sourceMappingURL=App.css.map */
