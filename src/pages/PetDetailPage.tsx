@@ -33,7 +33,7 @@ export const PetDetailPage: React.FC = () => {
   const refRespondButton = useRef<HTMLButtonElement>(null);
 
   const handleHidden = () => {
-    setHidden(true);
+    setHidden(prevState => !prevState);
   }
 
   useOnClickOutSide(refRespond, handleHidden);
@@ -64,7 +64,7 @@ export const PetDetailPage: React.FC = () => {
             </div>
             <div className="detail-page__content">
 
-              <Respond refRespond={refRespond} hidden={hidden} id={ petId } />
+              <Respond refRespond={refRespond} hidden={hidden} />
 
               <div className="detail-page__text">
                 <h1 className="detail-page__name">{pet.name}</h1>

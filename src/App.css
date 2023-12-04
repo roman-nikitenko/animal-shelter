@@ -886,15 +886,32 @@ p {
 }
 
 .respond {
-  width: 400px;
-  height: 200px;
-  border: 1px solid black;
   position: absolute;
-  background-color: #fff;
+  background-color: #C4B5FD;
   border-radius: 10px;
+  display: flex;
+  z-index: 2;
+  overflow: hidden;
   top: 330px;
   left: 460px;
   transition: opacity 400ms ease;
+  box-shadow: 0px 0px 5px 2px #78716C;
+}
+
+.css-jgls56-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #7C3AED !important;
+}
+
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #7C3AED !important;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  color: #7C3AED !important;
+}
+
+.css-4pax7l-MuiPickersLayout-root {
+  background-color: #DDD6FE !important;
 }
 
 /*# sourceMappingURL=App.css.map */
