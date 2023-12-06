@@ -13,7 +13,7 @@ export const HomePage: React.FC = () => {
       <main className="main">
         <AboutUs />
         <Statistic />
-        <Announcement />
+        {/*<Announcement />*/}
       </main>
     </>
   );

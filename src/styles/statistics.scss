@@ -12,9 +12,14 @@ $squareBorder: 2px;
     display: grid;
     column-gap: 150px;
     row-gap: 100px;
-    margin-right: 350px;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 200px;
     width: 200px;
+
+
+    @include lg {
+      grid-template-columns: 200px 200px;
+      margin-right: 350px;
+    }
   }
 }
 

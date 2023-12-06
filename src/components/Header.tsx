@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import mainImage from '../assets/main-image.png'
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export const Header: React.FC = () => {
         </div>
       </div>
       <div className="header__image">
-
+        <img className="main__image" src={mainImage} alt="main image"/>
       </div>
     </header>
   );

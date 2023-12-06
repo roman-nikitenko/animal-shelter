@@ -55,45 +55,49 @@ export const  Navigation: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div className="menu__registration registration">
+        <div className="registration">
+          <div className="registration__menu">
+            {hasJWT() ? (
+              <div className="user-menu">
+                <NavLink  to="/user" className="user-button">
+                  <UserIcon size={23} color={'#FAFAF9'} />
+                </NavLink>
 
-          {hasJWT() ? (
-            <div className="user-menu">
-              <NavLink  to="/user" className="user-button">
-                <UserIcon size={23} color={'#FAFAF9'} />
-              </NavLink>
-
-              <button
-                className="button button__signIn"
-                type="button"
-                onClick={logOutHandler}
-              >
-                <UserIcon size={23} color={'#6D28D9'} />
-                Sign out
-              </button>
-            </div>
-          ) : (
-            <>
-              <NavLink
-                className={({ isActive }) => {
-                  return isActive ? 'button button__signIn activeButton' : 'button button__signIn'
-                }}
-                to="/access/login"
-              >
-                <img src={userIcon} />
-                Sign in
-              </NavLink>
-              <NavLink
-                className={({ isActive }) => {
-                  return isActive ? 'button button__registration activeButton' : 'button button__registration'
-                }}
-                to="/access/registration"
-              >
-                Registration
-              </NavLink>
-            </>
-          )}
+                <button
+                  className="button button__signIn"
+                  type="button"
+                  onClick={logOutHandler}
+                >
+                  <UserIcon size={23} color={'#6D28D9'} />
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <>
+                <NavLink
+                  className={({ isActive }) => {
+                    return isActive ? 'button button__signIn activeButton' : 'button button__signIn'
+                  }}
+                  to="/access/login"
+                >
+                  <img src={userIcon} />
+                  <p className="sign-in__text">Sign in</p>
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => {
+                    return isActive ? 'button button__registration activeButton' : 'button button__registration'
+                  }}
+                  to="/access/registration"
+                >
+                  Registration
+                </NavLink>
+              </>
+            )}
+          </div>
+          <div className="burger"></div>
         </div>
+
+
       </div>
     </div>
   );

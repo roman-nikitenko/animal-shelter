@@ -1,10 +1,19 @@
 .about-us {
   background-color: $violet300;
-  padding: 59px 136px 24px;
+  padding: 15px 20px;
+
+  @include md {
+    padding: 51px 40px;
+  }
+
+  @include lg {
+    padding: 59px 136px;
+  }
+
 
   &__title {
     display: flex;
-    margin-bottom: 80px;
+    margin-bottom: 29px;
     font-size: 36px;
     font-weight: 600;
     line-height: 40px;
@@ -14,17 +23,28 @@
 
 .about-us__content {
   display: flex;
-  gap: 230px;
+  flex-direction: column-reverse;
+
+  @include lg {
+    display: flex;
+    flex-direction: row;
+    gap: 230px;
+  }
 }
 
 .about-us__block-images {
   position: relative;
+  left: 22px;
+  top: 49px;
 
+  @include md {
+    left: 160px;
+    top: 49px;
+  }
 }
 
-.image-block {
 
-  &__images {
+.image-block__images {
     border-radius: 50%;
     object-fit: cover;
     border: 7px dashed #fff;
@@ -34,35 +54,80 @@
   .image1 {
     z-index: 3;
     position: relative;
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
+
+    @include md {
+      width: 200px;
+      height: 200px;
+    }
+
+    @include lg {
+      width: 250px;
+      height: 250px;
+    }
   }
 
   .image2 {
     position: relative;
     top: -45px;
     left: -15px;
-    width: 230px;
-    height: 230px;
+    width: 130px;
+    height: 130px;
+
+    @include md {
+      top: -11px;
+      left: 15px;
+      width: 180px;
+      height: 180px;
+    }
+
+    @include lg {
+      width: 230px;
+      height: 230px;
+    }
+
   }
 
   .image3 {
     position: absolute;
-    top: 140px;
-    left: 200px;
-    width: 250px;
-    height: 250px;
+    top: 100px;
+    left: 110px;
+    width: 150px;
+    height: 150px;
+
+    @include md {
+      top: 119px;
+      left: 196px;
+      width: 200px;
+      height: 200px;
+    }
+
+    @include lg {
+      top: 140px;
+      left: 200px;
+      width: 250px;
+      height: 250px;
+    }
   }
-}
+
 
 .about-us__text {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  margin-top: 40px;
+  gap: 30px;
+
+  @include lg {
+    margin-top: 40px;
+    gap: 48px;
+  }
 
   .second-paragraph {
     margin-left: 55px;
+
+    @include md {
+      margin-left: 167px
+    }
 
     &__title {
       font-size: 20px;

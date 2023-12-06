@@ -33,7 +33,7 @@ export const PetDetailPage: React.FC = () => {
   const refRespondButton = useRef<HTMLButtonElement>(null);
 
   const handleHidden = () => {
-    setHidden(prevState => !prevState);
+    setHidden(true);
   }
 
   useOnClickOutSide(refRespond, handleHidden);
@@ -112,11 +112,8 @@ export const PetDetailPage: React.FC = () => {
               <p className="bottom__section--paragrahp__description">{pet.size}</p>
             </div>
           </section>
-
         </div>
       )}
-
     </>
-
   );
 };

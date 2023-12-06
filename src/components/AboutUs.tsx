@@ -10,15 +10,9 @@ export const AboutUs: React.FC = () => {
       <h2 className="about-us__title"> About Us</h2>
       <div className="about-us__content">
         <div className="about-us__block-images">
-          <div className="image-block">
             <img className="image-block__images image1" src={image3}/>
-          </div>
-          <div className="image-block">
             <img className="image-block__images image2" src={image2}/>
-          </div>
-          <div className="image-block">
             <img className="image-block__images image3" src={image1}/>
-          </div>
         </div>
         <div className="about-us__text">
           <p>

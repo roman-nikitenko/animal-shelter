@@ -1,10 +1,18 @@
 .menu {
   display: flex;
-  justify-content: space-between;
-  gap: 50px;
   align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
   background-color: #fff;
-  padding: 16px 136px;
+
+  @include md {
+    padding: 16px 40px;
+  }
+
+  @include lg {
+    gap: 50px;
+    padding: 16px 136px;
+  }
 
   &__logo {
     margin-left: 27px;
@@ -12,6 +20,26 @@
 
   &__retreat {
     gap: 32px;
+  }
+
+  &__nav {
+    display: none;
+
+    @include lg {
+      display: flex;
+    }
+  }
+}
+
+.burger {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url(./assets/burger.svg);
+  cursor: pointer;
+
+  @include lg {
+    display: none;
   }
 }
 
@@ -39,8 +67,33 @@
 }
 
 .registration {
-  display: flex;
-  gap: 16px;
+
+  @include md {
+    display: flex;
+    gap: 24px;
+  }
+
+  &__menu {
+    display: none;
+    gap: 16px;
+
+    @include md {
+      display: flex;
+      gap: 24px;
+    }
+  }
+
+  @include md {
+    display: flex;
+  }
+}
+
+.sign-in__text {
+  display: none;
+
+  @include lg {
+    display: flex;
+  }
 }
 
 
