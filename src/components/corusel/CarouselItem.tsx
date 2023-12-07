@@ -17,9 +17,6 @@ export const CarouselItem: React.FC<Props> = ({ animal, offset }) => {
     <div className="carouselItem" style={{ transform: `translateX(${offset}px)` }}>
       <div
         className="carouselItem__photo"
-        // style={{
-        //   backgroundImage: `url(${animal.image})`
-        // }}
       >
         <img className="carouselItem__img" src={animal.image} alt={animal.name}/>
     </div>

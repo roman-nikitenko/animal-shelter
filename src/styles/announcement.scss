@@ -7,8 +7,12 @@
 
   &__title {
     margin: 0 auto;
-    width: 620px;
     text-align: center;
+
+    @include lg {
+      width: 620px;
+
+    }
   }
 }
 

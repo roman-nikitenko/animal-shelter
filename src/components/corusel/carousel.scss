@@ -1,16 +1,28 @@
 .carousel {
   display: flex;
-  gap: 40px;
+  gap: 28px;
   justify-content: center;
+
+  @include lg {
+    gap: 40px;
+  }
 
   &__window {
     display: flex;
-    width: 920px;
+    width: 278px;
     overflow: hidden;
     gap: 40px;
     padding: 5px;
 
     transition: all 600ms ease-in-out;
+
+    @include lg {
+      width: 612px;
+    }
+
+    @include xl {
+      width: 920px;
+    }
   }
 
   &__button {
@@ -23,13 +35,23 @@
     cursor: pointer;
 
     &--left {
+      position: relative;
+      left: 20px;
       -webkit-transform: rotate(135deg);
+
+      @include md {
+        position: static;
+      }
     }
 
     &--right {
-      -webkit-transform: rotate(-45deg)
+      position: relative;
+      right: 20px;
+      -webkit-transform: rotate(-45deg);
+
+      @include md {
+        position: static;
+      }
     }
   }
-
-
 }
