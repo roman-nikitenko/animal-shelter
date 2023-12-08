@@ -1,18 +1,27 @@
 .card {
   display: flex;
+  flex-direction: column;
   gap: 10px;
+
+  @include md {
+    flex-direction: row;
+  }
 
   &__description {
     display: flex;
     flex-direction: column;
+
     gap: 10px;
     margin-top: 10px;
 
     &--name {
-      font-size: 36px;
+      font-size: 32px;
     }
 
     p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -21,11 +30,20 @@
   }
 
   &__image {
-    width: 260px;
-    height: 350px;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 2px 2px 5px $stone400;
+
+    @include md {
+      width: 354px;
+      height: 402px;
+    }
+
+    @include lg {
+      width: 260px;
+      height: 350px;
+    }
   }
 
   &__link {

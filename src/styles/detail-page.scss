@@ -1,6 +1,6 @@
 .top__section {
   position: relative;
-  padding: 32px 136px;
+  padding: 32px 20px;
   display: flex;
   justify-content: space-between;
   column-gap: 100px;
@@ -8,9 +8,14 @@
   transition: hidden 400ms ease;
 
   .back-to-pets {
+    display: none;
     position: absolute;
     font-size: 18px;
     cursor: pointer;
+
+    @include md {
+      display: flex;
+    }
 
     &__text {
       display: flex;
@@ -30,7 +35,7 @@
   }
 
   &__content {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: start;
     gap: 32px;
@@ -61,27 +66,37 @@
   }
 
   &__box {
+    display: none;
 
     &--img {
-      position: relative;
-      top: 55px;
+      width: 272px;
+      height: 251px;
       border-radius: 10px;
       box-shadow: 0px 2px 5px #78716C;
-      height: 520px;
-      max-width: 430px;
+
       overflow: hidden;
       object-fit: cover;
+
+      @include xl {
+        height: 520px;
+        max-width: 430px;
+        position: relative;
+        top: 55px;
+      }
     }
   }
 }
 
 .bottom__section {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  padding: 50px 74px;
   background-color: $violet200;
-  padding: 110px 235px;
 
-
+  @include xl {
+    padding: 110px 235px;
+    justify-content: space-between;
+  }
 
   &--paragrahp {
     display: flex;
@@ -106,5 +121,37 @@
       font-size: 16px;
 
     }
+  }
+}
+
+.detail-page__mobile {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+
+  @include md {
+    display: none;
+  }
+
+  &__name {
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 50px;
+    margin-bottom: 24px;
+  }
+
+  &__image {
+    margin: 0 auto;
+    width: 272px;
+    height: 251px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 48px;
+  }
+
+  &__story {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
   }
 }

@@ -62,8 +62,15 @@ export const PetDetailPage: React.FC = () => {
                 Back to pets
               </div>
             </div>
-            <div className="detail-page__content">
 
+            <div className="detail-page__mobile">
+              <h1 className="detail-page__mobile__name">{pet.name}</h1>
+              <img className="detail-page__mobile__image" src={pet.image} alt="Photo of animal"/>
+              <p className="detail-page__mobile__story" >{pet.story}</p>
+            </div>
+
+
+            <div className="detail-page__content">
               <Respond refRespond={refRespond} hidden={hidden} />
 
               <div className="detail-page__text">
@@ -81,7 +88,7 @@ export const PetDetailPage: React.FC = () => {
                 </button>
               }
 
-            </div>
+              </div>
             <div className="detail-page__box">
               <img className="detail-page__box--img" src={pet.image} />
             </div>

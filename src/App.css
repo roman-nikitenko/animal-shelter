@@ -143,7 +143,7 @@ p {
     padding: 16px 40px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .menu {
     gap: 50px;
     padding: 16px 136px;
@@ -693,17 +693,36 @@ p {
 }
 
 .header__list-of-pets__title {
-  padding: 48px 0;
+  padding: 32px 34px;
   text-align: center;
   background-color: #EDE9FE;
-  font-size: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 40px;
+  color: #1C1917;
+}
+@media (min-width: 1024px) {
+  .header__list-of-pets__title {
+    padding: 48px 0;
+    font-size: 40px;
+  }
 }
 
 .filter {
-  padding: 8px 136px;
-  display: flex;
+  display: none;
   background-color: #fff;
   gap: 50px;
+}
+@media (min-width: 768px) {
+  .filter {
+    padding: 8px 40px;
+    display: flex;
+  }
+}
+@media (min-width: 1280px) {
+  .filter {
+    padding: 8px 136px;
+  }
 }
 .filter__box {
   position: relative;
@@ -745,10 +764,26 @@ p {
 .main__list-of-pets {
   grid-template-columns: 1fr;
   display: grid;
-  row-gap: 56px;
+  row-gap: 40px;
   column-gap: 20px;
-  padding: 56px 136px;
+  padding: 40px 20px;
   background-color: #EDE9FE;
+}
+@media (min-width: 768px) {
+  .main__list-of-pets {
+    padding: 56px 40px;
+  }
+}
+@media (min-width: 1024px) {
+  .main__list-of-pets {
+    row-gap: 56px;
+    padding: 56px 40px;
+  }
+}
+@media (min-width: 1280px) {
+  .main__list-of-pets {
+    padding: 56px 136px;
+  }
 }
 .main__list-of-pets .loader__center {
   grid-column-start: 2;
@@ -758,7 +793,7 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
   .main__list-of-pets {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -793,7 +828,13 @@ p {
 
 .card {
   display: flex;
+  flex-direction: column;
   gap: 10px;
+}
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+  }
 }
 .card__description {
   display: flex;
@@ -802,20 +843,34 @@ p {
   margin-top: 10px;
 }
 .card__description--name {
-  font-size: 36px;
+  font-size: 32px;
 }
 .card__description p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 7px;
 }
 .card__image {
-  width: 260px;
-  height: 350px;
+  width: 100%;
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 2px 2px 5px #A8A29E;
+}
+@media (min-width: 768px) {
+  .card__image {
+    width: 354px;
+    height: 402px;
+  }
+}
+@media (min-width: 1024px) {
+  .card__image {
+    width: 260px;
+    height: 350px;
+  }
 }
 .card__link {
   margin-top: 20px;
@@ -838,7 +893,7 @@ p {
 
 .top__section {
   position: relative;
-  padding: 32px 136px;
+  padding: 32px 20px;
   display: flex;
   justify-content: space-between;
   column-gap: 100px;
@@ -846,9 +901,15 @@ p {
   transition: hidden 400ms ease;
 }
 .top__section .back-to-pets {
+  display: none;
   position: absolute;
   font-size: 18px;
   cursor: pointer;
+}
+@media (min-width: 768px) {
+  .top__section .back-to-pets {
+    display: flex;
+  }
 }
 .top__section .back-to-pets__text {
   display: flex;
@@ -865,7 +926,7 @@ p {
   margin-top: 100px;
 }
 .detail-page__content {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: start;
   gap: 32px;
@@ -891,22 +952,37 @@ p {
   background-color: #6D28D9;
   letter-spacing: 1px;
 }
+.detail-page__box {
+  display: none;
+}
 .detail-page__box--img {
-  position: relative;
-  top: 55px;
+  width: 272px;
+  height: 251px;
   border-radius: 10px;
   box-shadow: 0px 2px 5px #78716C;
-  height: 520px;
-  max-width: 430px;
   overflow: hidden;
   object-fit: cover;
+}
+@media (min-width: 1280px) {
+  .detail-page__box--img {
+    height: 520px;
+    max-width: 430px;
+    position: relative;
+    top: 55px;
+  }
 }
 
 .bottom__section {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  padding: 50px 74px;
   background-color: #DDD6FE;
-  padding: 110px 235px;
+}
+@media (min-width: 1280px) {
+  .bottom__section {
+    padding: 110px 235px;
+    justify-content: space-between;
+  }
 }
 .bottom__section--paragrahp {
   display: flex;
@@ -927,6 +1003,36 @@ p {
 .bottom__section--paragrahp__description {
   font-weight: 400;
   font-size: 16px;
+}
+
+.detail-page__mobile {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+@media (min-width: 768px) {
+  .detail-page__mobile {
+    display: none;
+  }
+}
+.detail-page__mobile__name {
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 50px;
+  margin-bottom: 24px;
+}
+.detail-page__mobile__image {
+  margin: 0 auto;
+  width: 272px;
+  height: 251px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 48px;
+}
+.detail-page__mobile__story {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
 }
 
 .RegistrationPage {
