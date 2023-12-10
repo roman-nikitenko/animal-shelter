@@ -11,7 +11,6 @@ export const Logo: React.FC = () => {
           <p className="logo__text"> HappyPaws</p>
         </Link>
       </div>
-
     </>
   );
 };

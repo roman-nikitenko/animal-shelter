@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Logo } from './Logo';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, Link } from 'react-router-dom';
 import userIcon from '../assets/userIcon.svg';
 import { UserIcon } from './UserIcon';
 import { PetsContext } from '../store/PetsContext';
+import classNames from 'classnames';
 
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(PetsContext);
+  const [showBurger, setShowBurger] = useState(false);
+  const burgerRef = useRef(null);
+
+
 
   function hasJWT() {
     let flag: boolean;
@@ -15,6 +20,10 @@ export const  Navigation: React.FC = () => {
     localStorage.getItem("token") ? flag = true : flag = false;
 
     return flag;
+  }
+
+  function closeBurger() {
+    setShowBurger(false);
   }
 
   const logOutHandler = () => {
@@ -26,7 +35,7 @@ export const  Navigation: React.FC = () => {
   return (
     <div className="navigation">
       <div className="menu">
-        <div className="menu__logo">
+        <div className="menu__logo" onClick={closeBurger}>
           <Logo />
         </div>
         <div className="menu__nav">
@@ -94,10 +103,29 @@ export const  Navigation: React.FC = () => {
               </>
             )}
           </div>
-          <div className="burger"></div>
+          <a onClick={() => {
+            setShowBurger(prevState => !prevState)
+          }} className="burger" />
+
+            <div ref={burgerRef} className={classNames("burger__menu", {
+              "burgerOn": showBurger,
+            })}>
+              <div className="burger__menu__list">
+                <Link to="/list-of-pets" onClick={closeBurger}>Pets</Link>
+                <Link to="/" onClick={closeBurger}>Services</Link>
+                <Link to="/" onClick={closeBurger}>Donation</Link>
+                <Link to="/" onClick={closeBurger}>About</Link>
+
+              </div>
+
+              <div className="burger__menu__links">
+                <Link className="link" to="/access/registration" onClick={closeBurger}>Registration</Link>
+                /
+                <Link className="link" to="/access/login" onClick={closeBurger} >Sign in</Link>
+              </div>
+            </div>
+
         </div>
-
-
       </div>
     </div>
   );
