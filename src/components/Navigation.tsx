@@ -109,6 +109,7 @@ export const  Navigation: React.FC = () => {
 
             <div ref={burgerRef} className={classNames("burger__menu", {
               "burgerOn": showBurger,
+              "burgerOff": !showBurger,
             })}>
               <div className="burger__menu__list">
                 <Link to="/list-of-pets" onClick={closeBurger}>Pets</Link>

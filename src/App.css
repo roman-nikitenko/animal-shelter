@@ -1482,8 +1482,9 @@ p {
   background-color: #EDE9FE;
   z-index: 1;
   font-size: 18px;
-  transition: transform 400ms ease-in-out;
+  transition: all 400ms ease-in-out;
   transform: translate(100%);
+  opacity: 0;
 }
 @media (min-width: 768px) {
   .burger__menu {
@@ -1513,7 +1514,8 @@ p {
 }
 
 .burgerOn {
-  transition: transform 400ms ease-in-out;
+  opacity: 1;
+  transition: all 400ms ease-in-out;
   transform: translateX(0);
 }
 @media (min-width: 768px) {
@@ -1528,6 +1530,8 @@ p {
   }
   to {
     transform: translateX(0%);
+    opacity: 1;
+    display: block;
   }
 }
 @keyframes burgerOff {
@@ -1536,6 +1540,8 @@ p {
   }
   to {
     transform: translateX(100%);
+    opacity: 0;
+    display: none;
   }
 }
 
