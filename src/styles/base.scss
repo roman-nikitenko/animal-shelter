@@ -103,11 +103,15 @@ p {
   color: $violet950;
 }
 
-.button:hover {
-  background-color: $violet200;
-  border: 1px solid #503BC4;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.30);
-  color: $violet950;
+
+
+@include md {
+  .button:hover {
+    background-color: $violet200;
+    border: 1px solid #503BC4;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.30);
+    color: $violet950;
+  }
 }
 
 .activeLink {

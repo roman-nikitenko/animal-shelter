@@ -108,29 +108,26 @@ export const UserPage: React.FC = () => {
                   hidden
                 />
               </form>
-
-              {file && (
-                <div className="buttons">
-                  {!submitting && (
-                    <button className="button button__signIn" onClick={cancelHandler}>Cancel</button>
-                  )}
-
-                  <button className="button button__signIn" onClick={submitHandler}>
-                    {submitting && <Loader size={1} />}
-                    {!submitting && 'Submit'}
-                  </button>
-                </div>
-              )}
-
             </div>
-
-
             <div className="user-page__description">
-              <h2>{firstLetterUpperCase(user.first_name)} {firstLetterUpperCase(user.last_name)}</h2>
+              <h2 className="user-page__description--name">{firstLetterUpperCase(user.first_name)} {firstLetterUpperCase(user.last_name)}</h2>
               <p>{user.email}</p>
               <p>{user.phone_number}</p>
             </div>
           </article>
+
+          {file && (
+            <div className="buttons">
+              {!submitting && (
+                <button className="button button__signIn" onClick={cancelHandler}>Cancel</button>
+              )}
+
+              <button className="button button__signIn" onClick={submitHandler}>
+                {submitting && <Loader size={1} />}
+                {!submitting && 'Submit'}
+              </button>
+            </div>
+          )}
         </section>
       )}
 

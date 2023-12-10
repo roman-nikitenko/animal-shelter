@@ -8,6 +8,7 @@ import goToBack from '../assets/arrowGoToback.svg'
 import { PetsContext } from '../store/PetsContext';
 import { Respond } from '../components/Respond';
 import { useOnClickOutSide } from '../servoces/useOnClickOutSide';
+import { Image } from '../components/Image';
 
 type PetDetailType = {
   age: string,
@@ -56,6 +57,7 @@ export const PetDetailPage: React.FC = () => {
       {pet && (
         <div className="detail-page">
           <section className="top__section">
+
             <div className="back-to-pets">
               <div onClick={() => navigate(-1)} className="back-to-pets__text">
                 <img src={goToBack} alt="arrow go to back"/>
@@ -67,6 +69,15 @@ export const PetDetailPage: React.FC = () => {
               <h1 className="detail-page__mobile__name">{pet.name}</h1>
               <img className="detail-page__mobile__image" src={pet.image} alt="Photo of animal"/>
               <p className="detail-page__mobile__story" >{pet.story}</p>
+              {!pet.is_adopted && user?.is_staff && user &&
+                <button
+                  className="button detail-page__mobile__button"
+                  onClick={handleOpenCalendar}
+                  ref={refRespondButton}
+                >
+                  Respond
+                </button>
+              }
             </div>
 
 
@@ -92,6 +103,32 @@ export const PetDetailPage: React.FC = () => {
             <div className="detail-page__box">
               <img className="detail-page__box--img" src={pet.image} />
             </div>
+          </section>
+          <section className="bottom__section--mobile" >
+            <div className="center">
+              <div className="bottom__section--mobile__description">
+                <Image image={gender(pet.gender)} size={48} />
+                <div className="bottom__section--mobile__description__box">
+                  <h2 className="bottom__section--mobile__description--title">Gender</h2>
+                  <p className="bottom__section--mobile__description--name">{pet.gender}</p>
+                </div>
+              </div>
+              <div className="bottom__section--mobile__description">
+                <Image image={petType(pet.animal_type)} size={48} />
+                <div className="bottom__section--mobile__description__box">
+                  <h2 className="bottom__section--mobile__description--title">Breed</h2>
+                  <p className="bottom__section--mobile__description--name">{pet.animal_type}</p>
+                </div>
+              </div>
+              <div className="bottom__section--mobile__description">
+                <Image image={sizeImg} size={48} />
+                <div className="bottom__section--mobile__description__box">
+                  <h2 className="bottom__section--mobile__description--title">Size</h2>
+                  <p className="bottom__section--mobile__description--name">{pet.size}</p>
+                </div>
+              </div>
+            </div>
+
           </section>
           <section className="bottom__section">
             <div className="bottom__section--paragrahp">

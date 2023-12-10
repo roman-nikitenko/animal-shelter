@@ -98,13 +98,14 @@ p {
   color: #2E1065;
 }
 
-.button:hover {
-  background-color: #DDD6FE;
-  border: 1px solid #503BC4;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
-  color: #2E1065;
+@media (min-width: 768px) {
+  .button:hover {
+    background-color: #DDD6FE;
+    border: 1px solid #503BC4;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+    color: #2E1065;
+  }
 }
-
 .activeLink {
   color: #4C1D95;
   font-weight: 700;
@@ -895,10 +896,27 @@ p {
   position: relative;
   padding: 32px 20px;
   display: flex;
-  justify-content: space-between;
-  column-gap: 100px;
+  column-gap: 26px;
   background-color: #EDE9FE;
   transition: hidden 400ms ease;
+}
+@media (min-width: 768px) {
+  .top__section {
+    padding: 32px 40px;
+  }
+}
+@media (min-width: 1024px) {
+  .top__section {
+    justify-content: space-between;
+    padding: 34px 80px;
+  }
+}
+@media (min-width: 1280px) {
+  .top__section {
+    justify-content: space-between;
+    padding: 34px 136px;
+    column-gap: 100px;
+  }
 }
 .top__section .back-to-pets {
   display: none;
@@ -925,17 +943,37 @@ p {
   row-gap: 16px;
   margin-top: 100px;
 }
+@media (min-width: 768px) {
+  .detail-page__text {
+    width: 317px;
+  }
+}
 .detail-page__content {
   display: none;
   flex-direction: column;
   align-items: start;
   gap: 32px;
 }
+@media (min-width: 768px) {
+  .detail-page__content {
+    display: flex;
+  }
+}
 .detail-page__story {
   width: 572px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+}
+@media (min-width: 768px) {
+  .detail-page__story {
+    width: 317px;
+  }
+}
+@media (min-width: 1280px) {
+  .detail-page__story {
+    width: 572px;
+  }
 }
 .detail-page__name {
   font-size: 64px;
@@ -952,8 +990,24 @@ p {
   background-color: #6D28D9;
   letter-spacing: 1px;
 }
+@media (min-width: 768px) {
+  .detail-page__button {
+    width: 159px;
+  }
+}
+@media (min-width: 1280px) {
+  .detail-page__button {
+    width: 272px;
+  }
+}
 .detail-page__box {
   display: none;
+}
+@media (min-width: 768px) {
+  .detail-page__box {
+    display: flex;
+    align-items: center;
+  }
 }
 .detail-page__box--img {
   width: 272px;
@@ -963,20 +1017,34 @@ p {
   overflow: hidden;
   object-fit: cover;
 }
+@media (min-width: 768px) {
+  .detail-page__box--img {
+    width: 290px;
+    height: 351px;
+  }
+}
 @media (min-width: 1280px) {
   .detail-page__box--img {
     height: 520px;
-    max-width: 430px;
+    width: 430px;
     position: relative;
     top: 55px;
   }
 }
 
 .bottom__section {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 50px 74px;
   background-color: #DDD6FE;
+}
+@media (min-width: 768px) {
+  .bottom__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 58px 84px;
+  }
 }
 @media (min-width: 1280px) {
   .bottom__section {
@@ -1005,6 +1073,45 @@ p {
   font-size: 16px;
 }
 
+.center {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.bottom__section--mobile {
+  padding: 48px 72px;
+  display: flex;
+  row-gap: 40px;
+  flex-direction: column;
+  align-items: center;
+  background-color: #DDD6FE;
+}
+@media (min-width: 768px) {
+  .bottom__section--mobile {
+    display: none;
+  }
+}
+.bottom__section--mobile__description {
+  display: flex;
+  gap: 12px;
+}
+.bottom__section--mobile__description__box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+.bottom__section--mobile__description--title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.bottom__section--mobile__description--name {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
 .detail-page__mobile {
   display: flex;
   flex-direction: column;
@@ -1014,6 +1121,10 @@ p {
   .detail-page__mobile {
     display: none;
   }
+}
+.detail-page__mobile__button {
+  background-color: #7C3AED;
+  color: #FFFFFF;
 }
 .detail-page__mobile__name {
   font-size: 44px;
@@ -1033,6 +1144,7 @@ p {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  margin-bottom: 32px;
 }
 
 .RegistrationPage {
@@ -1185,10 +1297,27 @@ p {
 
 .user-page {
   display: flex;
-  column-gap: 200px;
-  padding: 40px 120px;
+  padding: 32px 20px;
+  flex-direction: column;
+  gap: 19px;
   background-color: #EDE9FE;
-  height: 87vh;
+  height: 72vh;
+}
+@media (min-width: 768px) {
+  .user-page {
+    padding: 48px 40px;
+  }
+}
+@media (min-width: 1024px) {
+  .user-page {
+    padding: 59px 80px;
+  }
+}
+@media (min-width: 1280px) {
+  .user-page {
+    padding: 59px 136px;
+    height: 87vh;
+  }
 }
 .user-page__image__wrapper {
   display: flex;
@@ -1200,14 +1329,27 @@ p {
   position: relative;
   cursor: pointer;
   display: flex;
+  overflow: hidden;
+  object-fit: cover;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
-  height: 372px;
-  width: 373px;
   box-shadow: 2xp 2px 5px #57534E;
   border-radius: 8px;
+  width: 98px;
+  height: 128px;
+}
+@media (min-width: 768px) {
+  .user-page__wrapper {
+    width: 265px;
+    height: 266px;
+  }
+}
+@media (min-width: 1024px) {
+  .user-page__wrapper {
+    width: 372px;
+    height: 373px;
+  }
 }
 .user-page__photo {
   padding: 10px;
@@ -1215,15 +1357,10 @@ p {
   height: 50px;
 }
 .user-page .image__wrapper {
-  width: 372px;
-  height: 373px;
-  border-radius: 10px;
   overflow: hidden;
 }
 .user-page .image__profile {
-  object-fit: cover;
-  width: 372px;
-  height: 373px;
+  height: 100%;
 }
 .user-page__wrapper:hover::after {
   position: absolute;
@@ -1236,15 +1373,52 @@ p {
 }
 .user-page__information {
   display: flex;
-  column-gap: 100px;
+  column-gap: 19px;
+}
+@media (min-width: 768px) {
+  .user-page__information {
+    column-gap: 40px;
+  }
+}
+@media (min-width: 1024px) {
+  .user-page__information {
+    column-gap: 80px;
+  }
+}
+@media (min-width: 1280px) {
+  .user-page__information {
+    column-gap: 128px;
+  }
 }
 .user-page__description {
+  margin-top: 7px;
   row-gap: 20px;
   display: flex;
   flex-direction: column;
 }
+@media (min-width: 768px) {
+  .user-page__description {
+    margin-top: 15px;
+  }
+}
+.user-page__description--name {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+}
+@media (min-width: 768px) {
+  .user-page__description--name {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
 .user-page p {
-  font-size: 18px;
+  font-size: 12px;
+}
+@media (min-width: 768px) {
+  .user-page p {
+    font-size: 16px;
+  }
 }
 
 .buttons {

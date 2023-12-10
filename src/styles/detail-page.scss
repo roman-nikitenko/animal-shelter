@@ -2,10 +2,24 @@
   position: relative;
   padding: 32px 20px;
   display: flex;
-  justify-content: space-between;
-  column-gap: 100px;
+  column-gap: 26px;
   background-color: $violet100;
   transition: hidden 400ms ease;
+
+  @include md {
+    padding: 32px 40px;
+  }
+
+  @include lg {
+    justify-content: space-between;
+    padding: 34px 80px;
+  }
+
+  @include xl {
+    justify-content: space-between;
+    padding: 34px 136px;
+    column-gap: 100px;
+  }
 
   .back-to-pets {
     display: none;
@@ -32,6 +46,10 @@
     flex-direction: column;
     row-gap: 16px;
     margin-top: 100px;
+
+    @include md {
+      width: 317px;
+    }
   }
 
   &__content {
@@ -39,6 +57,10 @@
     flex-direction: column;
     align-items: start;
     gap: 32px;
+
+    @include md {
+      display: flex;
+    }
   }
 
   &__story {
@@ -46,6 +68,14 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
+
+    @include md {
+      width: 317px;
+    }
+
+    @include xl {
+      width: 572px;
+    }
   }
 
   &__name {
@@ -63,10 +93,23 @@
     color: #FFF;
     background-color: $violet700;
     letter-spacing: 1px;
+
+    @include md {
+      width: 159px;
+    }
+
+    @include xl {
+      width: 272px;
+    }
   }
 
   &__box {
     display: none;
+
+    @include md {
+      display: flex;
+      align-items: center;
+    }
 
     &--img {
       width: 272px;
@@ -77,9 +120,14 @@
       overflow: hidden;
       object-fit: cover;
 
+      @include md {
+        width: 290px;
+        height: 351px;
+      }
+
       @include xl {
         height: 520px;
-        max-width: 430px;
+        width: 430px;
         position: relative;
         top: 55px;
       }
@@ -88,10 +136,17 @@
 }
 
 .bottom__section {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 50px 74px;
   background-color: $violet200;
+
+  @include md {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 58px 84px;
+  }
 
   @include xl {
     padding: 110px 235px;
@@ -124,6 +179,48 @@
   }
 }
 
+.center {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.bottom__section--mobile {
+  padding: 48px 72px;
+  display: flex;
+  row-gap: 40px;
+  flex-direction: column;
+  align-items: center;
+  background-color: $violet200;
+
+  @include md {
+    display: none;
+  }
+
+  &__description {
+    display: flex;
+    gap: 12px;
+
+    &__box {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+    }
+
+      &--title {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
+      }
+
+      &--name {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+      }
+  }
+}
+
 .detail-page__mobile {
   display: flex;
   flex-direction: column;
@@ -131,6 +228,11 @@
 
   @include md {
     display: none;
+  }
+
+  &__button {
+    background-color: $violet600;
+    color: #FFFFFF;
   }
 
   &__name {
@@ -153,5 +255,6 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
+    margin-bottom: 32px;
   }
 }
