@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/animal-shelter/static/css/main.618a8c7e.css",
-    "main.js": "/animal-shelter/static/js/main.d122d393.js",
+    "main.css": "/animal-shelter/static/css/main.23687338.css",
+    "main.js": "/animal-shelter/static/js/main.fb07b1f7.js",
     "static/media/pappi.jpeg": "/animal-shelter/static/media/pappi.3d082ee5937c31adc6d9.jpeg",
     "static/media/main-image.png": "/animal-shelter/static/media/main-image.013b02f4e3c5e366d007.png",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
     "static/media/bigl.jpg": "/animal-shelter/static/media/bigl.f83f3f1906525f0fed64.jpg",
     "static/media/dog.jpg": "/animal-shelter/static/media/dog.1b60cfcd40644a63ce07.jpg",
-    "static/media/burger.svg": "/animal-shelter/static/media/burger.010de48c7700c7620d88.svg",
+    "static/media/burger.svg": "/animal-shelter/static/media/burger.010de48c7700c7620d88d128c8cb73f4.svg",
     "static/media/logo.svg": "/animal-shelter/static/media/logo.7af86819c0ac49c574ba0869b7bb298c.svg",
     "static/media/dog.svg": "/animal-shelter/static/media/dog.134b8be14346e3bb9898d4ed5718913f.svg",
     "static/media/paw.svg": "/animal-shelter/static/media/paw.bd749410efb192e8b422e6d47a61e3ac.svg",
@@ -20,13 +20,14 @@
     "static/media/size.svg": "/animal-shelter/static/media/size.921b1d3236a308704e56af4ee630efdf.svg",
     "static/media/male.svg": "/animal-shelter/static/media/male.316d2abcd774f4e6a312f8d4a1d6ee05.svg",
     "static/media/female.svg": "/animal-shelter/static/media/female.11c29c9be567557dfb6fc0c40a0582a9.svg",
+    "static/media/x.svg": "/animal-shelter/static/media/x.ea5079e0078267e233388ecc9ff74bec.svg",
     "static/media/close.svg": "/animal-shelter/static/media/close.1ded1e99216871d2a3aec0714440eb62.svg",
     "static/media/arrowGoToback.svg": "/animal-shelter/static/media/arrowGoToback.0537bdf529f1f2b50ed6646cfff1bc87.svg",
-    "main.618a8c7e.css.map": "/animal-shelter/static/css/main.618a8c7e.css.map",
-    "main.d122d393.js.map": "/animal-shelter/static/js/main.d122d393.js.map"
+    "main.23687338.css.map": "/animal-shelter/static/css/main.23687338.css.map",
+    "main.fb07b1f7.js.map": "/animal-shelter/static/js/main.fb07b1f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.618a8c7e.css",
-    "static/js/main.d122d393.js"
+    "static/css/main.23687338.css",
+    "static/js/main.fb07b1f7.js"
   ]
 }
