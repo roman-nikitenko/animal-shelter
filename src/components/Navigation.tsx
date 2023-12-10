@@ -5,14 +5,22 @@ import userIcon from '../assets/userIcon.svg';
 import { UserIcon } from './UserIcon';
 import { PetsContext } from '../store/PetsContext';
 import classNames from 'classnames';
+import { Image } from './Image';
+import imageCross from '../assets/x.svg';
+import imageBurger from '../assets/burger.svg'
 
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(PetsContext);
-  const [showBurger, setShowBurger] = useState(false);
+  const [showBurger, setShowBurger] = useState(true);
   const burgerRef = useRef(null);
+  const { user } = useContext(PetsContext);
 
-
+  const chuseIcon = () => {
+    return showBurger ?
+      <Image image={imageCross} size={40} /> :
+      <Image image={imageBurger} size={40} />
+  }
 
   function hasJWT() {
     let flag: boolean;
@@ -20,6 +28,11 @@ export const  Navigation: React.FC = () => {
     localStorage.getItem("token") ? flag = true : flag = false;
 
     return flag;
+  }
+
+  const moveToUser = () => {
+    navigate('/user');
+    closeBurger();
   }
 
   function closeBurger() {
@@ -103,9 +116,11 @@ export const  Navigation: React.FC = () => {
               </>
             )}
           </div>
-          <a onClick={() => {
+          <div onClick={() => {
             setShowBurger(prevState => !prevState)
-          }} className="burger" />
+          }} className="burger" >
+            {chuseIcon()}
+          </div>
 
             <div ref={burgerRef} className={classNames("burger__menu", {
               "burgerOn": showBurger,
@@ -116,16 +131,23 @@ export const  Navigation: React.FC = () => {
                 <Link to="/" onClick={closeBurger}>Services</Link>
                 <Link to="/" onClick={closeBurger}>Donation</Link>
                 <Link to="/" onClick={closeBurger}>About</Link>
-
               </div>
 
-              <div className="burger__menu__links">
-                <Link className="link" to="/access/registration" onClick={closeBurger}>Registration</Link>
-                /
-                <Link className="link" to="/access/login" onClick={closeBurger} >Sign in</Link>
-              </div>
+              {!user && (
+                <div className="burger__menu__links">
+                  <Link className="link" to="/access/registration" onClick={closeBurger}>Registration</Link>
+                  /
+                  <Link className="link" to="/access/login" onClick={closeBurger} >Sign in</Link>
+                </div>
+              )}
+
+              {user && (
+                <div onClick={moveToUser} className="burger__menu__profile">
+                  <img className="burger__menu__profile--image" src={user?.profile_picture} />
+                  <p className="burger__menu__profile--name">{user?.first_name} {user?.last_name}</p>
+                </div>
+              )}
             </div>
-
         </div>
       </div>
     </div>

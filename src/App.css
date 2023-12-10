@@ -175,9 +175,6 @@ p {
 
 .burger {
   display: block;
-  width: 40px;
-  height: 40px;
-  background-image: url(./assets/burger.svg);
   cursor: pointer;
 }
 @media (min-width: 1024px) {
@@ -1522,6 +1519,21 @@ p {
   .burgerOn {
     transform: translateX(50%);
   }
+}
+
+.burger__menu__profile {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+.burger__menu__profile--image {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+}
+.burger__menu__profile--name {
+  font-size: 22px;
 }
 
 @keyframes burgerOn {

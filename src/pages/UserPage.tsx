@@ -43,7 +43,6 @@ export const UserPage: React.FC = () => {
     }
 
     fileReader.readAsDataURL(target.files[0])
-
   }
 
   const submitHandler = async (e: React.SyntheticEvent) => {

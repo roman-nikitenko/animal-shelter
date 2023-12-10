@@ -52,6 +52,23 @@
   }
 }
 
+.burger__menu__profile {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+
+  &--image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  }
+
+  &--name {
+    font-size: 22px;
+  }
+}
+
 @keyframes burgerOn {
   from {
     transform: translateX(100%);
