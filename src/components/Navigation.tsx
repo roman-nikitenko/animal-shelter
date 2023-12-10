@@ -12,7 +12,7 @@ import imageBurger from '../assets/burger.svg'
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(PetsContext);
-  const [showBurger, setShowBurger] = useState(true);
+  const [showBurger, setShowBurger] = useState(false);
   const burgerRef = useRef(null);
   const { user } = useContext(PetsContext);
 
