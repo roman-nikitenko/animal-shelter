@@ -1159,28 +1159,39 @@ p {
 }
 
 .registration__left-box {
+  display: none;
   width: 50%;
   background-image: url("./assets/pappi.jpeg");
   background-position: center;
   background-size: cover;
 }
+@media (min-width: 1024px) {
+  .registration__left-box {
+    display: flex;
+  }
+}
 .registration__right-box {
+  padding: 30px;
   display: flex;
   flex: 1;
   justify-content: center;
-  align-items: center;
 }
 
 .registration__from {
+  display: flex;
+  position: relative;
   width: 260px;
   box-shadow: 2px 2px 10px #78716C;
-  position: relative;
-  display: flex;
   flex-direction: column;
   row-gap: 20px;
-  padding: 100px 130px;
+  padding: 40px 40px;
   background-color: #DDD6FE;
   border-radius: 10px;
+}
+@media (min-width: 1280px) {
+  .registration__from {
+    padding: 100px 130px;
+  }
 }
 .registration__from--title {
   display: flex;
@@ -1329,6 +1340,16 @@ p {
   flex-direction: column;
   align-items: end;
   gap: 30px;
+}
+.user-page__log-out {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+}
+@media (min-width: 768px) {
+  .user-page__log-out {
+    display: none;
+  }
 }
 .user-page__wrapper {
   position: relative;
@@ -1481,7 +1502,7 @@ p {
   font-size: 18px;
   transition: all 400ms ease-in-out;
   transform: translate(100%);
-  opacity: 0;
+  visibility: collapse;
 }
 @media (min-width: 768px) {
   .burger__menu {
@@ -1511,7 +1532,7 @@ p {
 }
 
 .burgerOn {
-  opacity: 1;
+  visibility: visible;
   transition: all 400ms ease-in-out;
   transform: translateX(0);
 }

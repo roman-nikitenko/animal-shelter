@@ -11,7 +11,7 @@ import imageBurger from '../assets/burger.svg'
 
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(PetsContext);
+  const { logOutHandler } = useContext(PetsContext);
   const [showBurger, setShowBurger] = useState(false);
   const burgerRef = useRef(null);
   const { user } = useContext(PetsContext);
@@ -37,12 +37,6 @@ export const  Navigation: React.FC = () => {
 
   function closeBurger() {
     setShowBurger(false);
-  }
-
-  const logOutHandler = () => {
-    localStorage.removeItem("token");
-    setUser(undefined);
-    navigate('/');
   }
 
   return (

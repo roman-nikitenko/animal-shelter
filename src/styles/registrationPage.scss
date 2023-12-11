@@ -7,30 +7,39 @@
 .registration {
 
   &__left-box {
+    display: none;
     width: 50%;
     background-image: url('./assets/pappi.jpeg');
     background-position: center;
     background-size: cover;
+
+    @include lg {
+      display: flex;
+    }
   }
 
   &__right-box {
+    padding: 30px;
     display: flex;
     flex: 1;
     justify-content: center;
-    align-items: center;
   }
 }
 
 .registration__from {
+  display: flex;
+  position: relative;
   width: 260px;
   box-shadow: 2px 2px 10px $stone500;
-  position: relative;
-  display: flex;
   flex-direction: column;
   row-gap: 20px;
-  padding: 100px 130px;
+  padding: 40px 40px;
   background-color: $violet200;
   border-radius: 10px;
+
+  @include xl {
+    padding: 100px 130px;
+  }
 
   &--title {
     display: flex;

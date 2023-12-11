@@ -4,15 +4,19 @@ import { PetsContext } from '../store/PetsContext';
 import addPhoto from '../assets/add-new-photo.svg';
 import { BASE_URL } from '../api/fetch';
 import { Loader } from '../components/LoaderTypeScript';
+import logOut from '../assets/logout.svg'
+import { Image } from '../components/Image';
+import { useNavigate } from 'react-router-dom';
 
 export const UserPage: React.FC = () => {
-  const { user } = useContext(PetsContext);
+  const { user, logOutHandler } = useContext(PetsContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | undefined | string>();
   const [preview, setPreview] = useState<string | ArrayBuffer | undefined>()
   const token = window.localStorage.getItem('token');
   const [submitting, setSubmitting] = useState(false);
   const [userImage, setUserImage] = useState<undefined | string>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUserImage(user?.profile_picture);
@@ -24,9 +28,15 @@ export const UserPage: React.FC = () => {
     }
   }
 
+  const logOutHandlerForMobile = () => {
+    logOutHandler();
+    navigate('/');
+  }
+
   const cancelHandler = () => {
     setFile('');
   }
+
 
   const handleChange = (e: React.FormEvent<HTMLInputElement> ) => {
     const target = e.target as HTMLInputElement & {
@@ -35,7 +45,6 @@ export const UserPage: React.FC = () => {
     setFile(target.files[0]);
 
     const fileReader = new FileReader;
-
 
     fileReader.onload = function ()  {
       if (!fileReader.result) return
@@ -112,6 +121,9 @@ export const UserPage: React.FC = () => {
               <h2 className="user-page__description--name">{firstLetterUpperCase(user.first_name)} {firstLetterUpperCase(user.last_name)}</h2>
               <p>{user.email}</p>
               <p>{user.phone_number}</p>
+            </div>
+            <div onClick={logOutHandlerForMobile} className="user-page__log-out">
+              <Image image={logOut} size={30} />
             </div>
           </article>
 

@@ -27,6 +27,16 @@
     gap: 30px;
   }
 
+  &__log-out {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+
+    @include md {
+      display: none;
+    }
+  }
+
   &__wrapper {
     position: relative;
     cursor: pointer;
@@ -80,6 +90,7 @@
 
   &__information {
     display: flex;
+
     column-gap: 19px;
 
     @include md {

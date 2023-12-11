@@ -11,7 +11,7 @@
 
   transition: all 400ms ease-in-out;
   transform: translate(100%);
-  opacity: 0;
+  visibility: collapse;
 
   @include md {
     margin-top: 60px;
@@ -43,7 +43,7 @@
 }
 
 .burgerOn {
-  opacity: 1;
+  visibility: visible;
   transition: all 400ms ease-in-out;
   transform: translateX(0);
 

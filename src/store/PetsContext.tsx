@@ -2,12 +2,14 @@ import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
 import { User } from '../types/user';
 import { BASE_URL, getUser } from '../api/fetch';
+import { useNavigate } from 'react-router-dom';
 
 type petContext = {
   pets: Animals[],
   carouselPets: Animals[],
   user: User | null | undefined,
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>,
+  logOutHandler: () => void,
 }
 
 export const PetsContext = createContext<petContext>({
@@ -15,6 +17,7 @@ export const PetsContext = createContext<petContext>({
   carouselPets: [],
   user: null,
   setUser: () => {},
+  logOutHandler: () => {},
 });
 
 type Prop = {
@@ -57,11 +60,18 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
       })
   }, []);
 
+
+  const logOutHandler = () => {
+    localStorage.removeItem("token");
+    setUser(undefined);
+  }
+
   const value = useMemo(() => ({
     pets,
     carouselPets,
     user,
-    setUser
+    setUser,
+    logOutHandler
   }), [pets, carouselPets, user]);
 
   return (
