@@ -49,6 +49,14 @@ export const LogInForm: React.FC = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setErrors({
+      password: !password,
+      email: !email,
+    })
+
+    if (!password || !email) return;
+
     setIsSubmitting(true);
 
     const user = {
@@ -56,8 +64,10 @@ export const LogInForm: React.FC = () => {
       password,
     }
 
+
     logIn(user)
       .then(data => {
+        console.log('trying add token')
         if (data) {
           setIsSubmitting(false);
           localStorage.setItem('token', data.access);
@@ -69,8 +79,13 @@ export const LogInForm: React.FC = () => {
 
         clearForm();
       })
-      .catch(error => {
-        console.log(error, 'something went wrong')
+      .catch(() => {
+        setIsSubmitting(false)
+        setErrors({
+          password: true,
+          email: true,
+        })
+        // console.log(error, 'something went wrong')
       })
   };
 
