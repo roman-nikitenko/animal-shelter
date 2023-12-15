@@ -117,7 +117,7 @@ export const PetDetailPage: React.FC = () => {
                 <Image image={petType(pet.animal_type)} size={48} />
                 <div className="bottom__section--mobile__description__box">
                   <h2 className="bottom__section--mobile__description--title">Breed</h2>
-                  <p className="bottom__section--mobile__description--name">{pet.animal_type}</p>
+                  <p className="bottom__section--mobile__description--name">{pet.breed}</p>
                 </div>
               </div>
               <div className="bottom__section--mobile__description">

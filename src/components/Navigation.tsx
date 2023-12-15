@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { Image } from './Image';
 import imageCross from '../assets/x.svg';
 import imageBurger from '../assets/burger.svg'
+import { firstLetterUpperCase } from '../utility/pickIcon';
 
 export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
@@ -123,7 +124,7 @@ export const  Navigation: React.FC = () => {
               <div className="burger__menu__list">
                 <Link to="/list-of-pets" onClick={closeBurger}>Pets</Link>
                 <Link to="/" onClick={closeBurger}>Services</Link>
-                <Link to="/" onClick={closeBurger}>Donation</Link>
+                <Link to="/donation" onClick={closeBurger}>Donation</Link>
                 <Link to="/" onClick={closeBurger}>About</Link>
               </div>
 
@@ -138,7 +139,7 @@ export const  Navigation: React.FC = () => {
               {user && (
                 <div onClick={moveToUser} className="burger__menu__profile">
                   <img className="burger__menu__profile--image" src={user?.profile_picture} />
-                  <p className="burger__menu__profile--name">{user?.first_name} {user?.last_name}</p>
+                  <p className="burger__menu__profile--name">{firstLetterUpperCase(user?.first_name)} {firstLetterUpperCase(user?.last_name)}</p>
                 </div>
               )}
             </div>

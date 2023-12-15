@@ -13,19 +13,8 @@ export const PaymentForm: React.FC = () => {
   }
 
   return (
-    <>
-      <div className="pay">
-        <div className="pay__left">
-
-        </div>
-        <div className="pay__right">
-          <form className="pay__form" onSubmit={handlerSubmit}>
-            <CardElement />
-            <button>Pay</button>
-          </form>
-        </div>
-
-      </div>
-    </>
+    <div className="donation">
+      <h1>Donation Page</h1>
+    </div>
   );
 };

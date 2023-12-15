@@ -17,60 +17,81 @@
 }
 
 .filter {
-  display: none;
-  background-color: #fff;
-  gap: 50px;
+  padding: 8px 20px;
+  display: flex;
+  column-gap: 10px;
 
   @include md {
+    column-gap: 15px;
     padding: 8px 40px;
-    display: flex;
+  }
+
+  @include lg {
+    column-gap: 32px;
+    padding: 8px 40px;
   }
 
   @include xl {
+    column-gap: 32px;
     padding: 8px 136px;
   }
-
-  &__box {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 16px;
-    border-radius: 8px;
-    width: 100%;
-    border: 1px solid $violet800;
-    color: $stone600;
-
-    &--mark {
-      margin-top: -5px;
-      height: 7px;
-      width: 7px;
-      border-width: 0 2px 2px 0;
-      border-style: solid;
-      transform: rotate(45deg);
-    }
-  }
-
-  &__input {
-    position: relative;
-
-    &__title {
-      color: $violet950;
-      font-size: 12px;
-      line-height: 18px;
-      font-weight: 500;
-      margin-bottom: 3px;
-      opacity: 0.7;
-    }
-
-    &__name {
-      color: $violet950;
-      font-size: 16px;
-      line-height: 24px;
-    }
-  }
 }
+
+//.filter {
+//  display: none;
+//  background-color: #fff;
+//  gap: 50px;
+//
+//  @include md {
+//    padding: 8px 40px;
+//    display: flex;
+//  }
+//
+//  @include xl {
+//    padding: 8px 136px;
+//  }
+//
+//  &__box {
+//    position: relative;
+//    cursor: pointer;
+//    display: flex;
+//    align-items: center;
+//    justify-content: space-between;
+//    padding: 8px 16px;
+//    border-radius: 8px;
+//    width: 100%;
+//    border: 1px solid $violet800;
+//    color: $stone600;
+//
+//    &--mark {
+//      margin-top: -5px;
+//      height: 7px;
+//      width: 7px;
+//      border-width: 0 2px 2px 0;
+//      border-style: solid;
+//      transform: rotate(45deg);
+//    }
+//  }
+//
+//  &__input {
+//    position: relative;
+//
+//    &__title {
+//      color: $violet950;
+//      font-size: 12px;
+//      line-height: 18px;
+//      font-weight: 500;
+//      margin-bottom: 3px;
+//      opacity: 0.7;
+//    }
+//
+//    &__name {
+//      color: $violet950;
+//      font-size: 16px;
+//      line-height: 24px;
+//    }
+//  }
+//}
 
 .main__list-of-pets {
   grid-template-columns: 1fr;
@@ -104,34 +125,4 @@
   @include xl {
     grid-template-columns: 1fr 1fr 1fr;
   }
-}
-
-.drop__down {
-  opacity: 0;
-  position: absolute;
-  background-color: #fff;
-  border: 1px solid black;
-  border-top: 0px;
-  bottom: -86px;
-  left: 0;
-  width: 100px;
-  border-radius: 0 0 10px 10px;
-
-  &--list {
-    padding: 0;
-    list-style-type: none;
-  }
-
-  &--item {
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-
-  &--item:hover {
-    background-color: $stone200;
-  }
-}
-
-.show__dropdown {
-  opacity: 1;
 }

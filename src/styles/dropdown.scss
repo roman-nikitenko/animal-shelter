@@ -1,0 +1,77 @@
+.dropdown {
+  position: relative;
+
+  &__box {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 200px;
+    overflow: hidden;
+  }
+
+  &__subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    opacity: 0.6;
+    color: $violet950;
+  }
+
+  .rotate {
+    transition: rotate 150ms ease-in-out;
+    rotate: round(180deg);
+  }
+
+  &__button {
+    cursor: pointer;
+    padding: 5px 16px;
+    background-color: transparent;
+    border: 1px solid $violet600;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: $violet950;
+  }
+
+  &__list {
+    opacity: 0;
+    visibility: collapse;
+    top: 52px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #FFF;
+    border: 1px solid $violet800;
+    border-top: 0;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+
+    transition: all 150ms ease-in-out;
+
+    &-item {
+      list-style-type: none;
+      color: $violet950;
+      padding: 3px 16px;
+      cursor: pointer;
+      transition: hover 150ms ease-in-out;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    &-item:hover {
+      background-color: $violet100;
+    }
+  }
+
+  .is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
