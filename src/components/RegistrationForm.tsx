@@ -50,7 +50,7 @@ export const RegistrationForm: React.FC = () => {
   }
 
 
-  const handleChange = (event:  React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name: field, value } = event.target;
 
     setValue(current => ({ ...current, [field]: value }));
