@@ -5,11 +5,13 @@ from .views import (
     stripe_config,
     create_stripe_session,
     success_donation,
-    cancelled_donation
+    cancelled_donation,
+    get_secret_key
 )
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
+    path("key/", get_secret_key, name="secret-key"),
     path("config/", stripe_config, name="config"),
     path(
         "create-checkout-session/",

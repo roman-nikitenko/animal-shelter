@@ -13,6 +13,11 @@ class HomePageView(TemplateView):
     template_name = "home.html"
 
 
+@api_view(["GET"])
+def get_secret_key(request):
+    return os.getenv("STRIPE_SECRET_KEY")
+
+
 @csrf_exempt
 @api_view(["GET"])
 def stripe_config(request):
