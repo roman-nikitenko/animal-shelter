@@ -12,10 +12,8 @@ from secrets import token_urlsafe
 from django.http import JsonResponse
 from .utils import handle_message
 
-from .tasks import succes_appoin_notification
 
-
-class NotificationViewset(viewsets.ModelViewSet):
+class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
     permission_classes = (IsAuthenticated,)
@@ -30,6 +28,7 @@ class NotificationViewset(viewsets.ModelViewSet):
             notification.save()
         serializer = NotificationSerializer(notification, context={"request": request})
         return Response(serializer.data)
+
 
 class TelegramWebhook(APIView):
     def post(self, request):

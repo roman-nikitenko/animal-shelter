@@ -43,6 +43,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "pets-0n6g.onrender.com",
     "animal-shelter-n96d.onrender.com",
+    "happy-paws-animal-shelter.onrender.com"
 ]
 
 
@@ -206,10 +207,8 @@ GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = "images_for_pets_bucket"
 
-
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
-
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")

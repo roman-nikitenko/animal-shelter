@@ -57,7 +57,7 @@ class UserSerializer(serializers.ModelSerializer):
             "phone_number",
             "profile_picture",
             "is_staff")
-        read_only_fields = ("is_staff",)
+        read_only_fields = ("is_staff", "profile_picture")
         extra_kwargs = {"password": {"write_only": True}}
 
     def update(self, instance, validated_data):
@@ -69,3 +69,9 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
 
         return user
+
+
+class UserImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("id", "profile_picture")
