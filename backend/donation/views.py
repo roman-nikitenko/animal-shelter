@@ -13,9 +13,12 @@ class HomePageView(TemplateView):
     template_name = "home.html"
 
 
-@api_view(["GET"])
-def get_secret_key(request):
-    return Response({"key": os.getenv("STRIPE_SECRET_KEY")})
+class SuccessPageView(TemplateView):
+    template_name = "donations/success.html"
+
+
+class CancelPageView(TemplateView):
+    template_name = "donations/cancel.html"
 
 
 @csrf_exempt
@@ -70,13 +73,3 @@ def create_stripe_session(request):
     )
 
     return JsonResponse({"sessionId": session["id"]})
-
-
-@api_view(["GET"])
-def success_donation(request):
-    return Response({"message": "Donation was successful"})
-
-
-@api_view(["GET"])
-def cancelled_donation(request):
-    return Response({"message": "Donation was cancelled"})
