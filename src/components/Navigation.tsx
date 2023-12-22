@@ -120,7 +120,7 @@ export const  Navigation: React.FC = () => {
             <div ref={burgerRef} className={classNames("burger__menu", {
               "burgerOn": showBurger,
               "burgerOff": !showBurger,
-            })}>
+              })}>
               <div className="burger__menu__list">
                 <Link to="/list-of-pets" onClick={closeBurger}>Pets</Link>
                 <Link to="/" onClick={closeBurger}>Services</Link>
@@ -142,6 +142,7 @@ export const  Navigation: React.FC = () => {
                   <p className="burger__menu__profile--name">{firstLetterUpperCase(user?.first_name)} {firstLetterUpperCase(user?.last_name)}</p>
                 </div>
               )}
+
             </div>
         </div>
       </div>

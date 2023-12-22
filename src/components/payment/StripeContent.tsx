@@ -34,6 +34,12 @@ export const StripeContent: React.FC = () => {
 
         stripe?.redirectToCheckout(response)
       })
+      .then((success) => {
+        console.log(success)
+      })
+      .catch(error => {
+        console.error(error.message)
+      });
   }
 
   return (
