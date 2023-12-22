@@ -31,6 +31,7 @@ export const  Navigation: React.FC = () => {
     return flag;
   }
 
+
   const moveToUser = () => {
     navigate('/user');
     closeBurger();
@@ -111,15 +112,15 @@ export const  Navigation: React.FC = () => {
               </>
             )}
           </div>
-          <div onClick={() => {
-            setShowBurger(prevState => !prevState)
-          }} className="burger" >
-            {chuseIcon()}
-          </div>
+            <div onClick={() => {
+              setShowBurger(prevState => !prevState)
+            }} className="burger" >
+              {chuseIcon()}
+            </div>
 
             <div ref={burgerRef} className={classNames("burger__menu", {
               "burgerOn": showBurger,
-              "burgerOff": !showBurger,
+              // "burgerOff": !showBurger,
               })}>
               <div className="burger__menu__list">
                 <Link to="/list-of-pets" onClick={closeBurger}>Pets</Link>

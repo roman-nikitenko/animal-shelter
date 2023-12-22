@@ -1,20 +1,17 @@
 .burger__menu {
-  padding: 0 10px;
-  margin-top: 16px;
   position: absolute;
-  height: 100vh;
   left: 0;
   right: 0;
   background-color: $violet100;
-  z-index: 1;
+  height: 100vh;
+  margin-top: 16px;
+  padding: 0 10px;
   font-size: 18px;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
 
-  transition: all 400ms ease-in-out;
-  //transform: translate(100%);
-
-  //overflow: hidden;
-  //opacity: 0;
-  //visibility: hidden;
 
   @include md {
     margin-top: 60px;
@@ -47,19 +44,8 @@
 
 .burgerOn {
   visibility: visible;
-  transition: all 400ms ease-in-out;
-  transform: translateX(0);
-  animation: burgerOnAn 400ms ease-in-out forwards;
-  //overflow: hidden;
-  //opacity: 1;
-
-  @include md {
-    transform: translateX(50%);
-  }
-}
-
-.burgerOff {
-  animation: burgerOffAn 400ms ease-in-out forwards;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
 }
 
 .burger__menu__profile {
