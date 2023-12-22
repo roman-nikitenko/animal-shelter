@@ -1,7 +1,7 @@
 .burger__menu {
   position: absolute;
-  left: 0;
   right: 0;
+  width: 100%;
   background-color: $violet100;
   height: 100vh;
   margin-top: 16px;
@@ -15,12 +15,12 @@
 
   @include md {
     margin-top: 60px;
-    transform: translate(100%);
     border-left: 1px solid $violet700;
     border-bottom: 1px solid $violet700;
     border-top: 1px solid $violet700;
     border-radius: 0 0 0 10px;
     height: 400px;
+    width: 350px;
   }
 
   &__list {

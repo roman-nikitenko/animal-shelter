@@ -719,10 +719,12 @@ p {
 .filter {
   padding: 8px 20px;
   display: flex;
-  column-gap: 10px;
+  row-gap: 10px;
+  flex-direction: column;
 }
 @media (min-width: 768px) {
   .filter {
+    flex-direction: row;
     column-gap: 15px;
     padding: 8px 40px;
   }
@@ -1424,8 +1426,8 @@ p {
 
 .burger__menu {
   position: absolute;
-  left: 0;
   right: 0;
+  width: 100%;
   background-color: #EDE9FE;
   height: 100vh;
   margin-top: 16px;
@@ -1439,12 +1441,12 @@ p {
 @media (min-width: 768px) {
   .burger__menu {
     margin-top: 60px;
-    transform: translate(100%);
     border-left: 1px solid #6D28D9;
     border-bottom: 1px solid #6D28D9;
     border-top: 1px solid #6D28D9;
     border-radius: 0 0 0 10px;
     height: 400px;
+    width: 350px;
   }
 }
 .burger__menu__list {
@@ -1509,8 +1511,12 @@ p {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
-  width: 200px;
   overflow: hidden;
+}
+@media (min-width: 768px) {
+  .dropdown__box {
+    width: 200px;
+  }
 }
 .dropdown__subtitle {
   font-size: 12px;
@@ -1525,7 +1531,7 @@ p {
 }
 .dropdown__button {
   cursor: pointer;
-  padding: 5px 16px;
+  padding: 7px 16px;
   background-color: transparent;
   border: 1px solid #7C3AED;
   border-radius: 8px;
@@ -1540,7 +1546,7 @@ p {
 .dropdown__list {
   opacity: 0;
   visibility: collapse;
-  top: 52px;
+  top: 56px;
   left: 0;
   right: 0;
   margin: 0;
@@ -1550,12 +1556,13 @@ p {
   border-top: 0;
   border-radius: 0 0 8px 8px;
   overflow: hidden;
+  z-index: 2;
   transition: all 150ms ease-in-out;
 }
 .dropdown__list-item {
   list-style-type: none;
   color: #2E1065;
-  padding: 3px 16px;
+  padding: 5px 16px;
   cursor: pointer;
   transition: hover 150ms ease-in-out;
   font-size: 16px;

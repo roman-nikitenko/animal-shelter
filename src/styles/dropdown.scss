@@ -7,8 +7,11 @@
     display: flex;
     flex-direction: column;
     row-gap: 5px;
-    width: 200px;
     overflow: hidden;
+
+    @include md {
+      width: 200px;
+    }
   }
 
   &__subtitle {
@@ -26,7 +29,7 @@
 
   &__button {
     cursor: pointer;
-    padding: 5px 16px;
+    padding: 7px 16px;
     background-color: transparent;
     border: 1px solid $violet600;
     border-radius: 8px;
@@ -42,7 +45,7 @@
   &__list {
     opacity: 0;
     visibility: collapse;
-    top: 52px;
+    top: 56px;
     left: 0;
     right: 0;
     margin: 0;
@@ -52,13 +55,14 @@
     border-top: 0;
     border-radius: 0 0 8px 8px;
     overflow: hidden;
+    z-index: 2;
 
     transition: all 150ms ease-in-out;
 
     &-item {
       list-style-type: none;
       color: $violet950;
-      padding: 3px 16px;
+      padding: 5px 16px;
       cursor: pointer;
       transition: hover 150ms ease-in-out;
       font-size: 16px;
