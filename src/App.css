@@ -1434,9 +1434,11 @@ p {
   padding: 0 10px;
   font-size: 18px;
   z-index: 1;
-  visibility: hidden;
+  display: block;
   opacity: 0;
-  transition: visibility 0s linear 300ms, opacity 300ms;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 400ms ease-in-out;
 }
 @media (min-width: 768px) {
   .burger__menu {
@@ -1468,7 +1470,8 @@ p {
 .burgerOn {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s linear 0s, opacity 300ms;
+  transform: translateX(0);
+  transition: transform 400ms ease-in-out;
 }
 
 .burger__menu__profile {

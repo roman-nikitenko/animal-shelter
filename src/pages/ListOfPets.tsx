@@ -7,10 +7,8 @@ import { useLocation } from 'react-router-dom';
 
 export const ListOfPets: React.FC = () => {
   const { pets } = useContext(PetsContext);
-  const { pathname, search } = useLocation();
-
-  console.log(pathname)
-  console.log(search)
+  // const { pathname, search } = useLocation();
+  const [showSearchButton, setShowSearchButton] = useState(false)
   const [{
     age,
     sex,
@@ -21,12 +19,18 @@ export const ListOfPets: React.FC = () => {
     kindOfPet: 'All pets',
   })
 
-  const kindOfPets = ["Dog", "Cat"];
+  const listOfPets = ["Dog", "Cat"];
   const listOfSex = ["Male", "Female"];
   const listAges = ["1.0", "2.0", "3.0", "4.0", "5.0", "6.0", "7.0"];
 
   const handlerChange = (field: string, value: string) => {
+    setShowSearchButton(true)
     setValue(current => ({ ...current, [field]: value }))
+  }
+
+  const handlerSearch = () => {
+
+    console.log('Searching...')
   }
 
   return (
@@ -39,7 +43,7 @@ export const ListOfPets: React.FC = () => {
           <DropDown
             subTitle="Kind of pets"
             title={kindOfPet}
-            dropdownList={kindOfPets}
+            dropdownList={listOfPets}
             handlerChange={handlerChange}
             value={kindOfPet}
           />
@@ -59,9 +63,9 @@ export const ListOfPets: React.FC = () => {
           />
         </div>
 
-        {false && (
+        {showSearchButton && (
           <div style={{ padding: '0 20px 8px' }}>
-            <button className="button">Search</button>
+            <button onClick={handlerSearch} className="button">Search</button>
           </div>
         )}
 
