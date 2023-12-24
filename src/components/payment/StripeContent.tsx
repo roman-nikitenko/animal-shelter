@@ -43,7 +43,7 @@ export const StripeContent: React.FC = () => {
   }
 
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+    <div className="donation__button">
       <button onClick={payHandler} className="button">Donate now</button>
     </div>
   );
