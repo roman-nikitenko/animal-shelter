@@ -17,24 +17,9 @@ export const Footer: React.FC = () => {
               </Link>
             </li>
             <li className="nav__item">
-              <a href="#" className="nav__link">
-                Services
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="nav__link">
+              <Link to="/donation" className="nav__link">
                 Donations
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="nav__link">
-                Account
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="#" className="nav__link">
-                Terms of use
-              </a>
+              </Link>
             </li>
             <li className="nav__item">
               <a href="#" className="nav__link">

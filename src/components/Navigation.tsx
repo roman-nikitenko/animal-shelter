@@ -58,9 +58,6 @@ export const  Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li className="nav__item">
-              <a className="nav__link" href="#">Services</a>
-            </li>
-            <li className="nav__item">
               <NavLink
                 className={({ isActive }) => isActive ? 'activeLink' : 'nav__link'}
                 to="/donation"
@@ -124,7 +121,6 @@ export const  Navigation: React.FC = () => {
               })}>
               <div className="burger__menu__list">
                 <Link to="/list-of-pets" onClick={closeBurger}>Pets</Link>
-                <Link to="/" onClick={closeBurger}>Services</Link>
                 <Link to="/donation" onClick={closeBurger}>Donation</Link>
                 <Link to="/" onClick={closeBurger}>About</Link>
               </div>

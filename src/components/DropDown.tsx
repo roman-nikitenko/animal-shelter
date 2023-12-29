@@ -3,19 +3,16 @@ import { IoIosArrowDown } from "react-icons/io";
 import classNames from 'classnames';
 import { useOnClickOutSide } from '../servoces/useOnClickOutSide';
 
-type FieldFilters = 'age' | 'sex' | 'kindOfPet';
-
 type Props = {
   title: string;
   subTitle: string;
   dropdownList: string[];
   handlerChange: (field: string, value: string) => void;
-  value: string;
+  field: string;
 }
 
-export const DropDown: React.FC<Props> = ({ title, dropdownList, subTitle, handlerChange, value }) => {
+export const DropDown: React.FC<Props> = ({ title, dropdownList, subTitle, handlerChange, field }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [inputTitle, setInputTitle] = useState(title);
   const dropdownRef = useRef(null);
 
   const openHandler = () => {
@@ -27,9 +24,7 @@ export const DropDown: React.FC<Props> = ({ title, dropdownList, subTitle, handl
   });
 
   const chooseHandler = (item: string) => {
-
-    setInputTitle(item);
-    handlerChange(value, item);
+    handlerChange(field, item);
     setIsOpen(false);
   };
 
@@ -38,7 +33,7 @@ export const DropDown: React.FC<Props> = ({ title, dropdownList, subTitle, handl
       <label className="dropdown__box" htmlFor="">
         <p className="dropdown__subtitle">{subTitle}</p>
          <button className="dropdown__button" onClick={openHandler}>
-           {inputTitle}
+           {title}
            <IoIosArrowDown className={classNames({
              "rotate" : isOpen,
            })} size={20} />
@@ -47,7 +42,7 @@ export const DropDown: React.FC<Props> = ({ title, dropdownList, subTitle, handl
           "is-open" : isOpen,
         })}>
           {dropdownList.map(item => (
-            <div onClick={() => chooseHandler(item)} className="dropdown__list-item">{item}</div>
+            <div key={item} onClick={() => chooseHandler(item)} className="dropdown__list-item">{item}</div>
           ))}
         </div>
       </label>

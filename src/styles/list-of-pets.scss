@@ -14,6 +14,10 @@
       font-size: 40px;
     }
   }
+
+  &__button {
+
+  }
 }
 
 .filter {
@@ -21,6 +25,11 @@
   display: flex;
   row-gap: 10px;
   flex-direction: column;
+
+  &__button {
+    display: flex;
+    align-items: end;
+  }
 
   @include md {
     flex-direction: row;
@@ -38,62 +47,6 @@
     padding: 8px 136px;
   }
 }
-
-//.filter {
-//  display: none;
-//  background-color: #fff;
-//  gap: 50px;
-//
-//  @include md {
-//    padding: 8px 40px;
-//    display: flex;
-//  }
-//
-//  @include xl {
-//    padding: 8px 136px;
-//  }
-//
-//  &__box {
-//    position: relative;
-//    cursor: pointer;
-//    display: flex;
-//    align-items: center;
-//    justify-content: space-between;
-//    padding: 8px 16px;
-//    border-radius: 8px;
-//    width: 100%;
-//    border: 1px solid $violet800;
-//    color: $stone600;
-//
-//    &--mark {
-//      margin-top: -5px;
-//      height: 7px;
-//      width: 7px;
-//      border-width: 0 2px 2px 0;
-//      border-style: solid;
-//      transform: rotate(45deg);
-//    }
-//  }
-//
-//  &__input {
-//    position: relative;
-//
-//    &__title {
-//      color: $violet950;
-//      font-size: 12px;
-//      line-height: 18px;
-//      font-weight: 500;
-//      margin-bottom: 3px;
-//      opacity: 0.7;
-//    }
-//
-//    &__name {
-//      color: $violet950;
-//      font-size: 16px;
-//      line-height: 24px;
-//    }
-//  }
-//}
 
 .main__list-of-pets {
   grid-template-columns: 1fr;
