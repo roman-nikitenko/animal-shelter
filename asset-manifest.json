@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/animal-shelter/static/css/main.921dbd49.css",
-    "main.js": "/animal-shelter/static/js/main.97caa648.js",
+    "main.js": "/animal-shelter/static/js/main.3847638d.js",
     "static/media/pappi.jpeg": "/animal-shelter/static/media/pappi.3d082ee5937c31adc6d9.jpeg",
     "static/media/main-image.png": "/animal-shelter/static/media/main-image.013b02f4e3c5e366d007.png",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
@@ -27,10 +27,10 @@
     "static/media/close.svg": "/animal-shelter/static/media/close.1ded1e99216871d2a3aec0714440eb62.svg",
     "static/media/arrowGoToback.svg": "/animal-shelter/static/media/arrowGoToback.0537bdf529f1f2b50ed6646cfff1bc87.svg",
     "main.921dbd49.css.map": "/animal-shelter/static/css/main.921dbd49.css.map",
-    "main.97caa648.js.map": "/animal-shelter/static/js/main.97caa648.js.map"
+    "main.3847638d.js.map": "/animal-shelter/static/js/main.3847638d.js.map"
   },
   "entrypoints": [
     "static/css/main.921dbd49.css",
-    "static/js/main.97caa648.js"
+    "static/js/main.3847638d.js"
   ]
 }
