@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/animal-shelter/static/css/main.f5d3ee2c.css",
-    "main.js": "/animal-shelter/static/js/main.d81b8cd5.js",
+    "main.css": "/animal-shelter/static/css/main.921dbd49.css",
+    "main.js": "/animal-shelter/static/js/main.97caa648.js",
     "static/media/pappi.jpeg": "/animal-shelter/static/media/pappi.3d082ee5937c31adc6d9.jpeg",
     "static/media/main-image.png": "/animal-shelter/static/media/main-image.013b02f4e3c5e366d007.png",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
     "static/media/bigl.jpg": "/animal-shelter/static/media/bigl.f83f3f1906525f0fed64.jpg",
     "static/media/donate-hero.jpg": "/animal-shelter/static/media/donate-hero.3fa31af18f88eb04b147.jpg",
     "static/media/dog.jpg": "/animal-shelter/static/media/dog.1b60cfcd40644a63ce07.jpg",
+    "static/media/searchPet.jpg": "/animal-shelter/static/media/searchPet.a084ecd1741bf1098025.jpg",
     "static/media/burger.svg": "/animal-shelter/static/media/burger.010de48c7700c7620d88d128c8cb73f4.svg",
     "static/media/logo.svg": "/animal-shelter/static/media/logo.7af86819c0ac49c574ba0869b7bb298c.svg",
     "static/media/dog.svg": "/animal-shelter/static/media/dog.134b8be14346e3bb9898d4ed5718913f.svg",
@@ -25,11 +26,11 @@
     "static/media/logout.svg": "/animal-shelter/static/media/logout.00a3489951e662c2783d004ce047f36f.svg",
     "static/media/close.svg": "/animal-shelter/static/media/close.1ded1e99216871d2a3aec0714440eb62.svg",
     "static/media/arrowGoToback.svg": "/animal-shelter/static/media/arrowGoToback.0537bdf529f1f2b50ed6646cfff1bc87.svg",
-    "main.f5d3ee2c.css.map": "/animal-shelter/static/css/main.f5d3ee2c.css.map",
-    "main.d81b8cd5.js.map": "/animal-shelter/static/js/main.d81b8cd5.js.map"
+    "main.921dbd49.css.map": "/animal-shelter/static/css/main.921dbd49.css.map",
+    "main.97caa648.js.map": "/animal-shelter/static/js/main.97caa648.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5d3ee2c.css",
-    "static/js/main.d81b8cd5.js"
+    "static/css/main.921dbd49.css",
+    "static/js/main.97caa648.js"
   ]
 }
