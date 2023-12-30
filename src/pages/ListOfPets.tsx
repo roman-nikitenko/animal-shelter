@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card } from '../components/Card';
 import { Loader } from '../components/Loader/';
 import { PetsContext } from '../store/PetsContext';
@@ -9,11 +9,11 @@ import { Animals } from '../types/animals';
 import emptyPets from '../assets/searchPet.jpg';
 
 export const ListOfPets: React.FC = () => {
-  const { pets } = useContext(PetsContext);
+  const { pets, isLoading } = useContext(PetsContext);
   const { search } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchButton, setShowSearchButton] = useState(!!searchParams.size && true)
-  const [filteredPets, setFilteredPets] = useState<Animals[]>(pets);
+  const [filteredPets, setFilteredPets] = useState<Animals[] | null>(null);
   const [sending, setSending] = useState(false);
 
   const age = searchParams.get('age') || 'Ages';
@@ -24,6 +24,8 @@ export const ListOfPets: React.FC = () => {
   const listOfSex = ["Male", "Female"];
   const listAges = ["Baby", "Young", "Adult", "Senior"];
 
+  const validMeesSearch = filteredPets?.length === 0 && searchParams.size !== 0 && !isLoading && !sending;
+
   const handlerChange = (field: string, value: string) => {
     const params = new URLSearchParams(searchParams);
     params.set(field, value);
@@ -32,6 +34,10 @@ export const ListOfPets: React.FC = () => {
 
     setShowSearchButton(true)
   }
+
+  useEffect(() => {
+    setFilteredPets(pets)
+  }, [pets])
 
   const searchPets = async () => {
     setSending(true);
@@ -53,6 +59,8 @@ export const ListOfPets: React.FC = () => {
     setShowSearchButton(false);
     setFilteredPets(pets);
   }
+
+
 
   return (
     <>
@@ -100,21 +108,23 @@ export const ListOfPets: React.FC = () => {
       </header>
 
       <main className="main">
+        { isLoading && <Loader/> }
         { sending && <Loader/> }
 
         { !sending && (
           <div className="main__list-of-pets">
-            {filteredPets.map(pet => (
+            {filteredPets?.map(pet => (
               <Card key={pet.id} pet={pet} />
             ))}
           </div>
         )}
 
-        { filteredPets.length === 0 && searchParams.size !== 0 && (
+        { validMeesSearch && (
           <div className="main__empty">
-            <p className="main__empty--text">We did not find any matches</p>
+            <p className="main__empty--text">
+              We did not find any matches
+            </p>
             <img src={emptyPets} className="emptyPets" />
-
           </div>
         ) }
       </main>

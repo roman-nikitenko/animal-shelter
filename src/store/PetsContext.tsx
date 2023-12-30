@@ -2,10 +2,10 @@ import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
 import { User } from '../types/user';
 import { BASE_URL, getUser } from '../api/fetch';
-import { useNavigate } from 'react-router-dom';
 
 type petContext = {
   pets: Animals[],
+  isLoading: boolean
   carouselPets: Animals[],
   user: User | null | undefined,
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>,
@@ -18,6 +18,7 @@ export const PetsContext = createContext<petContext>({
   user: null,
   setUser: () => {},
   logOutHandler: () => {},
+  isLoading: false,
 });
 
 type Prop = {
@@ -28,10 +29,7 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   const [pets, setPets] = useState([]);
   const [carouselPets, setCarouselPets] = useState([]);
   const [user, setUser] = useState<User>();
-
-  window.addEventListener('storage', () => {
-    console.log('Storage changed');
-  })
+  const [isLoading, setIsLoading] = useState(false);
 
 
   let token = localStorage.getItem('token');
@@ -45,10 +43,12 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true)
     fetch( BASE_URL + '/api/pets/')
       .then(response => response.json())
       .then(petsFromServer => {
         setPets(petsFromServer);
+        setIsLoading(false)
       });
   }, []);
 
@@ -71,8 +71,9 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
     carouselPets,
     user,
     setUser,
-    logOutHandler
-  }), [pets, carouselPets, user]);
+    logOutHandler,
+    isLoading
+  }), [pets, carouselPets, user, isLoading]);
 
   return (
     <PetsContext.Provider value={value}>
