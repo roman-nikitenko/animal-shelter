@@ -1,18 +1,20 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card } from '../components/Card';
-import { Loader } from '../components/Loader';
+import { Loader } from '../components/Loader/';
 import { PetsContext } from '../store/PetsContext';
 import { DropDown } from '../components/DropDown';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { BASE_URL } from '../api/fetch';
 import { Animals } from '../types/animals';
+import emptyPets from '../assets/searchPet.jpg';
 
 export const ListOfPets: React.FC = () => {
   const { pets } = useContext(PetsContext);
   const { search } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [showSearchButton, setShowSearchButton] = useState(!!searchParams.size && true)
-  const [filteredPets, setFilteredPets] = useState<Animals[]>();
+  const [filteredPets, setFilteredPets] = useState<Animals[]>(pets);
+  const [sending, setSending] = useState(false);
 
   const age = searchParams.get('age') || 'Ages';
   const gender = searchParams.get('gender') || 'Gender';
@@ -32,12 +34,12 @@ export const ListOfPets: React.FC = () => {
   }
 
   const searchPets = async () => {
-    console.log('wait...')
+    setSending(true);
     fetch(BASE_URL + `/api/pets/${search}`)
       .then(response => response.json())
       .then(pets => {
-        console.log('pets', pets)
-        setFilteredPets(pets)
+        setSending(false);
+        setFilteredPets(pets);
       })
   }
 
@@ -49,6 +51,7 @@ export const ListOfPets: React.FC = () => {
 
     setSearchParams(params);
     setShowSearchButton(false);
+    setFilteredPets(pets);
   }
 
   return (
@@ -87,29 +90,33 @@ export const ListOfPets: React.FC = () => {
               </div>
 
               <div className="filter__button">
-                <button onClick={searchPets} className="button">Search</button>
+                <button onClick={searchPets} className="button">
+                  Search
+                </button>
               </div>
             </>
           )}
-
         </div>
-
       </header>
-      <main className="main ">
-        { pets.length === 0 && <Loader/> }
-        <div className="main__list-of-pets">
-          {!searchParams.size && (
-            pets.map(pet => (
-              <Card key={pet.id} pet={pet} />
-            ))
-          )}
-          {searchParams.size && (
-            filteredPets?.map(pet => (
-              <Card key={pet.id} pet={pet} />
-            ))
-          )}
-        </div>
 
+      <main className="main">
+        { sending && <Loader/> }
+
+        { !sending && (
+          <div className="main__list-of-pets">
+            {filteredPets.map(pet => (
+              <Card key={pet.id} pet={pet} />
+            ))}
+          </div>
+        )}
+
+        { filteredPets.length === 0 && searchParams.size !== 0 && (
+          <div className="main__empty">
+            <p className="main__empty--text">We did not find any matches</p>
+            <img src={emptyPets} className="emptyPets" />
+
+          </div>
+        ) }
       </main>
     </>
   );

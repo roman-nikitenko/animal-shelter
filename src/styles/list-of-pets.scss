@@ -1,3 +1,21 @@
+.main {
+  background-color: $violet100;
+
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    height: 50vh;
+    margin: 0 auto;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  &__empty p {
+    font-size: 20px;
+  }
+}
+
 .header__list-of-pets {
 
   &__title {
@@ -13,10 +31,6 @@
       padding: 48px 0;
       font-size: 40px;
     }
-  }
-
-  &__button {
-
   }
 }
 
@@ -81,3 +95,8 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.emptyPets {
+  width: 400px;
+}
+

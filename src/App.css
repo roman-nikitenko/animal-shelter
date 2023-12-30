@@ -700,6 +700,21 @@ p {
   color: #8B5CF6;
 }
 
+.main {
+  background-color: #EDE9FE;
+}
+.main__empty {
+  display: flex;
+  align-items: center;
+  height: 50vh;
+  margin: 0 auto;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.main__empty p {
+  font-size: 20px;
+}
+
 .header__list-of-pets__title {
   padding: 32px 34px;
   text-align: center;
@@ -715,6 +730,7 @@ p {
     font-size: 40px;
   }
 }
+
 .filter {
   padding: 8px 20px;
   display: flex;
@@ -781,6 +797,10 @@ p {
   .main__list-of-pets {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+.emptyPets {
+  width: 400px;
 }
 
 .card {
