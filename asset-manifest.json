@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/animal-shelter/static/css/main.9f3ae186.css",
-    "main.js": "/animal-shelter/static/js/main.5c0bc051.js",
+    "main.css": "/animal-shelter/static/css/main.c925dd2c.css",
+    "main.js": "/animal-shelter/static/js/main.39162959.js",
     "static/media/pappi.jpeg": "/animal-shelter/static/media/pappi.3d082ee5937c31adc6d9.jpeg",
     "static/media/main-image.png": "/animal-shelter/static/media/main-image.013b02f4e3c5e366d007.png",
     "static/media/cat-orange.jpg": "/animal-shelter/static/media/cat-orange.d7f8e9e5e04bc51c374a.jpg",
@@ -24,13 +24,14 @@
     "static/media/female.svg": "/animal-shelter/static/media/female.11c29c9be567557dfb6fc0c40a0582a9.svg",
     "static/media/x.svg": "/animal-shelter/static/media/x.ea5079e0078267e233388ecc9ff74bec.svg",
     "static/media/logout.svg": "/animal-shelter/static/media/logout.00a3489951e662c2783d004ce047f36f.svg",
+    "static/media/border-dashed.svg": "/animal-shelter/static/media/border-dashed.662a089d2e2edbf80cb9.svg",
     "static/media/close.svg": "/animal-shelter/static/media/close.1ded1e99216871d2a3aec0714440eb62.svg",
     "static/media/arrowGoToback.svg": "/animal-shelter/static/media/arrowGoToback.0537bdf529f1f2b50ed6646cfff1bc87.svg",
-    "main.9f3ae186.css.map": "/animal-shelter/static/css/main.9f3ae186.css.map",
-    "main.5c0bc051.js.map": "/animal-shelter/static/js/main.5c0bc051.js.map"
+    "main.c925dd2c.css.map": "/animal-shelter/static/css/main.c925dd2c.css.map",
+    "main.39162959.js.map": "/animal-shelter/static/js/main.39162959.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f3ae186.css",
-    "static/js/main.5c0bc051.js"
+    "static/css/main.c925dd2c.css",
+    "static/js/main.39162959.js"
   ]
 }
