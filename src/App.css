@@ -338,6 +338,55 @@ p {
     padding: 59px 136px 192px;
   }
 }
+.about-us__group-of-images {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 420px;
+  margin-top: 50px;
+}
+@media (min-width: 1024px) {
+  .about-us__group-of-images {
+    flex: 1;
+  }
+}
+.about-us__group-of-images .group {
+  position: absolute;
+}
+@media (min-width: 768px) {
+  .about-us__group-of-images .group {
+    left: 170px;
+  }
+}
+@media (min-width: 1024px) {
+  .about-us__group-of-images .group {
+    left: 0;
+    top: 100px;
+  }
+}
+.about-us__group-of-images .group .image-first {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 187px;
+  background-image: url("./assets/sub-hero-images/border-dashed.svg");
+  background-size: 187px;
+}
+.about-us__group-of-images .group .image-first img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.about-us__group-of-images .group .two {
+  left: 160px;
+  top: 91px;
+}
+.about-us__group-of-images .group .tree {
+  top: 185px;
+}
 .about-us__title {
   display: flex;
   margin-bottom: 29px;
@@ -381,90 +430,6 @@ p {
   }
 }
 
-.image-block__images {
-  border-radius: 50%;
-  object-fit: cover;
-  border: 7px dashed #fff;
-  padding: 10px;
-}
-
-.image1 {
-  z-index: 3;
-  position: relative;
-  width: 150px;
-  height: 150px;
-}
-@media (min-width: 768px) {
-  .image1 {
-    width: 200px;
-    height: 200px;
-  }
-}
-@media (min-width: 1280px) {
-  .image1 {
-    width: 250px;
-    height: 250px;
-  }
-}
-
-.image2 {
-  position: relative;
-  top: -45px;
-  left: -15px;
-  width: 130px;
-  height: 130px;
-}
-@media (min-width: 768px) {
-  .image2 {
-    top: -11px;
-    left: 15px;
-    width: 180px;
-    height: 180px;
-  }
-}
-@media (min-width: 1024px) {
-  .image2 {
-    top: -35px;
-    left: -35px;
-  }
-}
-@media (min-width: 1280px) {
-  .image2 {
-    width: 230px;
-    height: 230px;
-  }
-}
-
-.image3 {
-  position: absolute;
-  top: 100px;
-  left: 110px;
-  width: 150px;
-  height: 150px;
-}
-@media (min-width: 768px) {
-  .image3 {
-    top: 119px;
-    left: 196px;
-    width: 200px;
-    height: 200px;
-  }
-}
-@media (min-width: 1024px) {
-  .image3 {
-    top: 140px;
-    left: 154px;
-  }
-}
-@media (min-width: 1280px) {
-  .image3 {
-    top: 140px;
-    left: 200px;
-    width: 250px;
-    height: 250px;
-  }
-}
-
 .about-us__text {
   display: flex;
   flex-direction: column;
@@ -474,6 +439,7 @@ p {
   .about-us__text {
     margin-top: 40px;
     gap: 48px;
+    flex: 2.5;
   }
 }
 .about-us__text .second-paragraph {

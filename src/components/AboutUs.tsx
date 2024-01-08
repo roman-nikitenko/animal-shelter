@@ -9,17 +9,20 @@ export const AboutUs: React.FC = () => {
     <section className="about-us">
       <h2 className="about-us__title"> About Us</h2>
       <div className="about-us__content">
-        <div className="about-us__block-images">
-          <div className="image-block">
-            <img className="image-block__images image1" src={image3}/>
-          </div>
-          <div className="image-block">
-            <img className="image-block__images image2" src={image2}/>
-          </div>
-          <div className="image-block">
-            <img className="image-block__images image3" src={image1}/>
+        <div className="about-us__group-of-images">
+          <div className="group">
+            <div className="image-first one" >
+              <img src={image3} />
+            </div>
+            <div className="image-first two">
+              <img src={image2} />
+            </div>
+            <div className="image-first tree" >
+              <img src={image1} />
+            </div>
           </div>
         </div>
+
         <div className="about-us__text">
           <p>
             Welcome to Happy Paws, a dedicated animal shelter committed to providing a safe haven for animals in need. Established with the core belief that every creature deserves love, care, and a place to call home, we have been tirelessly working towards creating a compassionate community for our beloved furry friends.
