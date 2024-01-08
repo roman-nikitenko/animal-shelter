@@ -37,7 +37,7 @@
 .filter {
   padding: 8px 20px;
   display: flex;
-  row-gap: 10px;
+  row-gap: 20px;
   flex-direction: column;
 
   &__button {
@@ -45,13 +45,29 @@
     align-items: end;
   }
 
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include md {
+      flex-direction: row;
+    }
+
+    &--buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+
   @include md {
-    flex-direction: row;
     column-gap: 15px;
     padding: 8px 40px;
   }
 
   @include lg {
+    flex-direction: row;
     column-gap: 32px;
     padding: 8px 40px;
   }

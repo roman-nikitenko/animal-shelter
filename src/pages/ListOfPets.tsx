@@ -26,6 +26,8 @@ export const ListOfPets: React.FC = () => {
 
   const validMeesSearch = filteredPets?.length === 0 && searchParams.size !== 0 && !isLoading && !sending;
 
+  console.log(validMeesSearch)
+
   const handlerChange = (field: string, value: string) => {
     const params = new URLSearchParams(searchParams);
     params.set(field, value);
@@ -69,32 +71,39 @@ export const ListOfPets: React.FC = () => {
           Help people to find their pets
         </p>
         <div className="filter">
-          <DropDown
-            subTitle="Kind of pets"
-            title={typeOfPets}
-            dropdownList={listOfTypePets}
-            handlerChange={handlerChange}
-            field="animal_type"
-          />
-          <DropDown
-            subTitle="Gender"
-            title={gender}
-            dropdownList={listOfSex}
-            handlerChange={handlerChange}
-            field="gender"
-          />
-          <DropDown
-            subTitle="Ages"
-            title={age}
-            dropdownList={listAges}
-            handlerChange={handlerChange}
-            field="age"
-          />
+          <div className="filter__group">
+            <DropDown
+              subTitle="Kind of pets"
+              title={typeOfPets}
+              dropdownList={listOfTypePets}
+              handlerChange={handlerChange}
+              field="animal_type"
+            />
+            <DropDown
+              subTitle="Gender"
+              title={gender}
+              dropdownList={listOfSex}
+              handlerChange={handlerChange}
+              field="gender"
+            />
+            <DropDown
+              subTitle="Ages"
+              title={age}
+              dropdownList={listAges}
+              handlerChange={handlerChange}
+              field="age"
+            />
+          </div>
 
           {showSearchButton && (
-            <>
+            <div className="filter__group--buttons">
               <div className="filter__button">
-                <button onClick={cancelFilters} className="button">Cancel</button>
+                <button
+                  onClick={cancelFilters}
+                  className="button"
+                >
+                  Cancel
+                </button>
               </div>
 
               <div className="filter__button">
@@ -102,7 +111,7 @@ export const ListOfPets: React.FC = () => {
                   Search
                 </button>
               </div>
-            </>
+            </div>
           )}
         </div>
       </header>

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { ElementRef, useContext, useRef, useState } from 'react';
 import { Logo } from './Logo';
 import { useNavigate, NavLink, Link } from 'react-router-dom';
 import userIcon from '../assets/userIcon.svg';
@@ -14,7 +14,7 @@ export const  Navigation: React.FC = () => {
   const navigate = useNavigate();
   const { logOutHandler } = useContext(PetsContext);
   const [showBurger, setShowBurger] = useState(false);
-  const burgerRef = useRef(null);
+  const burgerRef = useRef<ElementRef<"div">>(null);
   const { user } = useContext(PetsContext);
 
   const chuseIcon = () => {
