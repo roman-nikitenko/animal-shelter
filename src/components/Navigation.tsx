@@ -71,7 +71,7 @@ export const  Navigation: React.FC = () => {
               </NavLink>
             </li>
             <li className="nav__item">
-              <a className="nav__link" href="#">About</a>
+              <Link className="nav__link" to="/">About</Link>
             </li>
           </ul>
         </div>
