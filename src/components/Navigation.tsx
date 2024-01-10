@@ -31,6 +31,11 @@ export const  Navigation: React.FC = () => {
     return flag;
   }
 
+  const logOutButtonHandler = () => {
+    logOutHandler();
+    navigate('/');
+  }
+
 
   const moveToUser = () => {
     navigate('/user');
@@ -81,7 +86,7 @@ export const  Navigation: React.FC = () => {
                 <button
                   className="button button__signIn"
                   type="button"
-                  onClick={logOutHandler}
+                  onClick={logOutButtonHandler}
                 >
                   <UserIcon size={23} color={'#6D28D9'} />
                   Sign out

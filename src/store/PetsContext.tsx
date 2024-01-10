@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { Animals } from '../types/animals'
 import { User } from '../types/user';
 import { BASE_URL, getUser } from '../api/fetch';
+import { redirect, useNavigate } from 'react-router-dom'
 
 type petContext = {
   pets: Animals[],
@@ -30,7 +31,6 @@ export const PetsProvider: React.FC<Prop> = ({ children }) => {
   const [carouselPets, setCarouselPets] = useState([]);
   const [user, setUser] = useState<User>();
   const [isLoading, setIsLoading] = useState(false);
-
 
   let token = localStorage.getItem('token');
 
