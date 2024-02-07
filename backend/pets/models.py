@@ -3,6 +3,7 @@ import uuid
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 
 from .google_image_field import GoogleImageField
@@ -50,6 +51,7 @@ class Pet(models.Model):
     story = models.TextField(blank=True, null=True)
     image = GoogleImageField(null=True, upload_to=pet_image_file_path)
     is_adopted = models.BooleanField(default=False)
+    adopted_date = models.DateTimeField(blank=True, default=timezone.now)
 
     def __str__(self):
         return f"{self.name} {self.animal_type}"

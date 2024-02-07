@@ -4,8 +4,8 @@ from .views import (
     HomePageView,
     stripe_config,
     create_stripe_session,
-    success_donation,
-    cancelled_donation
+    SuccessPageView,
+    CancelPageView,
 )
 
 urlpatterns = [
@@ -16,8 +16,8 @@ urlpatterns = [
         create_stripe_session,
         name="create-checkout-session"
     ),
-    path("success", success_donation, name="success-donation"),
-    path("cancelled/", cancelled_donation, name="cancelled-donation")
+    path("success", SuccessPageView.as_view(), name="success-donation"),
+    path("cancelled/", CancelPageView.as_view(), name="cancelled-donation")
 
 ]
 

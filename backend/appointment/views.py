@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from drf_spectacular.utils import extend_schema, OpenApiParameter
+from rest_framework.generics import get_object_or_404
 
 from .models import Appointment
 from .serializers import (
@@ -8,6 +9,8 @@ from .serializers import (
     AppointmentDetailSerializer
 )
 from .permissions import IsAuthenticatedOrIsAdmin
+from notification.tasks import succes_appoin_notification
+from pets.models import Pet
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
@@ -22,9 +25,19 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         user = self.request.user
         serializer.save(user=user)
 
-        pet = serializer.validated_data.get("pet", None)
+        pet_id = serializer.validated_data.get("pet_id", None)
+        pet = get_object_or_404(Pet, pk=pet_id)
         reservation_date = serializer.validated_data.get("time", None)
-        succes_appoin_notification.delay(user.pk, pet.pk, reservation_date)
+        notification_info = {
+            "telegram_chat_id": user.telegram_chat_id,
+            "user_email": user.email,
+            "pet_name": pet.name,
+            "reservation_date": str(reservation_date.date()),
+            "reservation_time": str(reservation_date.time())
+
+        }
+
+        succes_appoin_notification.delay(notification_info)
 
     @staticmethod
     def _params_to_ints(qs):

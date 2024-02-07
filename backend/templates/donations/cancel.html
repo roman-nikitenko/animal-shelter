@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block content %}
+  <div class="header">
+    <div class="text">
+      <div class="text__header">
+        <h1>Oops!</h1>
+      </div>
+      <div class="text__body">
+        <p>Something went wrong...</p>
+      </div>
+    </div>
+    <a class="button" href="https://roman-nikitenko.github.io/animal-shelter/#">Home</a>
+    <div class="image__container">
+      <img class="image" src="{% static 'images/Group.png' %}">
+    </div>
+  </div>
+  {% endblock content %}
